@@ -7,8 +7,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerNavigator from '../components/CustomDrawerNavigator';
 
 import HomeScreen from '../containers/Employee/HomeScreen/HomeScreen';
-import OrderScreen from '../containers/Employee/TableDetailScreen/OrderScreen';
-import PaymentScreen from '../containers/Employee/TableDetailScreen/PaymentScreen';
+import TableDetailScreen from '../containers/Employee/TableDetailScreen/TableDetailScreen';
 import SignInScreen from '../containers/Employee/SignInScreen/SignInScreen';
 import ProfileScreen from '../containers/Employee/ProfileScreen/ProfileScreen';
 import FoodStatusScreen from '../containers/Employee/FoodStatusScreen/FoodStatusScreen';
@@ -29,13 +28,8 @@ const HomeScreenStack = () => {
         options={{ headerShown: false }}
       />
       <HomeStack.Screen
-        name="OrderScreen"
-        component={OrderScreen}
-        options={{ headerShown: false }}
-      />
-      <HomeStack.Screen
-        name="PaymentScreen"
-        component={PaymentScreen}
+        name="TableDetailScreen"
+        component={TableDetailScreen}
         options={{ headerShown: false }}
       />
     </HomeStack.Navigator>

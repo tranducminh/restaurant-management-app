@@ -1,19 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
+import { useNavigation } from '@react-navigation/native';
 
 const tableIcon = require('@assets/table.png');
 const ICON_SIZE = 60;
 
 const TableItem = () => {
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('TableDetailScreen')}>
       <View style={styles.content}>
         <Image source={tableIcon} style={styles.image} />
       </View>
       <Text style={styles.tableText}>Table 1</Text>
       <Text style={styles.typeText}>4 people capacity</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
