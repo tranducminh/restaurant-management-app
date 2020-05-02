@@ -7,8 +7,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerNavigator from '../components/CustomDrawerNavigator';
 
 import HomeScreen from '../containers/Employee/HomeScreen/HomeScreen';
-import OrderScreen from '../containers/Employee/HomeScreen/OrderScreen';
-import PaymentScreen from '../containers/Employee/HomeScreen/PaymentScreen';
+import OrderScreen from '../containers/Employee/TableDetailScreen/OrderScreen';
+import PaymentScreen from '../containers/Employee/TableDetailScreen/PaymentScreen';
 import SignInScreen from '../containers/Employee/SignInScreen/SignInScreen';
 import ProfileScreen from '../containers/Employee/ProfileScreen/ProfileScreen';
 import FoodStatusScreen from '../containers/Employee/FoodStatusScreen/FoodStatusScreen';

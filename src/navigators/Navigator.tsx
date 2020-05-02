@@ -37,7 +37,7 @@ const Navigator = () => {
         <App.Screen
           name="StartScreen"
           component={StartScreen}
-          options={{ headerShown: false }}
+          options={{ headerShown: false, gestureEnabled: false }}
         />
         <App.Screen
           name="HostNavigator"

@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Exo-Bold',
     fontSize: 16,
     textAlign: 'center',
-    color: '#595959',
+    color: '#ffffff',
     marginVertical: normalize(5, 'width'),
   },
 });
