@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, StatusBar } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import normalize from 'react-native-normalize';
 
@@ -21,6 +21,7 @@ const Tab = createMaterialBottomTabNavigator();
 const TableDetailScreen = () => {
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#ffffff" />
       <Header />
       <Tab.Navigator labeled={false} barStyle={styles.tabBar}>
         <Tab.Screen
@@ -82,16 +83,14 @@ const styles = StyleSheet.create({
     borderColor: '#ababab',
   },
   normalTab: {
-    paddingVertical: normalize(10),
+    // paddingVertical: normalize(10),
   },
   activeTab: {
-    borderBottomWidth: 2.5,
-    borderColor: color.MAIN_COLOR,
-    paddingVertical: normalize(10),
-    paddingHorizontal: normalize(15),
+    height: '100%',
+    paddingHorizontal: normalize(20),
   },
   icon: {
-    width: normalize(30),
-    height: normalize(30),
+    width: normalize(25),
+    height: normalize(25),
   },
 });

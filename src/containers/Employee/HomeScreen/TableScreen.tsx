@@ -9,11 +9,11 @@ const TableScreen = () => {
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View>
         <Text style={styles.title}>Empty Table (6)</Text>
-        <TableList />
+        <TableList isEmpty={true} />
       </View>
       <View>
         <Text style={styles.title}>Live Table</Text>
-        <TableList />
+        <TableList isEmpty={false} />
       </View>
     </ScrollView>
   );

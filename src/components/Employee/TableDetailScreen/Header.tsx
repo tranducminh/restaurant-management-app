@@ -32,16 +32,23 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     position: 'relative',
-    marginTop:
-      Platform.OS === 'ios' ? getStatusBarHeight() : getStatusBarHeight(true),
+    paddingTop:
+      Platform.OS === 'ios'
+        ? getStatusBarHeight()
+        : getStatusBarHeight(true) + normalize(8),
     paddingHorizontal: normalize(16),
-    paddingVertical: normalize(8),
+    paddingVertical: normalize(12),
+    // alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#ffffff',
   },
   iconContainer: {
     position: 'absolute',
-    top: normalize(8),
+    top:
+      Platform.OS === 'ios'
+        ? getStatusBarHeight()
+        : getStatusBarHeight(true) + normalize(8),
     left: normalize(16),
     zIndex: 2,
   },

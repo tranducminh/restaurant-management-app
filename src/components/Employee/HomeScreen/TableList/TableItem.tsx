@@ -4,16 +4,23 @@ import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 
 const tableIcon = require('@assets/table.png');
+const addIcon = require('@assets/Icons/add.png');
 const ICON_SIZE = 60;
 
-const TableItem = () => {
+const TableItem = ({ isEmpty = true }: { isEmpty: boolean }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
+      disabled={isEmpty}
       style={styles.container}
       onPress={() => navigation.navigate('TableDetailScreen')}>
       <View style={styles.content}>
         <Image source={tableIcon} style={styles.image} />
+        {isEmpty ? (
+          <TouchableOpacity style={styles.iconContainer}>
+            <Image source={addIcon} style={styles.icon} />
+          </TouchableOpacity>
+        ) : null}
       </View>
       <Text style={styles.tableText}>Table 1</Text>
       <Text style={styles.typeText}>4 people capacity</Text>
@@ -51,5 +58,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Exo-Regular',
     color: '#abb2ae',
     fontSize: normalize(12),
+  },
+  iconContainer: {
+    position: 'absolute',
+    right: normalize(5),
+    bottom: -normalize(15),
+    zIndex: 3,
+  },
+  icon: {
+    width: normalize(30),
+    height: normalize(30),
   },
 });
