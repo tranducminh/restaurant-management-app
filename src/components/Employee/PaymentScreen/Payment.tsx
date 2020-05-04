@@ -29,7 +29,7 @@ export default Payment;
 
 const styles = StyleSheet.create({
   container: {
-    borderTopLeftRadius: normalize(50),
+    borderTopLeftRadius: normalize(40),
     borderTopRightRadius: normalize(40),
     backgroundColor: '#fbf3f2',
     paddingHorizontal: normalize(30),

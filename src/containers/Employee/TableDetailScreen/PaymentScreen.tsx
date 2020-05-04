@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import normalize from 'react-native-normalize';
 
+import color from '@constants/Color';
 import Food from '@components/Employee/PaymentScreen/Food';
 import Payment from '@components/Employee/PaymentScreen/Payment';
 
@@ -14,7 +15,9 @@ const PaymentScreen = () => {
         <Food />
         <Food />
       </ScrollView>
-      <Payment />
+      <View style={styles.payment}>
+        <Payment />
+      </View>
     </View>
   );
 };
@@ -29,12 +32,20 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: normalize(16),
+    paddingTop: normalize(40),
+    borderRadius: normalize(40),
+    backgroundColor: '#f0f0f0',
+  },
+  payment: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 0,
   },
   title: {
     fontFamily: 'Exo-Regular',
     fontSize: normalize(35),
     color: '#584538',
-    paddingBottom: normalize(20),
+    paddingBottom: normalize(10),
     paddingHorizontal: normalize(16),
   },
 });
