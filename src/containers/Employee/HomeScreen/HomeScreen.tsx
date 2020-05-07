@@ -4,7 +4,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import CustomTopTabNavigator from '@components/Employee/HomeScreen/CustomTopTabNavigator';
 import TableScreen from './TableScreen';
-import HeaderComponent from '@components/Employee/HomeScreen/HeaderComponent';
+import HeaderComponent from '@common/HeaderComponent';
 
 const Tab = createMaterialTopTabNavigator();
 
