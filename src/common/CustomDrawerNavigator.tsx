@@ -18,7 +18,7 @@ const CustomDrawerNavigator = props => {
         <Text style={styles.name} numberOfLines={1}>
           Alexander
         </Text>
-        <Text style={styles.position}>Employee</Text>
+        <Text style={styles.position}>{props.jobPosition}</Text>
       </View>
       <DrawerItemList {...props} labelStyle={styles.tab} />
     </DrawerContentScrollView>
