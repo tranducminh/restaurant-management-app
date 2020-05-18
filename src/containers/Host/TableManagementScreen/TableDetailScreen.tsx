@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const TableManagementScreen = () => {
+const TableDetailScreen = () => {
   return (
     <View>
       <Text />
@@ -9,6 +9,6 @@ const TableManagementScreen = () => {
   );
 };
 
-export default TableManagementScreen;
+export default TableDetailScreen;
 
 const styles = StyleSheet.create({});

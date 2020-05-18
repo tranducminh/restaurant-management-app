@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import CustomTopTabNavigator from '@components/Employee/HomeScreen/CustomTopTabNavigator';
+import CustomTopTabNavigator from '@common/CustomTopTabNavigator';
 import TableScreen from './TableScreen';
 import HeaderComponent from '@common/HeaderComponent';
 
