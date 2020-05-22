@@ -1,9 +1,10 @@
-import React from 'react';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import color from '@constants/Color';
 import PositionItem from '../../components/StartScreen/PositionItem';
+import firestore from '@react-native-firebase/firestore';
 
 const data = [
   {
@@ -24,9 +25,19 @@ const data = [
 ];
 
 const StartScreen = () => {
+  const [name, setName] = useState('');
+  useEffect(() => {
+    firestore()
+      .collection('users')
+      .doc('Zh8UqtWBBQvZ4bTwDzef')
+      .onSnapshot(documentSnapshot => {
+        setName(documentSnapshot.data().name);
+      });
+  });
   return (
     <SafeAreaView style={styles.safearea}>
       <LinearGradient colors={['#bf3d65', '#e8bbbe', '#fcdfd8', '#ce03fc']}>
+        <Text>{name}</Text>
         <View style={styles.container}>
           {data.map((item, index) => (
             <PositionItem {...item} key={index} />
