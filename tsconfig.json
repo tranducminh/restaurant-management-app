@@ -65,7 +65,8 @@
       "@actions/*": ["./src/actions/*"],
       "@reducers/*": ["./src/reducers/*"],
       "@sagas/*": ["./src/sagas/*"],
-      "@helpers/*": ["./src/helpers/*"]
+      "@helpers/*": ["./src/helpers/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   },
   "exclude": [

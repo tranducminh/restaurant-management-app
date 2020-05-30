@@ -20,7 +20,10 @@ const PositionItem = ({
   const navigation = useNavigation();
   const onPress = () => {
     dispatch(setNavigator(id));
-    navigation.navigate(id);
+    navigation.navigate('LoginScreen', {
+      icon: icon,
+      id: id,
+    });
   };
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

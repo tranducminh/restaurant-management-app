@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import normalize from 'react-native-normalize';
 
 import TableItem from '@components/Host/TableManagementScreen/TableItem';
+import AddIcon from '@common/AddIcon';
 
 const TableListScreen = () => {
   return (
@@ -12,6 +13,7 @@ const TableListScreen = () => {
       <TableItem />
       <TableItem />
       <TableItem />
+      <AddIcon />
     </ScrollView>
   );
 };
