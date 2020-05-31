@@ -5,6 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import CustomDrawerNavigator from '@common/CustomDrawerNavigator';
 import HomeScreen from '@containers/Host/HomeScreen/HomeScreen';
+import AddTableScreen from '@containers/Host/TableManagementScreen/AddTableScreen';
 import ProfileScreen from '@containers/Host/ProfileScreen/ProfileScreen';
 
 const Drawer = createDrawerNavigator();
@@ -17,6 +18,11 @@ const HomeScreenStack = () => {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <HomeStack.Screen
+        name="AddTableScreen"
+        component={AddTableScreen}
         options={{ headerShown: false }}
       />
     </HomeStack.Navigator>
@@ -38,7 +44,7 @@ const ProfileScreenStack = () => {
 const App = () => {
   return (
     <Drawer.Navigator
-      drawerContent={props => (
+      drawerContent={(props) => (
         <CustomDrawerNavigator {...props} jobPosition="Host" />
       )}>
       <Drawer.Screen name="Home" component={HomeScreenStack} />

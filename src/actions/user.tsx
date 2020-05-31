@@ -1,15 +1,12 @@
 import { createAction } from '@reduxjs/toolkit';
 
-const signIn = createAction<{ email: String; password: String }, 'SIGN_IN'>(
-  'SIGN_IN',
-);
-const signInSuccess = createAction<{ token: String }, 'SIGN_IN_SUCCESS'>(
-  'SIGN_IN_SUCCESS',
-);
+const getUserInfo = createAction<
+  { uid: String; position: String; restaurantID: String },
+  'GET_USER_INFO'
+>('GET_USER_INFO');
 
 const user = {
-  signIn,
-  signInSuccess,
+  getUserInfo,
 };
 
 export default user;

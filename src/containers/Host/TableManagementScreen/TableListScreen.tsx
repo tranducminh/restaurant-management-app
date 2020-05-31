@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import normalize from 'react-native-normalize';
+import { useNavigation } from '@react-navigation/native';
 
 import TableItem from '@components/Host/TableManagementScreen/TableItem';
 import AddIcon from '@common/AddIcon';
 
 const TableListScreen = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
       <TableItem />
@@ -13,7 +15,7 @@ const TableListScreen = () => {
       <TableItem />
       <TableItem />
       <TableItem />
-      <AddIcon />
+      <AddIcon onPress={() => navigation.navigate('AddTableScreen')} />
     </ScrollView>
   );
 };

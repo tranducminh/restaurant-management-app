@@ -5,18 +5,20 @@ import {
   Text,
   View,
   SafeAreaView,
-  TextInput,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import auth from '@react-native-firebase/auth';
 
+import PrimaryButton from '@common/PrimaryButton';
+import TextInput from '@common/TextInput';
+
 const LoginScreen = ({ route, navigation }: { route: any; navigation: any }) => {
   const { icon, id } = route.params;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const onSingUp = () => {
+  const onSingIn = () => {
     auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
@@ -36,22 +38,18 @@ const LoginScreen = ({ route, navigation }: { route: any; navigation: any }) => 
     <SafeAreaView style={styles.container}>
       <Image source={icon} style={styles.image} />
       <View style={styles.form}>
-        <Text>Email</Text>
         <TextInput
-          style={styles.input}
+          title="Email"
           value={email}
-          onChangeText={text => setEmail(text)}
+          onChangeText={setEmail}
         />
-        <Text>Password</Text>
         <TextInput
-          style={styles.input}
+          title="Password"
           value={password}
           secureTextEntry={true}
-          onChangeText={text => setPassword(text)}
+          onChangeText={setPassword}
         />
-        <TouchableOpacity style={styles.button} onPress={onSingUp}>
-          <Text style={styles.buttonText}>Sign in</Text>
-        </TouchableOpacity>
+        <PrimaryButton text="Sign in" onPress={onSingIn} />
         {id === 'Host' ? (
           <TouchableOpacity
             style={styles.signinButton}
@@ -90,17 +88,6 @@ const styles = StyleSheet.create({
   },
   form: {
     paddingHorizontal: normalize(25),
-  },
-  button: {
-    backgroundColor: '#2c9ced',
-    padding: normalize(10),
-    borderRadius: normalize(10),
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontSize: normalize(15),
-    fontFamily: 'Exo-Medium',
-    color: '#ffffff',
   },
   input: {
     height: 40,

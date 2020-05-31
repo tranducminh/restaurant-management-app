@@ -5,9 +5,9 @@ import normalize from 'react-native-normalize';
 import color from '@constants/Color';
 
 const plusIcon = require('@assets/Icons/plus_white.png');
-const AddIcon = () => {
+const AddIcon = ({ onPress }: { onPress: Function }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Image source={plusIcon} style={styles.icon} />
     </TouchableOpacity>
   );

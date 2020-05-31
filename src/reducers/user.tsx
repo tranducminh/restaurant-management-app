@@ -1,15 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit';
 import actions from '../actions';
 
-const { signInSuccess } = actions;
+const { getUserInfo } = actions;
 
 const initialState = {
-  token: '456',
+  uid: '',
+  position: '',
+  restaurantID: '',
 };
 
 const reducer = createReducer(initialState, {
-  [signInSuccess.type]: (state, action) => {
-    state.token = action.payload.token;
+  [getUserInfo.type]: (state, action) => {
+    state.uid = action.payload.uid;
+    state.position = action.payload.position;
+    state.restaurantID = action.payload.restaurantID;
   },
 });
 

@@ -4,72 +4,43 @@ import {
   Text,
   View,
   SafeAreaView,
-  TextInput,
   TouchableOpacity,
   Image,
 } from 'react-native';
 import normalize from 'react-native-normalize';
-import auth from '@react-native-firebase/auth';
 
-import { createRestaurant, createUser } from '../utils';
+import PrimaryButton from '@common/PrimaryButton';
+import TextInput from '@common/TextInput';
+import { createRestaurant } from '../api';
 
 const SignupScreen = ({ navigation }: { navigation: any }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [restaurantName, setRestaurantName] = useState('');
   const [address, setAddress] = useState('');
-  const onSingUp = () => {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(data => {
-        console.log('User account created & signed in!');
-        createRestaurant(data.user.uid, restaurantName, address);
-        createUser(data.user.uid, 'Host');
-      })
-      .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-          console.log('That email address is already in use!');
-        }
 
-        if (error.code === 'auth/invalid-email') {
-          console.log('That email address is invalid!');
-        }
-
-        console.error(error);
-      });
+  const onSignUp = () => {
+    createRestaurant(email, password, restaurantName, address);
   };
+
   return (
     <SafeAreaView style={styles.container}>
       <Image source={require('@assets/shop.png')} style={styles.image} />
       <View style={styles.form}>
-        <Text>Email</Text>
+        <TextInput title="Email" value={email} onChangeText={setEmail} />
         <TextInput
-          style={styles.input}
-          value={email}
-          onChangeText={text => setEmail(text)}
-        />
-        <Text>Password</Text>
-        <TextInput
-          style={styles.input}
+          title="Password"
           value={password}
           secureTextEntry={true}
-          onChangeText={text => setPassword(text)}
+          onChangeText={setPassword}
         />
-        <Text>Restaurent name</Text>
         <TextInput
-          style={styles.input}
+          title="Restaurent name"
           value={restaurantName}
-          onChangeText={text => setRestaurantName(text)}
+          onChangeText={setRestaurantName}
         />
-        <Text>Address</Text>
-        <TextInput
-          style={styles.input}
-          value={address}
-          onChangeText={text => setAddress(text)}
-        />
-        <TouchableOpacity style={styles.button} onPress={onSingUp}>
-          <Text style={styles.buttonText}>Sign up</Text>
-        </TouchableOpacity>
+        <TextInput title="Address" value={address} onChangeText={setAddress} />
+        <PrimaryButton text="Sign up" onPress={onSignUp} />
         <TouchableOpacity
           style={styles.signinButton}
           onPress={() => navigation.navigate('LoginScreen')}>
@@ -97,25 +68,6 @@ const styles = StyleSheet.create({
   },
   form: {
     paddingHorizontal: normalize(25),
-  },
-  button: {
-    backgroundColor: '#2c9ced',
-    padding: normalize(10),
-    borderRadius: normalize(10),
-  },
-  buttonText: {
-    textAlign: 'center',
-    fontSize: normalize(15),
-    fontFamily: 'Exo-Medium',
-    color: '#ffffff',
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-    marginBottom: normalize(25),
-    paddingHorizontal: normalize(10),
-    fontSize: normalize(15),
   },
   signinButton: {
     paddingVertical: normalize(10),

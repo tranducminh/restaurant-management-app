@@ -5,7 +5,6 @@ import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { reducers } from '../reducers';
-import sagas from '../sagas';
 
 //@ts-ignore
 const isDebuggingInChrome = __DEV__ && !!window.navigator.userAgent;
@@ -33,7 +32,6 @@ const store = configureStore({
   enhancers: [],
 });
 
-sagaMiddleware.run(sagas);
 let persistor = persistStore(store);
 
 export type AppDispatch = typeof store.dispatch;
