@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: normalize(16),
     paddingVertical: normalize(15),
+    backgroundColor: '#ffffff',
   },
   icon: {
     width: normalize(ICON_SIZE),

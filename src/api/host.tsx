@@ -97,9 +97,10 @@ export const getListTableByFloor = async (
     .then((querySnapshot) => { });
 };
 
-export const createFloor = async (floor: string, restaurantID: string) => {
+export const createFloor = async (floorName: string, restaurantID: string) => {
   await firestore().collection('floors').add({
-    floor,
+    floorName,
+    numberOfTables: 0,
     restaurantID,
   });
 };

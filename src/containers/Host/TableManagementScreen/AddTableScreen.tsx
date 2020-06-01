@@ -47,6 +47,8 @@ export default AddTableScreen;
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: normalize(16),
+    backgroundColor: '#ffffff',
+    height: '100%',
   },
   title: {
     fontFamily: 'Exo-Bold',

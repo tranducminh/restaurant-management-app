@@ -5,7 +5,7 @@ import normalize from 'react-native-normalize';
 import EditIcon from '@common/EditIcon';
 import DeleteIcon from '@common/DeleteIcon';
 
-const TableItem = () => {
+const TableItem = ({ title }: { title: string }) => {
   const onEdit = () => {
     return;
   };
@@ -14,7 +14,9 @@ const TableItem = () => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.table}>Table 1</Text>
+      <Text style={styles.table}>{title}</Text>
+      <Text style={styles.capacity}>4 people</Text>
+      <Text style={styles.status}>Ready</Text>
       <View style={styles.options}>
         <EditIcon onEdit={onEdit} />
         <DeleteIcon onDelete={onDelete} />
@@ -32,15 +34,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: normalize(16),
     paddingVertical: normalize(10),
-    backgroundColor: '#e0e0e0',
+    backgroundColor: '#e9ecee',
     borderRadius: normalize(15),
     marginBottom: normalize(16),
   },
   options: {
     flexDirection: 'row',
   },
-  table: {
+  capacity: {
     fontFamily: 'Exo-Medium',
+    color: '#5e5e5e',
+  },
+  status: {
+    color: '#36cc00',
+  },
+  table: {
+    fontFamily: 'Exo-Bold',
     fontSize: normalize(16),
   },
 });

@@ -52,11 +52,7 @@ const Navigator = () => {
     return subscriber; // unsubscribe on unmount
   }, [onAuthStateChanged]);
 
-  if (initializing) {
-    return <Text>Something went wrong</Text>;
-  }
-
-  if (!user) {
+  if (!user || initializing) {
     return (
       <NavigationContainer>
         <App.Navigator>

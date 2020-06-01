@@ -7,12 +7,14 @@ const Input = ({
   value,
   onChangeText,
   secureTextEntry = false,
+  disable = false,
 }: {
   title: string;
   value: string;
-  onChangeText: Function;
+  onChangeText?: Function;
   keyboardType?: string;
   secureTextEntry?: boolean;
+  disable?: boolean;
 }) => {
   return (
     <View>
@@ -22,6 +24,7 @@ const Input = ({
         value={value}
         secureTextEntry={secureTextEntry}
         onChangeText={(text) => onChangeText(text)}
+        editable={!disable}
       />
     </View>
   );

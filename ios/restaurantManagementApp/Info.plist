@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Ionicons.ttf</string>
 		<string>Exo-Bold.ttf</string>
 		<string>Exo-Regular.ttf</string>
 		<string>Exo-Medium.ttf</string>
