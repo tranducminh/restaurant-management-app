@@ -11,21 +11,21 @@ import { createTable } from '@api/index';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
-const AddTableScreen = () => {
+const AddTableScreen = ({ route }) => {
   const [tableName, setTableName] = useState('');
-  const [floor, setFloor] = useState('');
   const [capacity, setCapacity] = useState('');
   const { restaurantID } = useTypedSelector((state) => state.user);
+  const { floor, floorID } = route.params;
 
   const onPress = () => {
-    createTable(floor, tableName, capacity, restaurantID);
+    createTable(floor, tableName, capacity, restaurantID, floorID);
   };
   return (
     <SafeAreaView>
       <HeaderComponent type="BACK" />
       <View style={styles.container}>
         <Text style={styles.title}>Add table to floor</Text>
-        <TextInput title="Floor" value={floor} onChangeText={setFloor} />
+        <TextInput title="Floor" value={floor} disable={true} />
         <TextInput
           title="Table name"
           value={tableName}

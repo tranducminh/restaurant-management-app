@@ -44,17 +44,33 @@ export const createTable = async (
   tableName: string,
   capacity: string,
   restaurantID: string,
+  floorID: string,
 ) => {
   await firestore()
     .collection('tables')
     .add({
       restaurantID,
+      status: 'ready',
       floor,
       tableName,
       capacity,
+      floorID,
     })
     .then(() => {
       console.log('Table was added!');
+    });
+  const totalTable = await firestore()
+    .collection('floors')
+    .doc(floorID)
+    .get()
+    .then((data) => {
+      return data.data().numberOfTables;
+    });
+  await firestore()
+    .collection('floors')
+    .doc(floorID)
+    .update({
+      numberOfTables: totalTable + 1,
     });
 };
 
@@ -97,9 +113,9 @@ export const getListTableByFloor = async (
     .then((querySnapshot) => { });
 };
 
-export const createFloor = async (floorName: string, restaurantID: string) => {
+export const createFloor = async (floor: string, restaurantID: string) => {
   await firestore().collection('floors').add({
-    floorName,
+    floor,
     numberOfTables: 0,
     restaurantID,
   });

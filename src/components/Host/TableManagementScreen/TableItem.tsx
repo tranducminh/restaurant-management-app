@@ -5,7 +5,15 @@ import normalize from 'react-native-normalize';
 import EditIcon from '@common/EditIcon';
 import DeleteIcon from '@common/DeleteIcon';
 
-const TableItem = ({ title }: { title: string }) => {
+const TableItem = ({
+  title,
+  capacity,
+  status,
+}: {
+  title: string;
+  capacity: string;
+  status: string;
+}) => {
   const onEdit = () => {
     return;
   };
@@ -14,9 +22,9 @@ const TableItem = ({ title }: { title: string }) => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.table}>{title}</Text>
-      <Text style={styles.capacity}>4 people</Text>
-      <Text style={styles.status}>Ready</Text>
+      <Text style={styles.table}>Table {title}</Text>
+      <Text style={styles.capacity}>{capacity} people</Text>
+      <Text style={styles.status}>{status}</Text>
       <View style={styles.options}>
         <EditIcon onEdit={onEdit} />
         <DeleteIcon onDelete={onDelete} />

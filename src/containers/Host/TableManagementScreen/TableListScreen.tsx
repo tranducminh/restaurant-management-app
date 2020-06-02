@@ -16,16 +16,27 @@ import TableItem from '@components/Host/TableManagementScreen/TableItem';
 import tableIcon from '@assets/selectionTableIcon.png';
 import floorIcon from '@assets/stair.png';
 
+import { getTableList } from '@api/index';
+
 const TableListScreen = ({
   floorID,
+  restaurantID,
   numberOfTables,
+  floor,
 }: {
   floorID: string;
+  restaurantID: string;
   numberOfTables: number;
+  floor: string;
 }) => {
   const navigation = useNavigation();
   const [active, setActive] = useState(false);
+  const [tableList, setTableList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    getTableList(setTableList, setIsLoading, floor, restaurantID);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.description}>
@@ -37,14 +48,19 @@ const TableListScreen = ({
           <Text style={styles.buttonText}>Delete this floor</Text>
         </TouchableOpacity>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <TableItem title="Table 1" />
-        <TableItem title="Table 1" />
-        <TableItem title="Table 1" />
-        <TableItem title="Table 1" />
-        <TableItem title="Table 1" />
-        <TableItem title="Table 1" />
-      </ScrollView>
+      {isLoading === true ? null : (
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {tableList.map((item, index) => (
+            <TableItem
+              key={index}
+              title={item.data.tableName}
+              capacity={item.data.capacity}
+              status={item.data.status}
+            />
+          ))}
+        </ScrollView>
+      )}
+
       <Fab
         active={active}
         direction="up"
@@ -55,7 +71,12 @@ const TableListScreen = ({
         <Icon name="add" style={styles.icon} />
         <TouchableOpacity
           style={{ backgroundColor: '#cccccc' }}
-          onPress={() => navigation.navigate('AddTableScreen')}>
+          onPress={() =>
+            navigation.navigate('AddTableScreen', {
+              floorID: floorID,
+              floor: floor,
+            })
+          }>
           <Image source={tableIcon} style={styles.subIcon} />
         </TouchableOpacity>
         <TouchableOpacity

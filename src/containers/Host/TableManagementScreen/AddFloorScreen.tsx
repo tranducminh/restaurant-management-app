@@ -28,7 +28,7 @@ const AddFloorScreen = () => {
           value={floorName}
           onChangeText={setFloorName}
         />
-        <TextInput title="Total tables" value={'30'} disable={true} />
+        {/* <TextInput title="Total tables" value={'30'} disable={true} /> */}
         <PrimaryButton text="Add floor" onPress={onPress} />
       </View>
     </SafeAreaView>

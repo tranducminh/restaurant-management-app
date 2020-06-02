@@ -1,14 +1,15 @@
 import firestore from '@react-native-firebase/firestore';
 
-export const getFloorList = async (
-  setFloorList: Function,
+export const getTableList = async (
+  setTableList: Function,
   setIsLoading: Function,
+  floor: string,
   restaurantID: string,
 ) => {
   setIsLoading(true);
-  console.log('1224', restaurantID);
   firestore()
-    .collection('floors')
+    .collection('tables')
+    .where('floor', '==', floor)
     .where('restaurantID', '==', restaurantID)
     .onSnapshot((documentSnapshot) => {
       let result: { id: string; data: any }[] = [];
@@ -18,8 +19,7 @@ export const getFloorList = async (
           data: document.data(),
         });
       });
-      result.sort((a, b) => a.data.floor > b.data.floor);
-      setFloorList(result);
+      setTableList(result);
       setIsLoading(false);
     });
 };
