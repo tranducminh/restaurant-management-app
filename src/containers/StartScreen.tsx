@@ -27,13 +27,13 @@ const data = [
 const StartScreen = () => {
   return (
     <SafeAreaView style={styles.safearea}>
-      <LinearGradient colors={['#bf3d65', '#e8bbbe', '#fcdfd8', '#ce03fc']}>
-        <View style={styles.container}>
-          {data.map((item, index) => (
+      <View style={styles.container}>
+        {data.map((item, index) => (
+          <View style={styles.item}>
             <PositionItem {...item} key={index} />
-          ))}
-        </View>
-      </LinearGradient>
+          </View>
+        ))}
+      </View>
     </SafeAreaView>
   );
 };
@@ -43,12 +43,18 @@ export default StartScreen;
 const styles = StyleSheet.create({
   safearea: {
     flex: 1,
-    backgroundColor: color.MAIN_COLOR,
+    backgroundColor: '#ffffff',
   },
   container: {
-    backgroundColor: color.MAIN_COLOR,
+    backgroundColor: '#ffffff',
     height: '100%',
+    width: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  item: {
+    width: '50%',
   },
 });

@@ -6,7 +6,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import HeaderComponent from '@common/HeaderComponent';
 import TableManagementScreen from '../TableManagementScreen/TableManagementScreen';
-import FoodManagementScreen from './FoodManagementScreen';
+import FoodManagementScreen from '../FoodManagementScreen/FoodManagementScreen';
 import EmployeeManagementScreen from './EmployeeManagementScreen';
 import RestaurantManagementScreen from './RestaurantManagementScreen';
 
@@ -84,6 +84,7 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#ffffff',
     flex: 1,
     paddingTop:
       Platform.OS === 'ios'

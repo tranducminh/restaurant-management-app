@@ -42,9 +42,10 @@ const styles = StyleSheet.create({
     width: normalize(100, 'width'),
     height: normalize(100, 'width'),
     marginVertical: normalize(20, 'width'),
+    alignSelf: 'center',
   },
   imageContainer: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#e8e8e8',
     width: '100%',
     height: '100%',
     padding: normalize(15, 'width'),

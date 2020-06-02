@@ -13,17 +13,16 @@ import EmployeeNavigator from './EmployeeNavigator';
 import StartScreen from '../containers/StartScreen';
 import LoginScreen from '../containers/LoginScreen';
 import SignupScreen from '../containers/SignupScreen';
+import LoadingScreen from '../containers/LoadingScreen';
+import IntroScreen from '../containers/IntroScreen';
 
 import actions from '@actions/index';
 import { getUserInfo } from '../api';
-
-const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const App = createStackNavigator();
 
 const Navigator = () => {
   const dispatch = useDispatch();
-  const navigator = useTypedSelector((state) => state.navigator.navigator);
 
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
@@ -31,17 +30,22 @@ const Navigator = () => {
 
   async function onAuthStateChanged(user) {
     setUser(user);
-    if (user.uid !== null) {
-      const _user = await getUserInfo(user.uid);
-      setPosition(_user.position);
-      dispatch(
-        actions.getUserInfo({
-          uid: user.uid,
-          position: _user.position,
-          restaurantID: _user.restaurantID,
-        }),
-      );
+    try {
+      if (user.uid !== null) {
+        const _user = await getUserInfo(user.uid);
+        setPosition(_user.position);
+        dispatch(
+          actions.getUserInfo({
+            uid: user.uid,
+            position: _user.position,
+            restaurantID: _user.restaurantID,
+          }),
+        );
+      }
+    } catch (error) {
+      console.log(error);
     }
+
     if (initializing) {
       setInitializing(false);
     }
@@ -52,10 +56,29 @@ const Navigator = () => {
     return subscriber; // unsubscribe on unmount
   }, [onAuthStateChanged]);
 
-  if (!user || initializing) {
+  if (initializing) {
     return (
       <NavigationContainer>
         <App.Navigator>
+          <App.Screen
+            name="LoadingScreen"
+            component={LoadingScreen}
+            options={{ headerShown: false }}
+          />
+        </App.Navigator>
+      </NavigationContainer>
+    );
+  }
+
+  if (!user) {
+    return (
+      <NavigationContainer>
+        <App.Navigator>
+          <App.Screen
+            name="IntroScreen"
+            component={IntroScreen}
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
           <App.Screen
             name="StartScreen"
             component={StartScreen}
@@ -113,7 +136,17 @@ const Navigator = () => {
         </NavigationContainer>
       );
     default:
-      return <Text>position null</Text>;
+      return (
+        <NavigationContainer>
+          <App.Navigator>
+            <App.Screen
+              name="LoadingScreen"
+              component={LoadingScreen}
+              options={{ headerShown: false }}
+            />
+          </App.Navigator>
+        </NavigationContainer>
+      );
   }
 };
 

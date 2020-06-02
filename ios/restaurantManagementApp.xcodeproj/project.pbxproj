@@ -25,6 +25,7 @@
 		D477BCAB244F3FE100ECBAE5 /* Exo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D477BCA7244F3FE000ECBAE5 /* Exo-Regular.ttf */; };
 		D477BCAC244F3FE100ECBAE5 /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D477BCA8244F3FE000ECBAE5 /* Exo-Medium.ttf */; };
 		D477BCAD244F3FE100ECBAE5 /* Exo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D477BCA9244F3FE100ECBAE5 /* Exo-Bold.ttf */; };
+		D4C37C142486D07D007B8A40 /* Exo-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4C37C132486D07C007B8A40 /* Exo-Thin.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		D477BCA7244F3FE000ECBAE5 /* Exo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Regular.ttf"; sourceTree = "<group>"; };
 		D477BCA8244F3FE000ECBAE5 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
 		D477BCA9244F3FE100ECBAE5 /* Exo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Bold.ttf"; sourceTree = "<group>"; };
+		D4C37C132486D07C007B8A40 /* Exo-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Thin.ttf"; sourceTree = "<group>"; };
 		DCE212AC817D7C0862D13ABC /* Pods-restaurantManagementApp-restaurantManagementAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-restaurantManagementApp-restaurantManagementAppTests.debug.xcconfig"; path = "Target Support Files/Pods-restaurantManagementApp-restaurantManagementAppTests/Pods-restaurantManagementApp-restaurantManagementAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -214,6 +216,7 @@
 			children = (
 				D477BCA9244F3FE100ECBAE5 /* Exo-Bold.ttf */,
 				D477BCA6244F3FE000ECBAE5 /* Exo-Italic.ttf */,
+				D4C37C132486D07C007B8A40 /* Exo-Thin.ttf */,
 				D477BCA8244F3FE000ECBAE5 /* Exo-Medium.ttf */,
 				D477BCA7244F3FE000ECBAE5 /* Exo-Regular.ttf */,
 			);
@@ -367,6 +370,7 @@
 				D477BCAC244F3FE100ECBAE5 /* Exo-Medium.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				D477BCAA244F3FE100ECBAE5 /* Exo-Italic.ttf in Resources */,
+				D4C37C142486D07D007B8A40 /* Exo-Thin.ttf in Resources */,
 				D477BCAB244F3FE100ECBAE5 /* Exo-Regular.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				D42FD7062477C95500560088 /* GoogleService-Info.plist in Resources */,
