@@ -3,11 +3,22 @@ import { StyleSheet, View } from 'react-native';
 import normalize from 'react-native-normalize';
 
 import TableItem from './TableItem';
-const TableList = ({ isEmpty }: { isEmpty: boolean }) => {
+const TableList = ({
+  isEmpty,
+  tableList = [],
+}: {
+  isEmpty: boolean;
+  tableList: Array<Object>;
+}) => {
   return (
     <View style={styles.container}>
-      {[...Array(9)].map((item, index) => (
-        <TableItem isEmpty={isEmpty} key={index} />
+      {tableList.map((item, index) => (
+        <TableItem
+          isEmpty={isEmpty}
+          key={index}
+          tableName={item.data.tableName}
+          capacity={item.data.capacity}
+        />
       ))}
     </View>
   );

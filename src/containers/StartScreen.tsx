@@ -29,8 +29,8 @@ const StartScreen = () => {
     <SafeAreaView style={styles.safearea}>
       <View style={styles.container}>
         {data.map((item, index) => (
-          <View style={styles.item}>
-            <PositionItem {...item} key={index} />
+          <View style={styles.item} key={index}>
+            <PositionItem {...item} />
           </View>
         ))}
       </View>

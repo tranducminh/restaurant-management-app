@@ -47,18 +47,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   boldText: {
-    fontFamily: 'Exo-Bold',
+    fontFamily: 'Exo-Italic',
     color: '#ffffff',
     fontSize: normalize(50),
   },
   thinText: {
-    fontFamily: 'Exo-Thin',
+    fontFamily: 'Exo-Italic',
     fontSize: normalize(50),
     color: '#ffffff',
   },
   mediumText: {
-    fontFamily: 'Exo-Medium',
-    fontSize: normalize(50),
+    fontFamily: 'Exo-Bold',
+    fontSize: normalize(60),
     color: '#ffffff',
   },
   title: {

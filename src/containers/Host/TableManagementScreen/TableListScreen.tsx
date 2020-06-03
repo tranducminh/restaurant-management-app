@@ -13,8 +13,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import TableItem from '@components/Host/TableManagementScreen/TableItem';
 
-import tableIcon from '@assets/selectionTableIcon.png';
-import floorIcon from '@assets/stair.png';
+const tableIcon = require('@assets/selectionTableIcon.png');
+const floorIcon = require('@assets/stair.png');
 
 import { getTableList } from '@api/index';
 

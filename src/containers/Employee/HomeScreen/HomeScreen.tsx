@@ -1,31 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { ReducersType } from '@reducers/index';
 
 import CustomTopTabNavigator from '@common/CustomTopTabNavigator';
 import TableScreen from './TableScreen';
 import HeaderComponent from '@common/HeaderComponent';
 
-const Tab = createMaterialTopTabNavigator();
+import { getFloorList } from '@api/index';
 
-const Test = () => {
-  return <View />;
-};
+const Tab = createMaterialTopTabNavigator();
+const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
+
 const HomeScreen = () => {
+  const [floorList, setFloorList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { restaurantID } = useTypedSelector((state) => state.user);
+
+  useEffect(() => {
+    getFloorList(setFloorList, setIsLoading, restaurantID);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
       <HeaderComponent />
-      <Tab.Navigator tabBar={props => <CustomTopTabNavigator {...props} />}>
-        <Tab.Screen name="Floor 1" component={TableScreen} />
-        <Tab.Screen name="Floor 2" component={Test} />
-        <Tab.Screen name="Floor 3" component={Test} />
-        <Tab.Screen name="Floor 4" component={Test} />
-        <Tab.Screen name="Floor 5" component={Test} />
-        <Tab.Screen name="Floor 6" component={Test} />
-        <Tab.Screen name="Floor 7" component={Test} />
-        <Tab.Screen name="Floor 8" component={Test} />
-      </Tab.Navigator>
+      {isLoading === true ? null : (
+        <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
+          {floorList.map((item, index) => {
+            const renderTableScreen = () => (
+              <TableScreen
+                floor={item.data.floor}
+                restaurantID={restaurantID}
+              />
+            );
+            return (
+              <Tab.Screen
+                key={index}
+                name={`Floor ${item.data.floor}`}
+                component={renderTableScreen}
+              />
+            );
+          })}
+        </Tab.Navigator>
+      )}
     </SafeAreaView>
   );
 };

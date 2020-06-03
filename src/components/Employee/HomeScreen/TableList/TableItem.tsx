@@ -2,13 +2,24 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
+import AddIcon from '@common/AddIcon';
 
 const tableIcon = require('@assets/table.png');
-const addIcon = require('@assets/Icons/add.png');
 const ICON_SIZE = 60;
 
-const TableItem = ({ isEmpty = true }: { isEmpty: boolean }) => {
+const TableItem = ({
+  isEmpty = true,
+  capacity,
+  tableName,
+}: {
+  isEmpty: boolean;
+  capacity: string;
+  tableName: string;
+}) => {
   const navigation = useNavigation();
+  const onPress = () => {
+    return;
+  };
   return (
     <TouchableOpacity
       disabled={isEmpty}
@@ -17,13 +28,13 @@ const TableItem = ({ isEmpty = true }: { isEmpty: boolean }) => {
       <View style={styles.content}>
         <Image source={tableIcon} style={styles.image} />
         {isEmpty ? (
-          <TouchableOpacity style={styles.iconContainer}>
-            <Image source={addIcon} style={styles.icon} />
-          </TouchableOpacity>
+          <View style={styles.iconContainer}>
+            <AddIcon size={30} onPress={onPress} />
+          </View>
         ) : null}
       </View>
-      <Text style={styles.tableText}>Table 1</Text>
-      <Text style={styles.typeText}>4 people capacity</Text>
+      <Text style={styles.tableText}>Table {tableName}</Text>
+      <Text style={styles.typeText}>{capacity} people capacity</Text>
     </TouchableOpacity>
   );
 };

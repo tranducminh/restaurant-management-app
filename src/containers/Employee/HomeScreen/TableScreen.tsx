@@ -1,19 +1,45 @@
-import React from 'react';
+/* eslint-disable prettier/prettier */
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import normalize from 'react-native-normalize';
 
+import { Spinner } from 'native-base';
 import TableList from '@components/Employee/HomeScreen/TableList/TableList';
 
-const TableScreen = () => {
+import { getReadyTableList, getInUseTableList } from '@api/index';
+const TableScreen = ({
+  restaurantID,
+  floor,
+}: {
+  restaurantID: string;
+  floor: string;
+}) => {
+  const [readyTableList, setReadyTableList] = useState([]);
+  const [inUseTableList, setInUseTableList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    getReadyTableList(setReadyTableList, setIsLoading, floor, restaurantID);
+    getInUseTableList(setInUseTableList, setIsLoading, floor, restaurantID);
+  }, []);
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View>
-        <Text style={styles.title}>Empty Table (6)</Text>
-        <TableList isEmpty={true} />
+        <Text style={styles.title}>Empty Table ({readyTableList.length})</Text>
+        {isLoading === true ? (
+          <Spinner />
+        ) : (
+            <TableList isEmpty={true} tableList={readyTableList} />
+          )}
       </View>
       <View>
-        <Text style={styles.title}>Live Table</Text>
-        <TableList isEmpty={false} />
+        <Text style={styles.title}>Live Table ({inUseTableList.length})</Text>
+        {isLoading === true ? (
+          <Spinner />
+        ) : (
+            <TableList isEmpty={false} tableList={inUseTableList} />
+          )}
       </View>
     </ScrollView>
   );

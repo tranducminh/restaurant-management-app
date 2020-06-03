@@ -21,6 +21,7 @@
 		A31BCFAA93741D085661A222 /* libPods-restaurantManagementApp-restaurantManagementAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D3A905A33CAE8E78D851D95 /* libPods-restaurantManagementApp-restaurantManagementAppTests.a */; };
 		AFEE385236EC9260B7872C69 /* libPods-restaurantManagementApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B686F15921031A9AA3D06C9 /* libPods-restaurantManagementApp.a */; };
 		D42FD7062477C95500560088 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D42FD7052477C95500560088 /* GoogleService-Info.plist */; };
+		D434A67424873984007898FD /* Exo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D434A67324873984007898FD /* Exo-Black.ttf */; };
 		D477BCAA244F3FE100ECBAE5 /* Exo-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D477BCA6244F3FE000ECBAE5 /* Exo-Italic.ttf */; };
 		D477BCAB244F3FE100ECBAE5 /* Exo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D477BCA7244F3FE000ECBAE5 /* Exo-Regular.ttf */; };
 		D477BCAC244F3FE100ECBAE5 /* Exo-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D477BCA8244F3FE000ECBAE5 /* Exo-Medium.ttf */; };
@@ -70,6 +71,7 @@
 		B304F0408049B3C2D62620D8 /* Pods-restaurantManagementApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-restaurantManagementApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-restaurantManagementApp-tvOSTests/Pods-restaurantManagementApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C56351A571E52B529BD8538D /* Pods-restaurantManagementApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-restaurantManagementApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-restaurantManagementApp-tvOS/Pods-restaurantManagementApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D42FD7052477C95500560088 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D434A67324873984007898FD /* Exo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Black.ttf"; sourceTree = "<group>"; };
 		D477BCA6244F3FE000ECBAE5 /* Exo-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Italic.ttf"; sourceTree = "<group>"; };
 		D477BCA7244F3FE000ECBAE5 /* Exo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Regular.ttf"; sourceTree = "<group>"; };
 		D477BCA8244F3FE000ECBAE5 /* Exo-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo-Medium.ttf"; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				D477BCA9244F3FE100ECBAE5 /* Exo-Bold.ttf */,
 				D477BCA6244F3FE000ECBAE5 /* Exo-Italic.ttf */,
+				D434A67324873984007898FD /* Exo-Black.ttf */,
 				D4C37C132486D07C007B8A40 /* Exo-Thin.ttf */,
 				D477BCA8244F3FE000ECBAE5 /* Exo-Medium.ttf */,
 				D477BCA7244F3FE000ECBAE5 /* Exo-Regular.ttf */,
@@ -373,6 +376,7 @@
 				D4C37C142486D07D007B8A40 /* Exo-Thin.ttf in Resources */,
 				D477BCAB244F3FE100ECBAE5 /* Exo-Regular.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				D434A67424873984007898FD /* Exo-Black.ttf in Resources */,
 				D42FD7062477C95500560088 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
