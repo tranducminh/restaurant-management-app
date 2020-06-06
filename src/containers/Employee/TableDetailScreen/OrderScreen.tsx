@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,26 +7,34 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import normalize from 'react-native-normalize';
+import { useNavigation } from '@react-navigation/native';
 
 import color from '@constants/Color';
 import Food from '@components/Employee/OrderScreen/Food';
 
-const OrderScreen = () => {
+import { getOrderListByTableId } from '@api/index';
+
+const OrderScreen = ({ tableId }: { tableId: string }) => {
+  const navigation = useNavigation();
+  const [orderList, setOrderList] = useState([]);
+  const [total, setTotal] = useState(0);
+  useEffect(() => {
+    getOrderListByTableId(tableId, setOrderList, setTotal);
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Your choice</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.jumpTo('PaymentScreen')}>
           <Text style={styles.orderText}>Order now</Text>
         </TouchableOpacity>
       </View>
+      <Text>{total}</Text>
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        <Food />
-        <Food />
-        <Food />
-        <Food />
-        <Food />
+        {orderList.map((item, index) => (
+          <Food {...item.data} key={index} />
+        ))}
       </ScrollView>
     </View>
   );

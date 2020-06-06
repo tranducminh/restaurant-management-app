@@ -19,5 +19,5 @@ export const createUser = async (
 
 export const getUserInfo = async (uid: string) => {
   const position = await firestore().collection('users').doc(uid).get();
-  return position._data;
+  return position.data();
 };

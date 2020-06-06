@@ -57,8 +57,9 @@ const styles = StyleSheet.create({
     height: normalize(ICON_SIZE),
   },
   title: {
-    fontFamily: 'Exo-Bold',
+    fontFamily: 'Exo-Medium',
     fontSize: normalize(20),
     textAlign: 'center',
+    color: '#000000',
   },
 });

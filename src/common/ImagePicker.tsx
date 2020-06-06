@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import normalize from 'react-native-normalize';
+import { Spinner } from 'native-base';
 
 import PrimaryButton from '@common/PrimaryButton';
 
-const ImagePickerCmp = () => {
+const ImagePickerCmp = ({ setUrl }: { setUrl: Function }) => {
   const [avatarSource, setAvatarSource] = useState();
+  const [isLoading, setIsLoading] = useState('NULL');
   const options = {
     title: 'Select Avatar',
     customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -17,9 +19,12 @@ const ImagePickerCmp = () => {
   };
 
   const uploadImage = () => {
-    ImagePicker.showImagePicker(options, (response) => {
+    setIsLoading('TRUE');
+    ImagePicker.showImagePicker(options, async (response) => {
       if (response.uri) {
         setAvatarSource(response.uri);
+        setUrl(response.uri);
+        setIsLoading('FALSE');
       }
     });
   };
@@ -27,7 +32,11 @@ const ImagePickerCmp = () => {
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: avatarSource }} style={styles.uploadAvatar} />
+        {isLoading === 'NULL' ? null : isLoading === 'TRUE' ? (
+          <Spinner color="#2c9ced" />
+        ) : (
+            <Image source={{ uri: avatarSource }} style={styles.uploadAvatar} />
+          )}
       </View>
       <PrimaryButton text="Choose Image" onPress={uploadImage} />
     </View>
@@ -48,6 +57,8 @@ const styles = StyleSheet.create({
     width: normalize(100),
     height: normalize(100),
     marginVertical: normalize(10),
+    justifyContent: 'center',
+    alignItems: 'center',
     alignSelf: 'center',
     backgroundColor: '#cccccc',
   },

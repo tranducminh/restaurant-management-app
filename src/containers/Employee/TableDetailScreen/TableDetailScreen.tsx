@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, StatusBar } from 'react-native';
+import { StyleSheet, View, Image, StatusBar } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import normalize from 'react-native-normalize';
 
-import color from '@constants/Color';
 import OrderScreen from './OrderScreen';
 import PaymentScreen from './PaymentScreen';
 import FoodSelectionScreen from './FoodSelectionScreen';
@@ -18,7 +17,13 @@ const selectedPaymentIcon = require('@assets/selectionPayment.png');
 
 const Tab = createMaterialBottomTabNavigator();
 
-const TableDetailScreen = () => {
+const TableDetailScreen = ({ route }: { route: any }) => {
+  const { tableId } = route.params;
+  const renderFoodSelectionScreen = () => (
+    <FoodSelectionScreen tableId={tableId} />
+  );
+  const renderOrderScreen = () => <OrderScreen tableId={tableId} />;
+  const renderPayment = () => <PaymentScreen tableId={tableId} />;
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#ffffff" />
@@ -26,7 +31,7 @@ const TableDetailScreen = () => {
       <Tab.Navigator labeled={false} barStyle={styles.tabBar}>
         <Tab.Screen
           name="FoodSelectionScreen"
-          component={FoodSelectionScreen}
+          component={renderFoodSelectionScreen}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.activeTab : styles.normalTab}>
@@ -40,7 +45,7 @@ const TableDetailScreen = () => {
         />
         <Tab.Screen
           name="OrderScreen"
-          component={OrderScreen}
+          component={renderOrderScreen}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.activeTab : styles.normalTab}>
@@ -54,7 +59,7 @@ const TableDetailScreen = () => {
         />
         <Tab.Screen
           name="PaymentScreen"
-          component={PaymentScreen}
+          component={renderPayment}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.activeTab : styles.normalTab}>

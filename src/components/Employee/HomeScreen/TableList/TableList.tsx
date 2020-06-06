@@ -16,6 +16,7 @@ const TableList = ({
         <TableItem
           isEmpty={isEmpty}
           key={index}
+          tableID={item.id}
           tableName={item.data.tableName}
           capacity={item.data.capacity}
         />

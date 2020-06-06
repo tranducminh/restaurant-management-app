@@ -4,27 +4,33 @@ import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 import AddIcon from '@common/AddIcon';
 
+import { orderTable } from '@api/index';
+
 const tableIcon = require('@assets/table.png');
 const ICON_SIZE = 60;
 
 const TableItem = ({
   isEmpty = true,
+  tableID,
   capacity,
   tableName,
 }: {
   isEmpty: boolean;
+  tableID: string;
   capacity: string;
   tableName: string;
 }) => {
   const navigation = useNavigation();
   const onPress = () => {
-    return;
+    orderTable(tableID);
   };
   return (
     <TouchableOpacity
       disabled={isEmpty}
       style={styles.container}
-      onPress={() => navigation.navigate('TableDetailScreen')}>
+      onPress={() =>
+        navigation.navigate('TableDetailScreen', { tableId: tableID })
+      }>
       <View style={styles.content}>
         <Image source={tableIcon} style={styles.image} />
         {isEmpty ? (

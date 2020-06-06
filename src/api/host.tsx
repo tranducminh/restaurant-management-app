@@ -50,7 +50,7 @@ export const createTable = async (
     .collection('tables')
     .add({
       restaurantID,
-      status: 'ready',
+      status: 'READY',
       floor,
       tableName,
       capacity,

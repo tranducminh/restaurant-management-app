@@ -10,7 +10,7 @@ const AddIcon = ({
   size = 40,
 }: {
   onPress: Function;
-  size: number;
+  size?: number;
 }) => {
   return (
     <TouchableOpacity

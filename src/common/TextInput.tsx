@@ -5,6 +5,7 @@ import normalize from 'react-native-normalize';
 const Input = ({
   title,
   value,
+  keyboardType = 'default',
   onChangeText,
   secureTextEntry = false,
   disable = false,
@@ -23,6 +24,7 @@ const Input = ({
         style={styles.input}
         value={value}
         secureTextEntry={secureTextEntry}
+        keyboardType="numeric"
         onChangeText={(text) => onChangeText(text)}
         editable={!disable}
       />

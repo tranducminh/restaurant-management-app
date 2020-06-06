@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import normalize from 'react-native-normalize';
 
-const food = require('@assets/food.jpg');
+const food = require('@assets/my.jpg');
 
 const Food = () => {
   return (
@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     width: '30%',
   },
   price: {
-    fontFamily: 'Exo-Medium',
-    fontSize: normalize(17),
+    // fontFamily: 'Exo-Medium',
+    fontSize: normalize(18),
   },
   status: {
     fontFamily: 'Exo-Regular',
@@ -60,8 +60,8 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: 'Exo-Bold',
-    fontSize: normalize(17),
-    color: '#584538',
+    fontSize: normalize(18),
+    color: '#090807',
   },
   quantity: {
     fontFamily: 'Exo-Regular',

@@ -4,16 +4,22 @@ import normalize from 'react-native-normalize';
 
 import QuantityEdition from '@common/QuantityEdition';
 
-const food = require('@assets/food.jpg');
-
-const Food = () => {
+const Food = ({
+  url,
+  foodName,
+  price,
+}: {
+  url: string;
+  foodName: string;
+  price: number;
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Image source={food} style={styles.image} />
+        <Image source={{ uri: url }} style={styles.image} />
         <View style={styles.content}>
-          <Text style={styles.name}>Chicken grill</Text>
-          <Text style={styles.price}>$ 35</Text>
+          <Text style={styles.name}>{foodName}</Text>
+          <Text style={styles.price}>$ {price}</Text>
         </View>
       </View>
       <QuantityEdition size={18} />
@@ -42,13 +48,13 @@ const styles = StyleSheet.create({
     borderRadius: normalize(10),
   },
   price: {
-    fontFamily: 'Exo-Medium',
-    fontSize: normalize(14),
+    // fontFamily: 'Exo-Medium',
+    fontSize: normalize(16),
     paddingTop: normalize(5),
   },
   name: {
     fontFamily: 'Exo-Bold',
-    fontSize: normalize(16),
+    fontSize: normalize(18),
     color: '#584538',
   },
 });

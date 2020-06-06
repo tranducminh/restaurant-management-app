@@ -73,3 +73,15 @@ export const getInUseTableList = async (
       setIsLoading(false);
     });
 };
+
+export const orderTable = async (tableID: string) => {
+  await firestore().collection('tables').doc(tableID).update({
+    status: 'INUSE',
+  });
+};
+
+export const returnTable = async (tableID: string) => {
+  await firestore().collection('tables').doc(tableID).update({
+    status: 'READY',
+  });
+};
