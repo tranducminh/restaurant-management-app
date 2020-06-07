@@ -29,6 +29,7 @@
     "@types/react-redux": "^7.1.7",
     "@types/redux-logger": "^3.0.7",
     "axios": "^0.19.2",
+    "generate-password": "^1.5.1",
     "native-base": "^2.13.12",
     "react": "16.13.1",
     "react-native": "0.62.2",

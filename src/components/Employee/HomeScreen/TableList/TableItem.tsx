@@ -23,13 +23,20 @@ const TableItem = ({
   const navigation = useNavigation();
   const onPress = () => {
     orderTable(tableID);
+    navigation.navigate('TableDetailScreen', {
+      tableId: tableID,
+      tableName: tableName,
+    });
   };
   return (
     <TouchableOpacity
       disabled={isEmpty}
       style={styles.container}
       onPress={() =>
-        navigation.navigate('TableDetailScreen', { tableId: tableID })
+        navigation.navigate('TableDetailScreen', {
+          tableId: tableID,
+          tableName: tableName,
+        })
       }>
       <View style={styles.content}>
         <Image source={tableIcon} style={styles.image} />

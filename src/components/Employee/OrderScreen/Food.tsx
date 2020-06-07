@@ -8,10 +8,14 @@ const Food = ({
   url,
   foodName,
   price,
+  quantity,
+  selectionId,
 }: {
   url: string;
   foodName: string;
   price: number;
+  quantity: number;
+  selectionId: string;
 }) => {
   return (
     <View style={styles.container}>
@@ -22,7 +26,12 @@ const Food = ({
           <Text style={styles.price}>$ {price}</Text>
         </View>
       </View>
-      <QuantityEdition size={18} />
+      <QuantityEdition
+        size={18}
+        quantity={quantity}
+        selectionId={selectionId}
+        price={price}
+      />
     </View>
   );
 };

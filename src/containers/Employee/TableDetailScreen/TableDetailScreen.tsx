@@ -18,7 +18,7 @@ const selectedPaymentIcon = require('@assets/selectionPayment.png');
 const Tab = createMaterialBottomTabNavigator();
 
 const TableDetailScreen = ({ route }: { route: any }) => {
-  const { tableId } = route.params;
+  const { tableId, tableName } = route.params;
   const renderFoodSelectionScreen = () => (
     <FoodSelectionScreen tableId={tableId} />
   );
@@ -27,7 +27,7 @@ const TableDetailScreen = ({ route }: { route: any }) => {
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#ffffff" />
-      <Header />
+      <Header tableName={tableName} />
       <Tab.Navigator labeled={false} barStyle={styles.tabBar}>
         <Tab.Screen
           name="FoodSelectionScreen"

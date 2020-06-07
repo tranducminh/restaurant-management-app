@@ -2,15 +2,25 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
 
-const Payment = () => {
+const Payment = ({
+  payment,
+  onPurchase,
+}: {
+  payment: number;
+  onPurchase: Function;
+}) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          onPurchase();
+        }}>
         <Text style={styles.buttonText}>Purchase now</Text>
       </TouchableOpacity>
       <View style={styles.part}>
         <Text style={styles.text}>Total</Text>
-        <Text style={styles.text}>$ 100</Text>
+        <Text style={styles.text}>$ {payment}</Text>
       </View>
       <View style={styles.part}>
         <Text style={styles.text}>Discount</Text>

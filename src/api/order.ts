@@ -1,33 +1,35 @@
 import firestore from '@react-native-firebase/firestore';
 
-export const chooseFood = async (
+export const createOrder = async (
   tableId: string,
   foodId: string,
-  url: string,
   foodName: string,
   price: number,
+  quantity: number,
+  url: string,
 ) => {
-  firestore().collection('selections').add({
+  await firestore().collection('orders').add({
     tableId,
     foodId,
-    quantity: 1,
-    url,
     foodName,
     price,
+    quantity,
+    url,
+    status: 'UNCOOKED',
   });
 };
 
 export const getOrderListByTableId = async (
   tableId: string,
   setOrderList: Function,
-  setTotal: Function,
+  setPayment: Function,
 ) => {
   firestore()
-    .collection('selections')
+    .collection('orders')
     .where('tableId', '==', tableId)
     .onSnapshot((documentSnapshot) => {
       let result: { id: string; data: any }[] = [];
-      let total = 0;
+      let total: number = 0;
       documentSnapshot.forEach((document) => {
         result.push({
           id: document.id,
@@ -35,7 +37,17 @@ export const getOrderListByTableId = async (
         });
         total += document.data().price;
       });
+      setPayment(total);
       setOrderList(result);
-      setTotal(total);
+    });
+};
+
+export const removeOrder = async (orderId: string) => {
+  firestore()
+    .collection('orders')
+    .doc(orderId)
+    .delete()
+    .then(() => {
+      console.log('order was removed');
     });
 };

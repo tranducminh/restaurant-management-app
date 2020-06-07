@@ -13,7 +13,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const backIcon = require('@assets/Icons/back.png');
 const ICON_SIZE = 20;
-const Header = () => {
+const Header = ({ tableName }: { tableName: string }) => {
   const navigation = useNavigation();
 
   return (
@@ -23,7 +23,7 @@ const Header = () => {
           <Image source={backIcon} style={styles.icon} />
         </TouchableOpacity>
       </View>
-      <Text style={styles.title}>Table 1</Text>
+      <Text style={styles.title}>Table {tableName}</Text>
     </View>
   );
 };

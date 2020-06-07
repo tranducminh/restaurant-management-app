@@ -1,5 +1,5 @@
 import firestore from '@react-native-firebase/firestore';
-import storage from '@react-native-firebase/storage';
+import { uploadImage } from './image';
 
 export const addFood = async (
   restaurantID: string,
@@ -9,11 +9,7 @@ export const addFood = async (
   foodType: string,
   url: string,
 ) => {
-  const time = new Date();
-  const id = time.getTime().toString();
-  const reference = storage().ref(id);
-  await reference.putFile(url);
-  const tempUrl = await storage().ref(id).getDownloadURL();
+  const downloadUrl = uploadImage(url);
   firestore()
     .collection('foods')
     .add({
@@ -22,7 +18,7 @@ export const addFood = async (
       description,
       foodType,
       price: parseInt(price, 10),
-      url: tempUrl,
+      url: downloadUrl,
     });
 };
 // export const getFoodTypes = async (restaurantID: string) => {

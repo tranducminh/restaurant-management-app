@@ -1,24 +1,38 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
+
+import { updateQuantityOfSelection, removeSelection } from '@api/index';
 
 const plusIcon = require('@assets/Icons/plus.png');
 const subIcon = require('@assets/Icons/sub.png');
 
-const QuantityEdition = ({ size = 20 }: { size: number }) => {
-  const [quantity, setQuantity] = useState(1);
+const QuantityEdition = ({
+  size = 20,
+  quantity,
+  selectionId,
+  price,
+}: {
+  size: number;
+  quantity: number;
+  selectionId: string;
+  price: number;
+}) => {
   const iconStyle = {
     width: normalize(size * 0.8),
     height: normalize(size * 0.8),
   };
   const descQuantity = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
+    if (quantity === 1) {
+      removeSelection(selectionId);
+    }
+    if (quantity > 1) {
+      updateQuantityOfSelection(selectionId, quantity, price, 'DESC');
     }
   };
   const ascQuantity = () => {
     if (quantity < 99) {
-      setQuantity(quantity + 1);
+      updateQuantityOfSelection(selectionId, quantity, price, 'ASC');
     }
   };
   return (

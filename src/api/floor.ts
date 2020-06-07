@@ -1,12 +1,19 @@
 import firestore from '@react-native-firebase/firestore';
 
+export const createFloor = async (floor: string, restaurantID: string) => {
+  await firestore().collection('floors').add({
+    floor,
+    numberOfTables: 0,
+    restaurantID,
+  });
+};
+
 export const getFloorList = async (
   setFloorList: Function,
   setIsLoading: Function,
   restaurantID: string,
 ) => {
   setIsLoading(true);
-  console.log('1224', restaurantID);
   firestore()
     .collection('floors')
     .where('restaurantID', '==', restaurantID)

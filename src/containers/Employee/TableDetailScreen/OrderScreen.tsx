@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
@@ -12,20 +13,34 @@ import { useNavigation } from '@react-navigation/native';
 import color from '@constants/Color';
 import Food from '@components/Employee/OrderScreen/Food';
 
-import { getOrderListByTableId } from '@api/index';
+import {
+  getSelectionListByTableId,
+  createOrder,
+  removeSelection,
+} from '@api/index';
 
 const OrderScreen = ({ tableId }: { tableId: string }) => {
   const navigation = useNavigation();
   const [orderList, setOrderList] = useState([]);
   const [total, setTotal] = useState(0);
   useEffect(() => {
-    getOrderListByTableId(tableId, setOrderList, setTotal);
+    getSelectionListByTableId(tableId, setOrderList, setTotal);
   }, []);
+
+  const onPress = () => {
+    orderList.forEach((order) => {
+      const { foodId, foodName, url, price, quantity } = order.data;
+      createOrder(tableId, foodId, foodName, price, quantity, url);
+      removeSelection(order.id);
+    });
+    navigation.jumpTo('PaymentScreen');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Your choice</Text>
-        <TouchableOpacity onPress={() => navigation.jumpTo('PaymentScreen')}>
+        <TouchableOpacity onPress={onPress}>
           <Text style={styles.orderText}>Order now</Text>
         </TouchableOpacity>
       </View>
@@ -33,7 +48,7 @@ const OrderScreen = ({ tableId }: { tableId: string }) => {
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         {orderList.map((item, index) => (
-          <Food {...item.data} key={index} />
+          <Food {...item.data} key={index} selectionId={item.id} />
         ))}
       </ScrollView>
     </View>

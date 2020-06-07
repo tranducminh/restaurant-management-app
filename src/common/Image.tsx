@@ -37,7 +37,7 @@ const CustomImage = ({
   return (
     <View>
       <Image
-        source={{ uri: url }}
+        // source={{ uri: url }}
         indicator={ProgressCircleSnail}
         indicatorProps={progressStyle}
         style={imageContainerStyle}
