@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import normalize from 'react-native-normalize';
+import Image from '@common/Image';
 
 import AddIcon from '@common/AddIcon';
 
@@ -26,7 +27,7 @@ const FoodSelection = ({
   };
   return (
     <View style={styles.container}>
-      <Image source={{ uri: url }} style={styles.image} />
+      <Image url={url} style={styles.image} />
       <Text style={styles.name}>{foodName}</Text>
       <Text style={styles.description}>{description}</Text>
       <Text style={styles.price}>$ {price}</Text>

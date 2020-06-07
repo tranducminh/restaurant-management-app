@@ -19,7 +19,7 @@ const FoodManagementScreen = () => {
   const [foodList, setFoodList] = useState([]);
 
   useEffect(() => {
-    getFoodListByType(setIsLoading, setFoodList, restaurantID, 'Desserts');
+    getFoodListByType(setIsLoading, setFoodList, restaurantID, 'Fruits');
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import normalize from 'react-native-normalize';
-
+import Image from '@common/Image';
 import QuantityEdition from '@common/QuantityEdition';
 
 const Food = ({
@@ -16,7 +16,7 @@ const Food = ({
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Image source={{ uri: url }} style={styles.image} />
+        <Image url={url} style={styles.image} />
         <View style={styles.content}>
           <Text style={styles.name}>{foodName}</Text>
           <Text style={styles.price}>$ {price}</Text>

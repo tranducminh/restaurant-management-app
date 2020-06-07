@@ -444,10 +444,20 @@ PODS:
     - React-RCTSettings (= 0.62.2)
     - React-RCTText (= 0.62.2)
     - React-RCTVibration (= 0.62.2)
+  - React-ART (0.62.2):
+    - React-Core/ARTHeaders (= 0.62.2)
   - React-Core (0.62.2):
     - Folly (= 2018.10.22.00)
     - glog
     - React-Core/Default (= 0.62.2)
+    - React-cxxreact (= 0.62.2)
+    - React-jsi (= 0.62.2)
+    - React-jsiexecutor (= 0.62.2)
+    - Yoga
+  - React-Core/ARTHeaders (0.62.2):
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React-Core/Default
     - React-cxxreact (= 0.62.2)
     - React-jsi (= 0.62.2)
     - React-jsiexecutor (= 0.62.2)
@@ -720,6 +730,7 @@ DEPENDENCIES:
   - RCTRequired (from `../node_modules/react-native/Libraries/RCTRequired`)
   - RCTTypeSafety (from `../node_modules/react-native/Libraries/TypeSafety`)
   - React (from `../node_modules/react-native/`)
+  - React-ART (from `../node_modules/react-native/Libraries/ART`)
   - React-Core (from `../node_modules/react-native/`)
   - React-Core/DevSupport (from `../node_modules/react-native/`)
   - React-Core/RCTWebSocket (from `../node_modules/react-native/`)
@@ -812,6 +823,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/TypeSafety"
   React:
     :path: "../node_modules/react-native/"
+  React-ART:
+    :path: "../node_modules/react-native/Libraries/ART"
   React-Core:
     :path: "../node_modules/react-native/"
   React-CoreModules:
@@ -919,6 +932,7 @@ SPEC CHECKSUMS:
   RCTRequired: cec6a34b3ac8a9915c37e7e4ad3aa74726ce4035
   RCTTypeSafety: 93006131180074cffa227a1075802c89a49dd4ce
   React: 29a8b1a02bd764fb7644ef04019270849b9a7ac3
+  React-ART: 5f482520ff6ddc8775ca8c03547c421a7d44e06e
   React-Core: b12bffb3f567fdf99510acb716ef1abd426e0e05
   React-CoreModules: 4a9b87bbe669d6c3173c0132c3328e3b000783d0
   React-cxxreact: e65f9c2ba0ac5be946f53548c1aaaee5873a8103
@@ -952,6 +966,6 @@ SPEC CHECKSUMS:
   Yoga: 3ebccbdd559724312790e7742142d062476b698e
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 1b12b513709aa81f4f9f04dee5f010d24c27782c
+PODFILE CHECKSUM: 728119c99e12ad11a5c4e9567dedd6184bf28a7a
 
 COCOAPODS: 1.9.0

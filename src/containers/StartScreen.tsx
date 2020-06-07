@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
+import { StyleSheet, View, SafeAreaView } from 'react-native';
+import React from 'react';
 
-import color from '@constants/Color';
 import PositionItem from '../components/StartScreen/PositionItem';
-import firestore from '@react-native-firebase/firestore';
-
+import Image from '@common/Image';
 const data = [
   {
     icon: require('@assets/shop.png'),
@@ -33,6 +30,7 @@ const StartScreen = () => {
             <PositionItem {...item} />
           </View>
         ))}
+        <Image />
       </View>
     </SafeAreaView>
   );

@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { Spinner } from 'native-base';
+import { StyleSheet, Text, View } from 'react-native';
+
+import Image from '@common/Image';
 
 const FoodItem = ({
   url,
@@ -17,19 +18,7 @@ const FoodItem = ({
   const [isLoading, setIsLoading] = useState(true);
   return (
     <View style={styles.container}>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-          <View style={{ width: 100, height: 100 }}>
-            <Image
-              source={{ uri: url }}
-              resizeMode="cover"
-              onLoadStart={() => setIsLoading(true)}
-              onLoadEnd={() => setIsLoading(false)}
-            />
-          </View>
-        )}
-
+      <Image url={url} />
       <Text>{foodName}</Text>
     </View>
   );
