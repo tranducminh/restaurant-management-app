@@ -5,16 +5,11 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Image,
 } from 'react-native';
-import { Icon, Fab } from 'native-base';
 import normalize from 'react-native-normalize';
-import { useNavigation } from '@react-navigation/native';
 
 import TableItem from '@components/Host/TableManagementScreen/TableItem';
-
-const tableIcon = require('@assets/selectionTableIcon.png');
-const floorIcon = require('@assets/stair.png');
+import AddFloorAndTableFab from '@common/AddFloorAndTableFab';
 
 import { getTableList } from '@api/index';
 
@@ -29,8 +24,6 @@ const TableListScreen = ({
   numberOfTables: number;
   floor: string;
 }) => {
-  const navigation = useNavigation();
-  const [active, setActive] = useState(false);
   const [tableList, setTableList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -53,6 +46,8 @@ const TableListScreen = ({
           {tableList.map((item, index) => (
             <TableItem
               key={index}
+              floorId={floorID}
+              tableId={item.id}
               title={item.data.tableName}
               capacity={item.data.capacity}
               status={item.data.status}
@@ -60,31 +55,7 @@ const TableListScreen = ({
           ))}
         </ScrollView>
       )}
-
-      <Fab
-        active={active}
-        direction="up"
-        containerStyle={{}}
-        style={{ backgroundColor: '#5067FF' }}
-        position="bottomRight"
-        onPress={() => setActive(!active)}>
-        <Icon name="add" style={styles.icon} />
-        <TouchableOpacity
-          style={{ backgroundColor: '#cccccc' }}
-          onPress={() =>
-            navigation.navigate('AddTableScreen', {
-              floorID: floorID,
-              floor: floor,
-            })
-          }>
-          <Image source={tableIcon} style={styles.subIcon} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{ backgroundColor: '#3B5998' }}
-          onPress={() => navigation.navigate('AddFloorScreen')}>
-          <Image source={floorIcon} style={styles.subIcon} />
-        </TouchableOpacity>
-      </Fab>
+      <AddFloorAndTableFab floorID={floorID} floor={floor} />
     </View>
   );
 };
@@ -98,15 +69,7 @@ const styles = StyleSheet.create({
     padding: normalize(16),
     height: '100%',
   },
-  icon: {
-    fontSize: normalize(32),
-    top: normalize(5),
-    left: normalize(1),
-  },
-  subIcon: {
-    width: normalize(20),
-    height: normalize(20),
-  },
+
   description: {
     flexDirection: 'row',
     justifyContent: 'space-between',

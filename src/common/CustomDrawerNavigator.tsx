@@ -6,13 +6,23 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import auth from '@react-native-firebase/auth';
+import { useDispatch } from 'react-redux';
 
-import color from '@constants/Color';
+import actions from '@actions/index';
 
 const AVATAR_SIZE = 60;
 
-const CustomDrawerNavigator = props => {
+const CustomDrawerNavigator = (props) => {
+  const dispatch = useDispatch();
+
   const signOut = () => {
+    dispatch(
+      actions.setUserInfo({
+        uid: '',
+        position: '',
+        restaurantID: '',
+      }),
+    );
     auth()
       .signOut()
       .then(() => console.log('User signed out!'));

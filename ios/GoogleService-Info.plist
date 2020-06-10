@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>975180937010-gotpn79ese4hlulv6s25sei9mqie52tq.apps.googleusercontent.com</string>
+	<string>975180937010-1u9or3upqvdb61gjiukjq9saiej152eb.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.975180937010-gotpn79ese4hlulv6s25sei9mqie52tq</string>
+	<string>com.googleusercontent.apps.975180937010-1u9or3upqvdb61gjiukjq9saiej152eb</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCPaD1MIyZTBygMyPQz58vM_L565yJJ_GI</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.bookingHomestayApp</string>
+	<string>com.restaurantmanagementapp</string>
 	<key>PROJECT_ID</key>
 	<string>restaurant-management-5b904</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:975180937010:ios:b70446f6116463de12c92b</string>
+	<string>1:975180937010:ios:2ad3d6a40236ec3812c92b</string>
 	<key>DATABASE_URL</key>
 	<string>https://restaurant-management-5b904.firebaseio.com</string>
 </dict>

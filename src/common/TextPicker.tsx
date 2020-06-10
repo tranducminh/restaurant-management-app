@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Picker } from '@react-native-community/picker';
+import { StyleSheet, View, Picker } from 'react-native';
+// import { Picker } from '@react-native-community/picker';
 import normalize from 'react-native-normalize';
 
 const TextPicker = ({ setValue }: { setValue: Function }) => {
@@ -8,6 +8,7 @@ const TextPicker = ({ setValue }: { setValue: Function }) => {
   return (
     <View style={styles.container}>
       <Picker
+        accessibilityLabel={'foodType'}
         selectedValue={selectedValue}
         style={styles.picker}
         itemStyle={styles.item}

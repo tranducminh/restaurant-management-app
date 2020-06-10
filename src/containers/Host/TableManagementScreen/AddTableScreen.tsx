@@ -3,6 +3,8 @@ import { StyleSheet, View, SafeAreaView, Text } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
+import { useNavigation } from '@react-navigation/native';
+import { Toast } from 'native-base';
 
 import TextInput from '@common/TextInput';
 import PrimaryButton from '@common/PrimaryButton';
@@ -12,6 +14,7 @@ import { createTable } from '@api/index';
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const AddTableScreen = ({ route }) => {
+  const navigation = useNavigation();
   const [tableName, setTableName] = useState('');
   const [capacity, setCapacity] = useState('');
   const { restaurantID } = useTypedSelector((state) => state.user);
@@ -19,6 +22,13 @@ const AddTableScreen = ({ route }) => {
 
   const onPress = () => {
     createTable(floor, tableName, capacity, restaurantID, floorID);
+    navigation.goBack();
+    Toast.show({
+      text: 'Table was added successfully',
+      type: 'success',
+      position: 'top',
+      duration: 3000,
+    });
   };
   return (
     <SafeAreaView>

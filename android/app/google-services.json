@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "975180937010",
+    "firebase_url": "https://restaurant-management-5b904.firebaseio.com",
+    "project_id": "restaurant-management-5b904",
+    "storage_bucket": "restaurant-management-5b904.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975180937010:android:e667e87a8f202d3512c92b",
+        "android_client_info": {
+          "package_name": "com.restaurantmanagementapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975180937010-e3addcehrplvulrt7squntcl2i2aso49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPaJPLqpt99du2C_zUh_8Ro_DEHCOhpCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975180937010-e3addcehrplvulrt7squntcl2i2aso49.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "975180937010-gotpn79ese4hlulv6s25sei9mqie52tq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bookingHomestayApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

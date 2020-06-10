@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import actions from '../actions';
 
-const { getUserInfo } = actions;
+const { setUserInfo } = actions;
 
 const initialState = {
   uid: '',
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const reducer = createReducer(initialState, {
-  [getUserInfo.type]: (state, action) => {
+  [setUserInfo.type]: (state, action) => {
     state.uid = action.payload.uid;
     state.position = action.payload.position;
     state.restaurantID = action.payload.restaurantID;

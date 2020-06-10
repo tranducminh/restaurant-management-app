@@ -5,11 +5,17 @@ import normalize from 'react-native-normalize';
 import EditIcon from '@common/EditIcon';
 import DeleteIcon from '@common/DeleteIcon';
 
+import { removeTable } from '@api/index';
+
 const TableItem = ({
+  floorId,
+  tableId,
   title,
   capacity,
   status,
 }: {
+  floorId: string;
+  tableId: string;
   title: string;
   capacity: string;
   status: string;
@@ -18,7 +24,7 @@ const TableItem = ({
     return;
   };
   const onDelete = () => {
-    return;
+    removeTable(tableId, status, floorId);
   };
   return (
     <View style={styles.container}>

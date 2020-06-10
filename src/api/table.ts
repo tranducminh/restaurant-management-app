@@ -125,13 +125,32 @@ export const returnTable = async (tableID: string) => {
 //   return await firestore().collection('tables').doc(tableID).get();
 // };
 
-// export const removeTable = async (tableID: string) => {
-//   await firestore()
-//     .collection('tables')
-//     .doc(tableID)
-//     .delete()
-//     .then(() => console.log('Table was removed'));
-// };
+export const removeTable = async (
+  tableID: string,
+  status: string,
+  floorID: string,
+) => {
+  if (status === 'READY') {
+    await firestore()
+      .collection('tables')
+      .doc(tableID)
+      .delete()
+      .then(() => console.log('Table was removed'));
+    const totalTable = await firestore()
+      .collection('floors')
+      .doc(floorID)
+      .get()
+      .then((data) => {
+        return data.data().numberOfTables;
+      });
+    await firestore()
+      .collection('floors')
+      .doc(floorID)
+      .update({
+        numberOfTables: totalTable - 1,
+      });
+  }
+};
 
 // export const updateTable = async (
 //   tableID: string,

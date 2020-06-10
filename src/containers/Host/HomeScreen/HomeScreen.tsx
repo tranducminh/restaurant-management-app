@@ -7,7 +7,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import HeaderComponent from '@common/HeaderComponent';
 import TableManagementScreen from '../TableManagementScreen/TableManagementScreen';
 import FoodManagementScreen from '../FoodManagementScreen/FoodManagementScreen';
-import EmployeeManagementScreen from './EmployeeManagementScreen';
+import EmployeeManagementScreen from '../EmployeeManagementScreen/EmployeeManagementScreen';
 import RestaurantManagementScreen from './RestaurantManagementScreen';
 
 const Tab = createMaterialBottomTabNavigator();

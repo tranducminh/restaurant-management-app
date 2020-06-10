@@ -2,7 +2,6 @@ import { StyleSheet, View, SafeAreaView } from 'react-native';
 import React from 'react';
 
 import PositionItem from '../components/StartScreen/PositionItem';
-import Image from '@common/Image';
 const data = [
   {
     icon: require('@assets/shop.png'),
@@ -30,7 +29,6 @@ const StartScreen = () => {
             <PositionItem {...item} />
           </View>
         ))}
-        <Image />
       </View>
     </SafeAreaView>
   );

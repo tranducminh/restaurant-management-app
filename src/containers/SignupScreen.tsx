@@ -11,7 +11,7 @@ import normalize from 'react-native-normalize';
 
 import PrimaryButton from '@common/PrimaryButton';
 import TextInput from '@common/TextInput';
-import { createRestaurant } from '../api';
+import { createRestaurant, signUpWithEmailAndPassword } from '../api';
 
 const SignupScreen = ({ navigation }: { navigation: any }) => {
   const [email, setEmail] = useState('');
@@ -19,8 +19,9 @@ const SignupScreen = ({ navigation }: { navigation: any }) => {
   const [restaurantName, setRestaurantName] = useState('');
   const [address, setAddress] = useState('');
 
-  const onSignUp = () => {
-    createRestaurant(email, password, restaurantName, address);
+  const onSignUp = async () => {
+    const hostID = await signUpWithEmailAndPassword(email, password);
+    createRestaurant(hostID, restaurantName, address);
   };
 
   return (

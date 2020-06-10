@@ -1,12 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
-import { useDispatch } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
-import actions from '../../actions';
-
-const { setNavigator } = actions;
 const PositionItem = ({
   icon,
   title,
@@ -16,10 +12,8 @@ const PositionItem = ({
   title: string;
   id: string;
 }) => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
   const onPress = () => {
-    dispatch(setNavigator(id));
     navigation.navigate('LoginScreen', {
       icon: icon,
       id: id,

@@ -35,7 +35,7 @@ const Navigator = () => {
         const _user = await getUserInfo(user.uid);
         setPosition(_user.position);
         dispatch(
-          actions.getUserInfo({
+          actions.setUserInfo({
             uid: user.uid,
             position: _user.position,
             restaurantID: _user.restaurantID,
