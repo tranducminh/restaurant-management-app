@@ -248,6 +248,9 @@ PODS:
   - Firebase/Firestore (6.25.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.14.0)
+  - Firebase/Functions (6.25.0):
+    - Firebase/CoreOnly
+    - FirebaseFunctions (~> 2.5.1)
   - Firebase/Storage (6.25.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 3.6.1)
@@ -296,6 +299,10 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 1.30905.0)
+  - FirebaseFunctions (2.5.1):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseInstallations (1.2.0):
     - FirebaseCore (~> 6.6)
     - GoogleUtilities/Environment (~> 6.6)
@@ -667,22 +674,26 @@ PODS:
     - React
   - RNCPicker (1.6.1):
     - React
-  - RNFBApp (7.1.4):
+  - RNFBApp (7.2.1):
     - Firebase/CoreOnly (~> 6.25.0)
     - React
-  - RNFBAuth (8.0.2):
+  - RNFBAuth (8.0.5):
     - Firebase/Auth (~> 6.25.0)
     - React
     - RNFBApp
-  - RNFBDatabase (7.1.2):
+  - RNFBDatabase (7.2.2):
     - Firebase/Database (~> 6.25.0)
     - React
     - RNFBApp
-  - RNFBFirestore (7.1.2):
+  - RNFBFirestore (7.1.7):
     - Firebase/Firestore (~> 6.25.0)
     - React
     - RNFBApp
-  - RNFBStorage (7.1.2):
+  - RNFBFunctions (7.1.4):
+    - Firebase/Functions (~> 6.25.0)
+    - React
+    - RNFBApp
+  - RNFBStorage (7.1.4):
     - Firebase/Storage (~> 6.25.0)
     - React
     - RNFBApp
@@ -759,6 +770,7 @@ DEPENDENCIES:
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBDatabase (from `../node_modules/@react-native-firebase/database`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
+  - "RNFBFunctions (from `../node_modules/@react-native-firebase/functions`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -782,6 +794,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnosticsInterop
     - FirebaseDatabase
     - FirebaseFirestore
+    - FirebaseFunctions
     - FirebaseInstallations
     - FirebaseStorage
     - Flipper
@@ -875,6 +888,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/database"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
+  RNFBFunctions:
+    :path: "../node_modules/@react-native-firebase/functions"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
   RNGestureHandler:
@@ -907,6 +922,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseDatabase: 4e99c0c475d1ee0aa64ae2b53c93f80b7b60d7d9
   FirebaseFirestore: deb7242803734c97376278698de097499cf5194f
+  FirebaseFunctions: 5af7c35d1c5e41608fecbb667eb6c4e672e318d0
   FirebaseInstallations: 2119fb3e46b0a88bfdbf12562f855ee3252462fa
   FirebaseStorage: f4f39ae834a7145963b913f54e2f24a9db1d8fac
   Flipper: 6c1f484f9a88d30ab3e272800d53688439e50f69
@@ -954,11 +970,12 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCPicker: b8c53479842804a3e7b721e01def0ce2c89ddc69
-  RNFBApp: fa6c2bf4e67ca1db74d04eec5909189b5500c9b8
-  RNFBAuth: 61b666e4a0c25750d9cc48d2c1a5320d4fa83f7b
-  RNFBDatabase: 2f64bc1ddc7235c534950bfb10f0d3336e714a73
-  RNFBFirestore: b124404c4c3e2895652dc0aa911ed213cce3f12e
-  RNFBStorage: 8a8d96bdbdd40e51d006b494b41eb5b22a012d14
+  RNFBApp: def13f6392e7c9839c938879f065ec0088c4496a
+  RNFBAuth: da10602d9f8644a1669d824c862e7321b1f0fc9e
+  RNFBDatabase: d23f1e3e98eb7b7afd883312316edb5adf2efb0b
+  RNFBFirestore: b6209c3c80f6dc934e72443c007299f594041904
+  RNFBFunctions: 709c2428f0ddd4b461af7eb39689a6b4270a950e
+  RNFBStorage: 7896b7e5d26ebf0b349d63c54e4cecf9eac98226
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNReanimated: b5ccb50650ba06f6e749c7c329a1bc3ae0c88b43
   RNScreens: 62211832af51e0aebcf6e8c36bcf7dd65592f244

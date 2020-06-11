@@ -3,6 +3,7 @@ import { StyleSheet, View, SafeAreaView } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
+import { firebase } from '@react-native-firebase/functions';
 
 import TextPicker from '@common/TextPicker';
 import TextInput from '@common/TextInput';
@@ -30,9 +31,14 @@ export default function AddEmployeeScreen() {
       value: 'CHEF',
     },
   ];
-  const createAccount = () => {
+  const createAccount = async () => {
     createTempUser(email, password, restaurantID, position);
-    // sendAccountInformation();
+    // await firebase
+    //   .functions()
+    //   .httpsCallable('helloWorld')()
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
   };
   return (
     <SafeAreaView>
