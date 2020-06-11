@@ -9,6 +9,7 @@ import AddTableScreen from '@containers/Host/TableManagementScreen/AddTableScree
 import AddFloorScreen from '@containers/Host/TableManagementScreen/AddFloorScreen';
 import ProfileScreen from '@containers/Host/ProfileScreen/ProfileScreen';
 import AddFoodScreen from '@containers/Host/FoodManagementScreen/AddFoodScreen';
+import AddEmployeeScreen from '@containers/Host/EmployeeManagementScreen/AddEmployeeScreen';
 
 const Drawer = createDrawerNavigator();
 const HomeStack = createStackNavigator();
@@ -35,6 +36,11 @@ const HomeScreenStack = () => {
       <HomeStack.Screen
         name="AddFoodScreen"
         component={AddFoodScreen}
+        options={{ headerShown: false }}
+      />
+      <HomeStack.Screen
+        name="AddEmployeeScreen"
+        component={AddEmployeeScreen}
         options={{ headerShown: false }}
       />
     </HomeStack.Navigator>

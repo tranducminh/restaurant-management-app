@@ -1,27 +1,35 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Picker } from 'react-native';
+import { StyleSheet, View, Picker, Text } from 'react-native';
 // import { Picker } from '@react-native-community/picker';
 import normalize from 'react-native-normalize';
 
-const TextPicker = ({ setValue }: { setValue: Function }) => {
-  const [selectedValue, setSelectedValue] = useState('java');
+const TextPicker = ({
+  title = '',
+  setValue,
+  values,
+}: {
+  title: string;
+  setValue: Function;
+  values: Array<{ label: string; value: string }>;
+}) => {
+  const [selectedValue, setSelectedValue] = useState('Host');
   return (
     <View style={styles.container}>
+      <Text>{title}</Text>
       <Picker
-        accessibilityLabel={'foodType'}
         selectedValue={selectedValue}
         style={styles.picker}
         itemStyle={styles.item}
         mode="dialog"
-        onValueChange={(itemValue, itemIndex) => {
+        onValueChange={(itemValue) => {
           setSelectedValue(itemValue);
           setValue(itemValue);
         }}>
-        <Picker.Item label="Appetizers" value="Appetizers" />
-        <Picker.Item label="Main dishes" value="MainDishes" />
-        <Picker.Item label="Desserts" value="Desserts" />
-        <Picker.Item label="Drinks" value="Drinks" />
-        <Picker.Item label="Fruits" value="Fruits" />
+        {values.map((item, index) => {
+          return (
+            <Picker.Item key={index} label={item.label} value={item.value} />
+          );
+        })}
       </Picker>
     </View>
   );

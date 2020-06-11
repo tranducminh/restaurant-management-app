@@ -58,3 +58,39 @@ export const getUserInfo = async (uid: string) => {
   const position = await firestore().collection('users').doc(uid).get();
   return position.data();
 };
+
+export const signInWithEmailAndPassword = async (
+  email: string,
+  password: string,
+) => {
+  await firestore()
+    .collection('temp_users')
+    .where('email', '==', email)
+    .where('password', '==', password)
+    .get()
+    .then(async (user) => {
+      if (user.docs.length !== 0) {
+        const { position, restaurantID } = user.docs[0].data();
+        const uid = await signUpWithEmailAndPassword(email, password);
+        await createUser(uid, restaurantID, position);
+      } else {
+        await auth()
+          .signInWithEmailAndPassword(email, password)
+          .then((user) => {
+            console.log('123', user);
+          })
+          .catch((error) => {
+            if (error.code === 'auth/wrong-password') {
+              console.log('password is incorrect!');
+            }
+            if (error.code === 'auth/user-not-found') {
+              console.log('user not found!');
+            }
+            console.error(error);
+          });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

@@ -19,8 +19,10 @@ const HomeScreen = () => {
   const { restaurantID } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
-    getFloorList(setFloorList, setIsLoading, restaurantID);
-  }, []);
+    if (restaurantID !== '') {
+      getFloorList(setFloorList, setIsLoading, restaurantID);
+    }
+  }, [restaurantID]);
 
   return (
     <SafeAreaView style={styles.container}>

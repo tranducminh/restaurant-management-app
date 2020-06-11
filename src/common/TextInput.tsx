@@ -24,7 +24,7 @@ const Input = ({
         style={styles.input}
         value={value}
         secureTextEntry={secureTextEntry}
-        // keyboardType="numeric"
+        keyboardType={keyboardType}
         onChangeText={(text) => onChangeText(text)}
         editable={!disable}
       />

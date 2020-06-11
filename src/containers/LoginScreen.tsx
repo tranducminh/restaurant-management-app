@@ -9,30 +9,18 @@ import {
   Image,
 } from 'react-native';
 import normalize from 'react-native-normalize';
-import auth from '@react-native-firebase/auth';
 
 import PrimaryButton from '@common/PrimaryButton';
 import TextInput from '@common/TextInput';
+
+import { signInWithEmailAndPassword } from '@api/index';
 
 const LoginScreen = ({ route, navigation }: { route: any; navigation: any }) => {
   const { icon, id } = route.params;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const onSingIn = () => {
-    auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(user => {
-        console.log('123', user);
-      })
-      .catch(error => {
-        if (error.code === 'auth/wrong-password') {
-          console.log('password is incorrect!');
-        }
-        if (error.code === 'auth/user-not-found') {
-          console.log('user not found!');
-        }
-        console.error(error);
-      });
+  const onSingIn = async () => {
+    await signInWithEmailAndPassword(email, password);
   };
   return (
     <SafeAreaView style={styles.container}>

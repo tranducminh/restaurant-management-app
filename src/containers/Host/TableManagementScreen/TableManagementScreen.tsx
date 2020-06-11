@@ -16,13 +16,17 @@ const Tab = createMaterialTopTabNavigator();
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const TableManagementScreen = () => {
-  const [floorList, setFloorList] = useState([]);
+  const [floorList, setFloorList] = useState([
+    { id: '', data: { numberOfTables: 0, floor: '' } },
+  ]);
   const [isLoading, setIsLoading] = useState(true);
   const { restaurantID } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
-    getFloorList(setFloorList, setIsLoading, restaurantID);
-  }, []);
+    if (restaurantID !== '') {
+      getFloorList(setFloorList, setIsLoading, restaurantID);
+    }
+  }, [restaurantID]);
 
   const renderFloorList = () => {
     if (floorList.length === 0) {

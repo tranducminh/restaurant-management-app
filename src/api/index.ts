@@ -5,3 +5,4 @@ export * from './food';
 export * from './selection';
 export * from './restaurant';
 export * from './order';
+export * from './transporter';

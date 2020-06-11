@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { useSelector, TypedUseSelectorHook, useDispatch } from 'react-redux';
-import { ReducersType } from '../reducers';
+import { StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import auth from '@react-native-firebase/auth';
@@ -33,14 +32,14 @@ const Navigator = () => {
     try {
       if (user.uid !== null) {
         const _user = await getUserInfo(user.uid);
-        setPosition(_user.position);
-        dispatch(
+        await dispatch(
           actions.setUserInfo({
             uid: user.uid,
             position: _user.position,
             restaurantID: _user.restaurantID,
           }),
         );
+        setPosition(_user.position);
       }
     } catch (error) {
       console.log(error);

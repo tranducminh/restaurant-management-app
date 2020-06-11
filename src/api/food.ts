@@ -9,7 +9,7 @@ export const addFood = async (
   foodType: string,
   url: string,
 ) => {
-  const downloadUrl = uploadImage(url);
+  const downloadUrl = await uploadImage(url);
   firestore()
     .collection('foods')
     .add({
