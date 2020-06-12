@@ -3,25 +3,24 @@ import { StyleSheet, View, SafeAreaView } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
-import { firebase } from '@react-native-firebase/functions';
+import { Toast } from 'native-base';
+import { useNavigation } from '@react-navigation/native';
 
 import TextPicker from '@common/TextPicker';
 import TextInput from '@common/TextInput';
 import PrimaryButton from '@common/PrimaryButton';
+import HeaderComponent from '@common/HeaderComponent';
 
-import { createTempUser, sendAccountInformation } from '@api/index';
+import { createTempUser } from '@api/index';
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 export default function AddEmployeeScreen() {
+  const navigation = useNavigation();
   const { restaurantID } = useTypedSelector((state) => state.user);
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const values = [
-    {
-      label: 'Host',
-      value: 'HOST',
-    },
     {
       label: 'Employee',
       value: 'EMPLOYEE',
@@ -33,15 +32,21 @@ export default function AddEmployeeScreen() {
   ];
   const createAccount = async () => {
     createTempUser(email, password, restaurantID, position);
-    // await firebase
-    //   .functions()
-    //   .httpsCallable('helloWorld')()
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
+    fetch(
+      `http://localhost:5001/restaurant-management-5b904/us-central1/sendMail?email=${email}&password=${password}&position=${position}`,
+    ).then(() => {
+      Toast.show({
+        text: 'Account information was sent successfully',
+        type: 'success',
+        position: 'top',
+        duration: 3000,
+      });
+    });
+    navigation.goBack();
   };
   return (
     <SafeAreaView>
+      <HeaderComponent type="BACK" />
       <View style={styles.container}>
         <TextInput title="Email" value={email} onChangeText={setEmail} />
         <TextInput
@@ -76,6 +81,5 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#ffffff',
     paddingHorizontal: normalize(16),
-    paddingVertical: normalize(20),
   },
 });

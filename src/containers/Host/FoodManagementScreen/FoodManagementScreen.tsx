@@ -4,7 +4,9 @@ import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
+import { List, ListItem } from 'native-base';
 
+import DeleteIcon from '@common/DeleteIcon';
 import AddIcon from '@common/AddIcon';
 import FoodItem from '@components/Host/FoodManagementScreen/FoodItem';
 
@@ -20,18 +22,20 @@ const FoodManagementScreen = () => {
 
   useEffect(() => {
     getFoodListByType(setIsLoading, setFoodList, restaurantID, 'MainDishes');
-  }, []);
+  }, [restaurantID]);
 
   const renderFoodList = () => {
     if (foodList.length === 0) {
       return <NullScreen />;
     }
     return (
-      <View>
+      <View style={styles.content}>
         {foodList.map((item, index) => (
           <FoodItem {...item.data} />
         ))}
-        <AddIcon onPress={() => navigation.navigate('AddFoodScreen')} />
+        <View style={styles.button}>
+          <AddIcon onPress={() => navigation.navigate('AddFoodScreen')} />
+        </View>
       </View>
     );
   };
@@ -58,7 +62,10 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
     backgroundColor: '#ffffff',
-    paddingHorizontal: normalize(16),
+    padding: normalize(16),
+  },
+  content: {
+    height: '100%',
   },
   nullScreen: {
     justifyContent: 'center',
@@ -69,5 +76,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Exo-Medium',
     fontSize: normalize(16),
     paddingVertical: normalize(20),
+  },
+  button: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
   },
 });

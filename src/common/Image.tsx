@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressCircleSnail from 'react-native-progress/CircleSnail';
@@ -18,7 +18,7 @@ const CustomImage = ({
   style?: {
     width: number;
     height: number;
-    borderRadius: number;
+    borderRadius?: number;
   };
 }) => {
   const imageContainerStyle = {

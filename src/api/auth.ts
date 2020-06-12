@@ -73,6 +73,10 @@ export const signInWithEmailAndPassword = async (
         const { position, restaurantID } = user.docs[0].data();
         const uid = await signUpWithEmailAndPassword(email, password);
         await createUser(uid, restaurantID, position);
+        await firestore()
+          .collection('temp_users')
+          .doc(user.docs[0].id)
+          .delete();
       } else {
         await auth()
           .signInWithEmailAndPassword(email, password)
