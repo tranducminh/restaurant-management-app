@@ -2,46 +2,39 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
-import { ReducersType } from '@reducers/index';
-import { List, ListItem } from 'native-base';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import CustomTopTabNavigator from '@components/Employee/FoodSelectionScreen/CustomTopTabNavigator';
 
-import DeleteIcon from '@common/DeleteIcon';
 import AddIcon from '@common/AddIcon';
-import FoodItem from '@components/Host/FoodManagementScreen/FoodItem';
+import FoodManagementTab from './FoodManagementTab';
 
-import { getFoodListByType } from '@api/index';
-
-const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
+const Tab = createMaterialTopTabNavigator();
+const foodType = ['Appetizers', 'MainDishes', 'Desserts', 'Drinks', 'Fruits'];
 
 const FoodManagementScreen = () => {
   const navigation = useNavigation();
-  const { restaurantID } = useTypedSelector((state) => state.user);
-  const [isLoading, setIsLoading] = useState(false);
-  const [foodList, setFoodList] = useState([]);
-
-  useEffect(() => {
-    getFoodListByType(setIsLoading, setFoodList, restaurantID, 'MainDishes');
-  }, [restaurantID]);
-
-  const renderFoodList = () => {
-    if (foodList.length === 0) {
-      return <NullScreen />;
-    }
-    return (
-      <View style={styles.content}>
-        {foodList.map((item, index) => (
-          <FoodItem {...item.data} />
-        ))}
-        <View style={styles.button}>
-          <AddIcon onPress={() => navigation.navigate('AddFoodScreen')} />
-        </View>
-      </View>
-    );
-  };
 
   return (
-    <View style={styles.container}>{isLoading ? null : renderFoodList()}</View>
+    <View style={styles.content}>
+      <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
+        {foodType.map((item, index) => {
+          const renderFoodSelectionList = () => (
+            <FoodManagementTab foodType={item} />
+          );
+          return (
+            <Tab.Screen
+              key={index}
+              name={item}
+              component={renderFoodSelectionList}
+            />
+          );
+        })}
+      </Tab.Navigator>
+
+      <View style={styles.button}>
+        <AddIcon onPress={() => navigation.navigate('AddFoodScreen')} />
+      </View>
+    </View>
   );
 };
 
@@ -66,6 +59,7 @@ const styles = StyleSheet.create({
   },
   content: {
     height: '100%',
+    backgroundColor: '#ffffff',
   },
   nullScreen: {
     justifyContent: 'center',

@@ -15,7 +15,7 @@ const HomeScreen = () => {
       <HeaderComponent />
       <Tab.Navigator barStyle={styles.tabBar}>
         <Tab.Screen name="Orders" component={OrderScreen} />
-        <Tab.Screen name="Cooking food" component={CookingFoodScreen} />
+        <Tab.Screen name="CookingFood" component={CookingFoodScreen} />
       </Tab.Navigator>
     </View>
   );

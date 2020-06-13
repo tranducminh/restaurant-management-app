@@ -10,6 +10,7 @@ import { chooseFood } from '@api/index';
 const FoodSelection = ({
   foodId,
   tableId,
+  tableName,
   url,
   foodName,
   description,
@@ -17,13 +18,14 @@ const FoodSelection = ({
 }: {
   foodId: string;
   tableId: string;
+  tableName: string;
   url: string;
   foodName: string;
   description: string;
   price: number;
 }) => {
   const onPress = () => {
-    chooseFood(tableId, foodId, url, foodName, price);
+    chooseFood(tableId, foodId, tableName, url, foodName, price);
   };
   return (
     <View style={styles.container}>

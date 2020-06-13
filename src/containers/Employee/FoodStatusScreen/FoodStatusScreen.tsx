@@ -22,10 +22,6 @@ const FoodStatusScreen = () => {
           <Text style={styles.title}>Ready food</Text>
           <FoodStatusList isReady={true} />
         </View>
-        <View style={styles.part}>
-          <Text style={styles.title}>Incoming food</Text>
-          <FoodStatusList isReady={false} />
-        </View>
       </ScrollView>
     </SafeAreaView>
   );

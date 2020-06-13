@@ -1,39 +1,55 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { ReducersType } from '@reducers/index';
+import { useNavigation } from '@react-navigation/native';
+
 import Image from '@common/Image';
 import color from '@constants/Color';
 
-import { setOrderStatusToServed } from '@api/index';
-const FoodStatusItem = ({
-  foodName,
-  tableName,
+import { setOrderStatusToCooking, createCookingOrder } from '@api/index';
+const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
+
+const FoodItem = ({
   orderID,
   url,
+  foodName,
+  tableName,
+  quantity,
 }: {
-  foodName: string;
-  tableName: string;
   orderID: string;
   url: string;
+  foodName: string;
+  tableName: string;
+  quantity: number;
 }) => {
+  const { uid } = useTypedSelector((state) => state.user);
+  const navigation = useNavigation();
+
   const onPress = () => {
-    setOrderStatusToServed(orderID);
+    setOrderStatusToCooking(orderID);
+    createCookingOrder(orderID, uid, url, foodName, quantity, tableName);
+    navigation.jumpTo('CookingFood');
   };
   return (
     <View style={styles.container}>
       <Image url={url} style={styles.image} />
-      <Text style={styles.name} numberOfLines={2}>
-        {foodName}
-      </Text>
+      <View>
+        <Text style={styles.name} numberOfLines={2}>
+          {foodName}
+        </Text>
+        <Text style={styles.quantity}>x {quantity}</Text>
+      </View>
       <Text style={styles.table}>Table {tableName}</Text>
       <TouchableOpacity onPress={onPress}>
-        <Text style={styles.button}>Serve now</Text>
+        <Text style={styles.button}>Cook now</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default FoodStatusItem;
+export default FoodItem;
 
 const styles = StyleSheet.create({
   container: {
@@ -54,9 +70,15 @@ const styles = StyleSheet.create({
     borderRadius: normalize(10),
   },
   name: {
-    fontSize: normalize(14.5),
+    fontSize: normalize(18),
     fontFamily: 'Exo-Medium',
     paddingLeft: normalize(16),
+    width: normalize(120),
+  },
+  quantity: {
+    fontSize: normalize(14.5),
+    fontFamily: 'Exo-Medium',
+    paddingLeft: normalize(18),
     width: normalize(120),
   },
   table: {

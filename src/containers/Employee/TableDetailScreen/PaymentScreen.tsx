@@ -1,13 +1,28 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 
 import Food from '@components/Employee/PaymentScreen/Food';
 import Payment from '@components/Employee/PaymentScreen/Payment';
+import PrimaryButton from '@common/PrimaryButton';
+const backIcon = require('@assets/back.png');
 
-import { getOrderListByTableId, removeOrder, returnTable } from '@api/index';
+import {
+  getOrderListByTableId,
+  removeOrder,
+  returnTable,
+  getSelectionListByTableId,
+  removeSelection,
+} from '@api/index';
 
 type orderData = {
   foodName: string;
@@ -21,7 +36,28 @@ const PaymentScreen = ({ tableId }: { tableId: string }) => {
   const navigation = useNavigation();
   const [orderList, setOrderList] = useState([]);
   const [payment, setPayment] = useState(0);
+  const [selectionList, setSelectionList] = useState([]);
+  const returnNull = () => {
+    return;
+  };
   const renderOrderList = () => {
+    if (orderList.length === 0) {
+      return (
+        <View style={styles.nullContainer}>
+          <Text style={styles.text}>You haven't order any food yet</Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.jumpTo('SelectionScreen')}>
+            <Image source={backIcon} style={styles.icon} />
+          </TouchableOpacity>
+          <PrimaryButton
+            text="Cancel order"
+            onPress={onPurchase}
+            backgroundColor="#ff7d7a"
+          />
+        </View>
+      );
+    }
     return orderList.map(
       (item: { data: orderData; id: string }, index: number) => {
         return <Food key={index} {...item.data} />;
@@ -32,16 +68,20 @@ const PaymentScreen = ({ tableId }: { tableId: string }) => {
     orderList.forEach((item: { id: string }) => {
       removeOrder(item.id);
     });
+    selectionList.forEach((item: { id: string }) => {
+      removeSelection(item.id);
+    });
     returnTable(tableId);
     navigation.navigate('HomeScreen');
   };
   useEffect(() => {
     getOrderListByTableId(tableId, setOrderList, setPayment);
+    getSelectionListByTableId(tableId, setSelectionList, returnNull);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Your Order</Text>
+      <Text style={styles.title}>Your Payment</Text>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
         {renderOrderList()}
       </ScrollView>
@@ -63,6 +103,11 @@ const styles = StyleSheet.create({
     borderTopRightRadius: normalize(40),
     paddingTop: normalize(20),
   },
+  nullContainer: {
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   content: {
     paddingHorizontal: normalize(16),
     paddingTop: normalize(40),
@@ -80,5 +125,19 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     paddingBottom: normalize(10),
     paddingHorizontal: normalize(16),
+  },
+  button: {
+    width: normalize(30),
+    height: normalize(30),
+    marginBottom: normalize(10),
+  },
+  icon: {
+    width: '100%',
+    height: '100%',
+  },
+  text: {
+    fontFamily: 'Exo-Medium',
+    fontSize: normalize(18),
+    paddingVertical: normalize(10),
   },
 });

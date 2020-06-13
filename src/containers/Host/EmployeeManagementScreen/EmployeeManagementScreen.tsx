@@ -6,24 +6,31 @@ import { ReducersType } from '@reducers/index';
 import AddIcon from '@common/AddIcon';
 import { useNavigation } from '@react-navigation/native';
 import normalize from 'react-native-normalize';
+import EmployeeItem from '@components/Host/EmployeeManagementScreen/EmployeeItem';
 
-import { getEmployeeList } from '@api/index';
+import { getEnabledEmployeeList, getPendingEmployeeList, getDisabledEmployeeList } from '@api/index';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const EmployeeManagementScreen = () => {
   const navigation = useNavigation();
-  const [employeeList, setEmployeeList] = useState([]);
+  const [enabledEmployeeList, setEnabledEmployeeList] = useState([]);
+  const [disabledEmployeeList, setDisabledEmployeeList] = useState([]);
+  const [pendingEmployeeList, setPendingEmployeeList] = useState([]);
   const { restaurantID } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
-    getEmployeeList(restaurantID, setEmployeeList);
+    getEnabledEmployeeList(restaurantID, setEnabledEmployeeList);
+    getDisabledEmployeeList(restaurantID, setDisabledEmployeeList);
+    getPendingEmployeeList(restaurantID, setPendingEmployeeList);
   }, [restaurantID]);
 
   const renderEmployeeList = () => {
     return (
       <View style={styles.content}>
-        {employeeList.map((item, index) => <Text key={index}>{item.id}</Text>)}
+        {enabledEmployeeList.map((item, index) => <EmployeeItem isAuth={true} key={index} {...item.data} employeeID={item.id} />)}
+        {disabledEmployeeList.map((item, index) => <EmployeeItem key={index} {...item.data} employeeID={item.id} />)}
+        {pendingEmployeeList.map((item, index) => <EmployeeItem isAuth={false} key={index} {...item.data} employeeID={item.id} />)}
         <View style={styles.button}>
           <AddIcon onPress={() => navigation.navigate('AddEmployeeScreen')} />
         </View>
@@ -31,7 +38,7 @@ const EmployeeManagementScreen = () => {
   };
   return (
     <View style={styles.container}>
-      {employeeList.length !== 0 ? renderEmployeeList() : <NullScreen />}
+      {enabledEmployeeList.length !== 0 || pendingEmployeeList.length !== 0 ? renderEmployeeList() : <NullScreen />}
 
     </View >
   );
@@ -42,7 +49,7 @@ const NullScreen = () => {
 
   return (
     <View style={styles.nullScreen}>
-      <Text style={styles.text}>You haven't create any food yet</Text>
+      <Text style={styles.text}>You haven't create any employee yet</Text>
       <AddIcon onPress={() => navigation.navigate('AddEmployeeScreen')} />
     </View>
   );

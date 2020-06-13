@@ -21,7 +21,7 @@ const SignupScreen = ({ navigation }: { navigation: any }) => {
 
   const onSignUp = async () => {
     const hostID = await signUpWithEmailAndPassword(email, password);
-    createRestaurant(hostID, restaurantName, address);
+    createRestaurant(hostID, restaurantName, address, email);
   };
 
   return (

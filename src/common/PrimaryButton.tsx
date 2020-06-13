@@ -5,12 +5,16 @@ import normalize from 'react-native-normalize';
 const PrimaryButton = ({
   text,
   onPress,
+  backgroundColor = '#2c9ced',
 }: {
   text: string;
   onPress: Function;
+  backgroundColor?: string;
 }) => {
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor: backgroundColor }]}
+      onPress={onPress}>
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );
@@ -20,7 +24,6 @@ export default PrimaryButton;
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#2c9ced',
     padding: normalize(10),
     borderRadius: normalize(20),
   },

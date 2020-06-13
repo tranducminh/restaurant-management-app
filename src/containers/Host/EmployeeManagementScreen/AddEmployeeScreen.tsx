@@ -17,7 +17,7 @@ const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 export default function AddEmployeeScreen() {
   const navigation = useNavigation();
   const { restaurantID } = useTypedSelector((state) => state.user);
-  const [position, setPosition] = useState('');
+  const [position, setPosition] = useState('EMPLOYEE');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const values = [
@@ -46,7 +46,7 @@ export default function AddEmployeeScreen() {
   };
   return (
     <SafeAreaView>
-      <HeaderComponent type="BACK" />
+      <HeaderComponent type="BACK" title="Add Employee" />
       <View style={styles.container}>
         <TextInput title="Email" value={email} onChangeText={setEmail} />
         <TextInput

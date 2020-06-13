@@ -6,6 +6,7 @@ export const createRestaurant = async (
   hostID: string,
   name: string,
   address: string,
+  email: string,
 ) => {
   await firestore()
     .collection('restaurants')
@@ -16,6 +17,6 @@ export const createRestaurant = async (
     })
     .then((restaurant) => {
       const restaurantID = restaurant._documentPath._parts[1];
-      createUser(hostID, restaurantID, 'HOST');
+      createUser(hostID, '', '', email.toLowerCase(), restaurantID, 'HOST');
     });
 };

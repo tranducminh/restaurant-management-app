@@ -39,7 +39,7 @@ export default TextPicker;
 
 const styles = StyleSheet.create({
   container: {
-    // height: 10,
+    paddingTop: normalize(15),
   },
   picker: {
     backgroundColor: '#ffffff',

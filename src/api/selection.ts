@@ -3,6 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 export const chooseFood = async (
   tableId: string,
   foodId: string,
+  tableName: string,
   url: string,
   foodName: string,
   price: number,
@@ -10,6 +11,7 @@ export const chooseFood = async (
   await firestore().collection('selections').add({
     tableId,
     foodId,
+    tableName,
     quantity: 1,
     url,
     foodName,

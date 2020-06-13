@@ -3,7 +3,7 @@ import { StyleSheet, View, Image, StatusBar } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import normalize from 'react-native-normalize';
 
-import OrderScreen from './OrderScreen';
+import SelectionScreen from './SelectionScreen';
 import PaymentScreen from './PaymentScreen';
 import FoodSelectionScreen from './FoodSelectionScreen';
 import Header from '@components/Employee/TableDetailScreen/Header';
@@ -20,9 +20,11 @@ const Tab = createMaterialBottomTabNavigator();
 const TableDetailScreen = ({ route }: { route: any }) => {
   const { tableId, tableName } = route.params;
   const renderFoodSelectionScreen = () => (
-    <FoodSelectionScreen tableId={tableId} />
+    <FoodSelectionScreen tableId={tableId} tableName={tableName} />
   );
-  const renderOrderScreen = () => <OrderScreen tableId={tableId} />;
+  const renderSelectionScreen = () => (
+    <SelectionScreen tableId={tableId} tableName={tableName} />
+  );
   const renderPayment = () => <PaymentScreen tableId={tableId} />;
   return (
     <View style={styles.container}>
@@ -44,8 +46,8 @@ const TableDetailScreen = ({ route }: { route: any }) => {
           }}
         />
         <Tab.Screen
-          name="OrderScreen"
-          component={renderOrderScreen}
+          name="SelectionScreen"
+          component={renderSelectionScreen}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={focused ? styles.activeTab : styles.normalTab}>

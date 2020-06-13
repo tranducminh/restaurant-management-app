@@ -3,15 +3,25 @@ import auth from '@react-native-firebase/auth';
 
 export const createUser = async (
   uid: string,
+  name = '',
+  url: string,
+  email: string,
   restaurantID: string,
   position: string,
 ) => {
-  firestore()
+  if (url === '') {
+    url =
+      'https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/user.png?alt=media&token=a1a4d6a3-4086-46a6-8a74-dc1f85e5539d';
+  }
+  await firestore()
     .collection('users')
     .doc(uid)
     .set({
       restaurantID: restaurantID,
       position: position,
+      name,
+      url,
+      email,
     })
     .then(() => {});
 };
@@ -27,6 +37,9 @@ export const createTempUser = async (
     password,
     restaurantID,
     position,
+    name: position,
+    url:
+      'https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/user.png?alt=media&token=a1a4d6a3-4086-46a6-8a74-dc1f85e5539d',
   });
 };
 
@@ -72,7 +85,7 @@ export const signInWithEmailAndPassword = async (
       if (user.docs.length !== 0) {
         const { position, restaurantID } = user.docs[0].data();
         const uid = await signUpWithEmailAndPassword(email, password);
-        await createUser(uid, restaurantID, position);
+        await createUser(uid, '', '', email, restaurantID, position);
         await firestore()
           .collection('temp_users')
           .doc(user.docs[0].id)
@@ -97,4 +110,17 @@ export const signInWithEmailAndPassword = async (
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const getStatusAccount = async (uid: string, setStatus: Function) => {
+  if (uid !== '') {
+    firestore()
+      .collection('users')
+      .doc(uid)
+      .onSnapshot((document) => {
+        setStatus(document.data().status);
+      });
+  } else {
+    setStatus('');
+  }
 };

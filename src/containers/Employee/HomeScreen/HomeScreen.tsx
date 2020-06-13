@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import { StyleSheet, SafeAreaView, StatusBar, View, Text } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
+import normalize from 'react-native-normalize';
 
 import CustomTopTabNavigator from '@common/CustomTopTabNavigator';
 import TableScreen from './TableScreen';
@@ -24,30 +25,49 @@ const HomeScreen = () => {
     }
   }, [restaurantID]);
 
+  const renderFloorList = () => {
+    if (floorList.length === 0) {
+      return <NullScreen />;
+    } else if (floorList.length === 1) {
+      return (
+        <TableScreen
+          restaurantID={restaurantID}
+          floor={floorList[0].data.floor}
+        />
+      );
+    }
+    return (
+      <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
+        {floorList.map((item, index) => {
+          const renderTableListScreen = () => (
+            <TableScreen restaurantID={restaurantID} floor={item.data.floor} />
+          );
+          return (
+            <Tab.Screen
+              key={index}
+              name={`Floor ${item.data.floor}`}
+              component={renderTableListScreen}
+            />
+          );
+        })}
+      </Tab.Navigator>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
       <HeaderComponent />
-      {isLoading === true ? null : (
-        <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
-          {floorList.map((item, index) => {
-            const renderTableScreen = () => (
-              <TableScreen
-                floor={item.data.floor}
-                restaurantID={restaurantID}
-              />
-            );
-            return (
-              <Tab.Screen
-                key={index}
-                name={`Floor ${item.data.floor}`}
-                component={renderTableScreen}
-              />
-            );
-          })}
-        </Tab.Navigator>
-      )}
+      {isLoading === true ? null : renderFloorList()}
     </SafeAreaView>
+  );
+};
+
+const NullScreen = () => {
+  return (
+    <View style={styles.nullScreen}>
+      <Text style={styles.text}>Your restaurant haven't any floor yet</Text>
+    </View>
   );
 };
 
@@ -57,5 +77,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
+  },
+  nullScreen: {
+    height: '100%',
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    fontFamily: 'Exo-Medium',
+    fontSize: normalize(18),
+    paddingVertical: normalize(20),
   },
 });

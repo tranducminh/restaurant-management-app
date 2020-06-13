@@ -6,21 +6,31 @@ import CustomTopTabNavigator from '@components/Employee/FoodSelectionScreen/Cust
 import FoodSelectionList from '@components/Employee/FoodSelectionScreen/FoodSelectionList';
 
 const Tab = createMaterialTopTabNavigator();
-const foodType = ['Appetizers', 'Main dishes', 'Desserts', 'Drinks', 'Fruits'];
+const foodType = ['Appetizers', 'MainDishes', 'Desserts', 'Drinks', 'Fruits'];
 
-const FoodSelectionScreen = ({ tableId }: { tableId: string }) => {
+const FoodSelectionScreen = ({
+  tableId,
+  tableName,
+}: {
+  tableId: string;
+  tableName: string;
+}) => {
   return (
     <View style={styles.container}>
       <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
         {foodType.map((item, index) => {
-          const renderFoodSelecttionList = () => (
-            <FoodSelectionList foodType={item} tableId={tableId} />
+          const renderFoodSelectionList = () => (
+            <FoodSelectionList
+              foodType={item}
+              tableId={tableId}
+              tableName={tableName}
+            />
           );
           return (
             <Tab.Screen
               key={index}
               name={item}
-              component={renderFoodSelecttionList}
+              component={renderFoodSelectionList}
             />
           );
         })}
