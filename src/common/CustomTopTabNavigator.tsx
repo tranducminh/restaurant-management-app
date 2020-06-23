@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {
   View,
@@ -49,7 +50,7 @@ function CustomTopTabNavigator({ state, descriptors, navigation, position }) {
         const inputRange = state.routes.map((_, i) => i);
         const opacity = Animated.interpolate(position, {
           inputRange,
-          outputRange: inputRange.map(i => (i === index ? 1 : 0)),
+          outputRange: inputRange.map((i) => (i === index ? 1 : 0)),
         });
 
         return (
@@ -65,7 +66,6 @@ function CustomTopTabNavigator({ state, descriptors, navigation, position }) {
             <Text style={isFocused ? styles.activeText : styles.normalText}>
               {label}
             </Text>
-            {/* <Animated.Text style={{ opacity }}>{label}</Animated.Text> */}
           </TouchableOpacity>
         );
       })}
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     borderRadius: normalize(20),
   },
   tab: {
-    // flex: 1,
     marginHorizontal: normalize(10),
     minWidth: 100,
     justifyContent: 'center',

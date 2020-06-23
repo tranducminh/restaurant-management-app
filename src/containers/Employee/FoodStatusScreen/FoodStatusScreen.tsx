@@ -20,7 +20,7 @@ const FoodStatusScreen = () => {
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.part}>
           <Text style={styles.title}>Ready food</Text>
-          <FoodStatusList isReady={true} />
+          <FoodStatusList />
         </View>
       </ScrollView>
     </SafeAreaView>

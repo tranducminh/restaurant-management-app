@@ -10,7 +10,7 @@ import normalize from 'react-native-normalize';
 
 import TableItem from '@components/Host/TableManagementScreen/TableItem';
 import AddFloorAndTableFab from '@common/AddFloorAndTableFab';
-
+import { tableType } from '@type/index';
 import { getTableList } from '@api/index';
 
 const TableListScreen = ({
@@ -29,7 +29,7 @@ const TableListScreen = ({
 
   useEffect(() => {
     getTableList(setTableList, setIsLoading, floor, restaurantID);
-  }, []);
+  }, [floor, restaurantID]);
   return (
     <View style={styles.container}>
       <View style={styles.description}>
@@ -43,7 +43,7 @@ const TableListScreen = ({
       </View>
       {isLoading === true ? null : (
         <ScrollView showsVerticalScrollIndicator={false}>
-          {tableList.map((item, index) => (
+          {tableList.map((item: tableType, index) => (
             <TableItem
               key={index}
               floorId={floorID}

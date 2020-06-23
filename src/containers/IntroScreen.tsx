@@ -8,6 +8,7 @@ import {
   Image,
 } from 'react-native';
 import normalize from 'react-native-normalize';
+import color from '@constants/Color';
 
 const icon = require('@assets/arrow.png');
 const tick = require('@assets/tick.png');
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#2c9ced',
+    backgroundColor: color.MAIN_COLOR,
   },
   content: {
     paddingHorizontal: normalize(30),

@@ -13,7 +13,7 @@ import { createTable } from '@api/index';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
-const AddTableScreen = ({ route }) => {
+const AddTableScreen = ({ route }: { route: any }) => {
   const navigation = useNavigation();
   const [tableName, setTableName] = useState('');
   const [capacity, setCapacity] = useState('');

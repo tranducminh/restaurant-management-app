@@ -12,6 +12,7 @@ import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
+import { orderType } from '@type/index';
 
 import color from '@constants/Color';
 import Food from '@components/Employee/OrderScreen/Food';
@@ -30,7 +31,7 @@ const OrderScreen = ({
   tableId: string;
   tableName: string;
 }) => {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   const [orderList, setOrderList] = useState([]);
   const [total, setTotal] = useState(0);
   const { restaurantID } = useTypedSelector((state) => state.user);
@@ -40,7 +41,7 @@ const OrderScreen = ({
   }, []);
 
   const onPress = () => {
-    orderList.forEach((order) => {
+    orderList.forEach((order: orderType) => {
       const { foodId, foodName, url, price, quantity } = order.data;
       createOrder(
         restaurantID,
@@ -72,7 +73,7 @@ const OrderScreen = ({
     }
     return (
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {orderList.map((item, index) => (
+        {orderList.map((item: orderType, index) => (
           <Food {...item.data} key={index} selectionId={item.id} />
         ))}
       </ScrollView>

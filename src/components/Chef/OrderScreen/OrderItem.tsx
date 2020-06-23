@@ -25,7 +25,7 @@ const FoodItem = ({
   quantity: number;
 }) => {
   const { uid } = useTypedSelector((state) => state.user);
-  const navigation = useNavigation();
+  const navigation = useNavigation() as any;
 
   const onPress = () => {
     setOrderStatusToCooking(orderID);

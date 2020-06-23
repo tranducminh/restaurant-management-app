@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressCircleSnail from 'react-native-progress/CircleSnail';
 import normalize from 'react-native-normalize';
+import color from '@constants/Color';
 
 const CustomImage = ({
   url,
@@ -31,13 +32,13 @@ const CustomImage = ({
   const progressStyle = {
     size: normalize(style.width / 2),
     borderWidth: 0,
-    color: '#2c9ced',
+    color: color.MAIN_COLOR,
     unfilledColor: 'rgba(200, 200, 200, 0.2)',
   };
   return (
     <View>
       <Image
-        // source={{ uri: url }}
+        source={{ uri: url }}
         indicator={ProgressCircleSnail}
         indicatorProps={progressStyle}
         style={imageContainerStyle}

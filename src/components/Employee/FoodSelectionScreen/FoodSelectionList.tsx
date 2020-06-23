@@ -4,6 +4,7 @@ import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
+import { foodType as dataType } from '@type/index';
 
 import FoodSelection from './FoodSelection';
 import { Spinner } from 'native-base';
@@ -29,7 +30,7 @@ const FoodSelectionList = ({ foodType, tableId, tableName }: { foodType: string;
     }
     return <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.content}>
-        {foodList.map((item, index) => (
+        {foodList.map((item: dataType, index) => (
           <FoodSelection key={index} {...item.data} foodId={item.id} tableId={tableId} tableName={tableName} />
         ))}
       </View>

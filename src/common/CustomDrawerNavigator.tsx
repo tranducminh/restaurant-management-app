@@ -12,7 +12,7 @@ import actions from '@actions/index';
 
 const AVATAR_SIZE = 60;
 
-const CustomDrawerNavigator = (props) => {
+const CustomDrawerNavigator = (props: any) => {
   const dispatch = useDispatch();
 
   const signOut = () => {

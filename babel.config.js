@@ -27,6 +27,7 @@ module.exports = {
           '@sagas': './src/sagas',
           '@helpers': './src/helpers',
           '@api': './src/api',
+          '@type': './src/type',
         },
       },
     ],

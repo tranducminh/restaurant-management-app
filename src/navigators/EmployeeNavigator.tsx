@@ -63,7 +63,7 @@ const App = () => {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerContent={props => (
+      drawerContent={(props: any) => (
         <CustomDrawerNavigator {...props} jobPosition="Employee" />
       )}>
       <Drawer.Screen name="Home" component={HomeScreenStack} />

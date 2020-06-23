@@ -5,7 +5,7 @@ import { ReducersType } from '@reducers/index';
 import { getFoodListByType } from '@api/index';
 import normalize from 'react-native-normalize';
 import { Spinner } from 'native-base';
-
+import { foodType as dataType } from '@type/index';
 import FoodItem from '@components/Host/FoodManagementScreen/FoodItem';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
@@ -27,7 +27,7 @@ export default function FoodManagementTab({ foodType }: { foodType: string }) {
         </View>
       );
     }
-    return foodList.map((item, index) => (
+    return foodList.map((item: dataType, index) => (
       <FoodItem key={index} {...item.data} />
     ));
   };

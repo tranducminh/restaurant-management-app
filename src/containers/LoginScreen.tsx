@@ -9,6 +9,7 @@ import {
   Image,
 } from 'react-native';
 import normalize from 'react-native-normalize';
+import color from '@constants/Color';
 
 import PrimaryButton from '@common/PrimaryButton';
 import TextInput from '@common/TextInput';
@@ -91,6 +92,6 @@ const styles = StyleSheet.create({
   signupText: {
     textAlign: 'center',
     fontFamily: 'Exo-Medium',
-    color: '#2c9ced',
+    color: color.MAIN_COLOR,
   },
 });

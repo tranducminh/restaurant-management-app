@@ -7,7 +7,7 @@ import AddIcon from '@common/AddIcon';
 import { useNavigation } from '@react-navigation/native';
 import normalize from 'react-native-normalize';
 import EmployeeItem from '@components/Host/EmployeeManagementScreen/EmployeeItem';
-
+import { userType } from '@type/index';
 import { getEnabledEmployeeList, getPendingEmployeeList, getDisabledEmployeeList } from '@api/index';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
@@ -28,9 +28,9 @@ const EmployeeManagementScreen = () => {
   const renderEmployeeList = () => {
     return (
       <View style={styles.content}>
-        {enabledEmployeeList.map((item, index) => <EmployeeItem isAuth={true} key={index} {...item.data} employeeID={item.id} />)}
-        {disabledEmployeeList.map((item, index) => <EmployeeItem key={index} {...item.data} employeeID={item.id} />)}
-        {pendingEmployeeList.map((item, index) => <EmployeeItem isAuth={false} key={index} {...item.data} employeeID={item.id} />)}
+        {enabledEmployeeList.map((item: userType, index) => <EmployeeItem isAuth={true} key={index} {...item.data} employeeID={item.id} />)}
+        {disabledEmployeeList.map((item: userType, index) => <EmployeeItem isAuth={true} key={index} {...item.data} employeeID={item.id} />)}
+        {pendingEmployeeList.map((item: userType, index) => <EmployeeItem isAuth={false} key={index} {...item.data} employeeID={item.id} />)}
         <View style={styles.button}>
           <AddIcon onPress={() => navigation.navigate('AddEmployeeScreen')} />
         </View>

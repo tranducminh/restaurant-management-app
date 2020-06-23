@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -34,17 +34,6 @@ const FoodManagementScreen = () => {
       <View style={styles.button}>
         <AddIcon onPress={() => navigation.navigate('AddFoodScreen')} />
       </View>
-    </View>
-  );
-};
-
-const NullScreen = () => {
-  const navigation = useNavigation();
-
-  return (
-    <View style={styles.nullScreen}>
-      <Text style={styles.text}>You haven't create any food yet</Text>
-      <AddIcon onPress={() => navigation.navigate('AddFoodScreen')} />
     </View>
   );
 };

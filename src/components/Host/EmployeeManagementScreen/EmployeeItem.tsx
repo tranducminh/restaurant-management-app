@@ -4,7 +4,6 @@ import CustomImage from '@common/Image';
 import normalize from 'react-native-normalize';
 import DeleteIcon from '@common/DeleteIcon';
 import UndoIcon from '@common/UndoIcon';
-
 import {
   removePendingEmployee,
   disableEmployee,

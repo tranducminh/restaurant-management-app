@@ -1,8 +1,10 @@
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import normalize from 'react-native-normalize';
 import { Spinner } from 'native-base';
+import color from '@constants/Color';
 
 import PrimaryButton from '@common/PrimaryButton';
 
@@ -20,7 +22,7 @@ const ImagePickerCmp = ({ setUrl }: { setUrl: Function }) => {
 
   const uploadImage = () => {
     setIsLoading('TRUE');
-    ImagePicker.showImagePicker(options, async (response) => {
+    ImagePicker.showImagePicker(options, async (response: any) => {
       if (response.uri) {
         setAvatarSource(response.uri);
         setUrl(response.uri);
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#cccccc',
   },
   button: {
-    backgroundColor: '#2c9ced',
+    backgroundColor: color.MAIN_COLOR,
     padding: normalize(10),
     borderRadius: normalize(20),
   },

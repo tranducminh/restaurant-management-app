@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import normalize from 'react-native-normalize';
@@ -8,7 +8,7 @@ const menuIcon = require('@assets/Icons/menu.png');
 const backIcon = require('@assets/Icons/back.png');
 const ICON_SIZE = 20;
 const HeaderComponent = ({ type = 'MENU', title = '' }: { type?: string, title?: string }) => {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
 
   const onPress = () => {
     if (type === 'MENU') {

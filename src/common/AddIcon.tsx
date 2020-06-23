@@ -12,6 +12,9 @@ const AddIcon = ({
   onPress: Function;
   size?: number;
 }) => {
+  const _onPress = () => {
+    onPress();
+  };
   return (
     <TouchableOpacity
       style={{
@@ -19,7 +22,7 @@ const AddIcon = ({
         width: normalize(size),
         height: normalize(size),
       }}
-      onPress={onPress}>
+      onPress={_onPress}>
       <Image source={plusIcon} style={styles.icon} />
     </TouchableOpacity>
   );

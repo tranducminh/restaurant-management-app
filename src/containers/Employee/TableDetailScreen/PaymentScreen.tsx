@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
+import color from '@constants/Color';
 
 import Food from '@components/Employee/PaymentScreen/Food';
 import Payment from '@components/Employee/PaymentScreen/Payment';
@@ -33,7 +34,7 @@ type orderData = {
 };
 
 const PaymentScreen = ({ tableId }: { tableId: string }) => {
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
   const [orderList, setOrderList] = useState([]);
   const [payment, setPayment] = useState(0);
   const [selectionList, setSelectionList] = useState([]);
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    backgroundColor: '#2c9ced',
+    backgroundColor: color.MAIN_COLOR,
     borderTopLeftRadius: normalize(40),
     borderTopRightRadius: normalize(40),
     paddingTop: normalize(20),

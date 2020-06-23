@@ -3,13 +3,14 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
 import normalize from 'react-native-normalize';
+import { orderType } from '@type/index';
 
 import FoodStatusItem from './FoodStatusItem';
 import { getReadyOrderList } from '@api/index';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
-const FoodStatusList = ({ isReady }: { isReady: boolean }) => {
+const FoodStatusList = () => {
   const [orderList, setOrderList] = useState([]);
   const { restaurantID } = useTypedSelector((state) => state.user);
 
@@ -27,13 +28,8 @@ const FoodStatusList = ({ isReady }: { isReady: boolean }) => {
     }
     return (
       <ScrollView>
-        {orderList.map((item, index) => (
-          <FoodStatusItem
-            key={index}
-            isReady={isReady}
-            {...item.data}
-            orderID={item.id}
-          />
+        {orderList.map((item: orderType, index) => (
+          <FoodStatusItem key={index} {...item.data} orderID={item.id} />
         ))}
       </ScrollView>
     );

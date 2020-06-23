@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
 import auth from '@react-native-firebase/auth';
 import { useDispatch } from 'react-redux';
+import color from '@constants/Color';
 
 import actions from '@actions/index';
 
@@ -45,6 +46,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Exo-Medium',
     fontSize: normalize(16),
     textDecorationLine: 'underline',
-    color: '#2c9ced',
+    color: color.MAIN_COLOR,
   },
 });

@@ -38,7 +38,7 @@ const ProfileScreenStack = () => {
 const App = () => {
   return (
     <Drawer.Navigator
-      drawerContent={props => (
+      drawerContent={(props: any) => (
         <CustomDrawerNavigator {...props} jobPosition="Chef" />
       )}>
       <Drawer.Screen name="Home" component={HomeScreenStack} />

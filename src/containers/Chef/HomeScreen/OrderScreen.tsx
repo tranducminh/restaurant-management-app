@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView } from 'react-native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
-
+import { orderType } from '@type/index';
 import OrderItem from '@components/Chef/OrderScreen/OrderItem';
 import normalize from 'react-native-normalize';
 
@@ -26,7 +26,7 @@ const OrderScreen = () => {
     }
     return (
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-        {orderList.map((item, index) => (
+        {orderList.map((item: orderType, index) => (
           <OrderItem key={index} {...item.data} orderID={item.id} />
         ))}
       </ScrollView>

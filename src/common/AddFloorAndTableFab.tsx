@@ -3,10 +3,10 @@ import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Fab, Icon } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
 import normalize from 'react-native-normalize';
+import color from '@constants/Color';
 
 const tableIcon = require('@assets/selectionTableIcon.png');
 const floorIcon = require('@assets/stair.png');
-const plusIcon = require('@assets/Icons/plus_white.png');
 
 export default function AddFloorAndTableFab({
   floorID,
@@ -22,7 +22,7 @@ export default function AddFloorAndTableFab({
       active={active}
       direction="up"
       containerStyle={{}}
-      style={{ backgroundColor: '#2c9ced' }}
+      style={{ backgroundColor: color.MAIN_COLOR }}
       position="bottomRight"
       onPress={() => setActive(!active)}>
       <Icon ios="ios-add" android="add-outline" style={styles.icon} />

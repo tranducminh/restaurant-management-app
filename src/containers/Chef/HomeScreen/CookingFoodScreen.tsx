@@ -10,6 +10,8 @@ import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
+import color from '@constants/Color';
+import { cookingOrderType } from '@type/index';
 
 import CookingFoodItem from '@components/Chef/CookingFoodScreen/CookingFoodItem';
 
@@ -20,7 +22,7 @@ const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 const CookingFoodScreen = () => {
   const { uid } = useTypedSelector((state) => state.user);
   const [orderList, setOrderList] = useState([]);
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
 
   useEffect(() => {
     getCookingOrderListByChefID(uid, setOrderList);
@@ -39,7 +41,7 @@ const CookingFoodScreen = () => {
     }
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
-        {orderList.map((item, index) => (
+        {orderList.map((item: cookingOrderType, index) => (
           <CookingFoodItem
             key={index}
             {...item.data}
@@ -73,6 +75,6 @@ const styles = StyleSheet.create({
   buttonText: {
     textDecorationLine: 'underline',
     fontSize: normalize(15),
-    color: '#2c9ced',
+    color: color.MAIN_COLOR,
   },
 });

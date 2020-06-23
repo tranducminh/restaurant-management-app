@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import normalize from 'react-native-normalize';
+import { tableType } from '@type/index';
 
 import TableItem from './TableItem';
 const TableList = ({
@@ -8,7 +9,7 @@ const TableList = ({
   tableList = [],
 }: {
   isEmpty: boolean;
-  tableList: Array<Object>;
+  tableList: Array<tableType>;
 }) => {
   return (
     <View style={styles.container}>

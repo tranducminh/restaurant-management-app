@@ -66,7 +66,8 @@
       "@reducers/*": ["./src/reducers/*"],
       "@sagas/*": ["./src/sagas/*"],
       "@helpers/*": ["./src/helpers/*"],
-      "@api/*": ["src/api/*"]
+      "@api/*": ["src/api/*"],
+      "@type/*": ["src/type/*"]
     }
   },
   "exclude": [

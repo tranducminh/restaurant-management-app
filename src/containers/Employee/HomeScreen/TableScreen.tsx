@@ -21,7 +21,7 @@ const TableScreen = ({
   useEffect(() => {
     getReadyTableList(setReadyTableList, setIsLoading, floor, restaurantID);
     getInUseTableList(setInUseTableList, setIsLoading, floor, restaurantID);
-  }, []);
+  }, [floor, restaurantID]);
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
