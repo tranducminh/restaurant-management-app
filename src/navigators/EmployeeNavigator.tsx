@@ -9,12 +9,10 @@ import CustomDrawerNavigator from '../common/CustomDrawerNavigator';
 import HomeScreen from '../containers/Employee/HomeScreen/HomeScreen';
 import TableDetailScreen from '../containers/Employee/TableDetailScreen/TableDetailScreen';
 import ProfileScreen from '../containers/Employee/ProfileScreen/ProfileScreen';
-import FoodStatusScreen from '../containers/Employee/FoodStatusScreen/FoodStatusScreen';
 
 const Drawer = createDrawerNavigator();
 const HomeStack = createStackNavigator();
 const ProfileStack = createStackNavigator();
-const FoodStatusStack = createStackNavigator();
 
 const HomeScreenStack = () => {
   return (
@@ -45,18 +43,6 @@ const ProfileScreenStack = () => {
   );
 };
 
-const FoodStatusScreenStack = () => {
-  return (
-    <FoodStatusStack.Navigator>
-      <FoodStatusStack.Screen
-        name="FoodStatusScreen"
-        component={FoodStatusScreen}
-        options={{ headerShown: false }}
-      />
-    </FoodStatusStack.Navigator>
-  );
-};
-
 const App = () => {
   YellowBox.ignoreWarnings(['Require cycle:']);
   //check authentication
@@ -67,7 +53,6 @@ const App = () => {
         <CustomDrawerNavigator {...props} jobPosition="Employee" />
       )}>
       <Drawer.Screen name="Home" component={HomeScreenStack} />
-      <Drawer.Screen name="FoodStatus" component={FoodStatusScreenStack} />
       <Drawer.Screen name="Profile" component={ProfileScreenStack} />
     </Drawer.Navigator>
   );

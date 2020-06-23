@@ -16,7 +16,7 @@ import { orderType } from '@type/index';
 
 import color from '@constants/Color';
 import Food from '@components/Employee/OrderScreen/Food';
-const backIcon = require('@assets/back.png');
+const backIcon = require('@assets/Icons/back.png');
 import {
   getSelectionListByTableId,
   createOrder,

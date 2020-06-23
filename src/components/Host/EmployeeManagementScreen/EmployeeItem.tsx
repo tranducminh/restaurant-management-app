@@ -9,8 +9,8 @@ import {
   disableEmployee,
   enableEmployee,
 } from '@api/index';
-const checkIcon = require('@assets/check.png');
-const blockIcon = require('@assets/wrong.png');
+const checkIcon = require('@assets/Icons/check.png');
+const blockIcon = require('@assets/Icons/wrong.png');
 
 export default function EmployeeItem({
   isAuth,

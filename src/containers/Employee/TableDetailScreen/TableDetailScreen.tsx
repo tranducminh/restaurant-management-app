@@ -8,12 +8,12 @@ import PaymentScreen from './PaymentScreen';
 import FoodSelectionScreen from './FoodSelectionScreen';
 import Header from '@components/Employee/TableDetailScreen/Header';
 
-const foodIcon = require('@assets/food.png');
-const selectedFoodIcon = require('@assets/selectionFood.png');
-const orderIcon = require('@assets/order.png');
-const selectedOrderIcon = require('@assets/selectionOrder.png');
-const paymentIcon = require('@assets/payment.png');
-const selectedPaymentIcon = require('@assets/selectionPayment.png');
+const foodIcon = require('@assets/navigatorIcons/menu.png');
+const selectedFoodIcon = require('@assets/navigatorIcons/selectedMenu.png');
+const orderIcon = require('@assets/navigatorIcons/confirm.png');
+const selectedOrderIcon = require('@assets/navigatorIcons/selectedConfirm.png');
+const paymentIcon = require('@assets/navigatorIcons/payment.png');
+const selectedPaymentIcon = require('@assets/navigatorIcons/selectedPayment.png');
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -36,12 +36,10 @@ const TableDetailScreen = ({ route }: { route: any }) => {
           component={renderFoodSelectionScreen}
           options={{
             tabBarIcon: ({ focused }) => (
-              <View style={focused ? styles.activeTab : styles.normalTab}>
-                <Image
-                  source={focused ? selectedFoodIcon : foodIcon}
-                  style={styles.icon}
-                />
-              </View>
+              <Image
+                source={focused ? selectedFoodIcon : foodIcon}
+                style={styles.icon}
+              />
             ),
           }}
         />
@@ -50,12 +48,10 @@ const TableDetailScreen = ({ route }: { route: any }) => {
           component={renderSelectionScreen}
           options={{
             tabBarIcon: ({ focused }) => (
-              <View style={focused ? styles.activeTab : styles.normalTab}>
-                <Image
-                  source={focused ? selectedOrderIcon : orderIcon}
-                  style={styles.icon}
-                />
-              </View>
+              <Image
+                source={focused ? selectedOrderIcon : orderIcon}
+                style={styles.icon}
+              />
             ),
           }}
         />
@@ -64,12 +60,10 @@ const TableDetailScreen = ({ route }: { route: any }) => {
           component={renderPayment}
           options={{
             tabBarIcon: ({ focused }) => (
-              <View style={focused ? styles.activeTab : styles.normalTab}>
-                <Image
-                  source={focused ? selectedPaymentIcon : paymentIcon}
-                  style={styles.icon}
-                />
-              </View>
+              <Image
+                source={focused ? selectedPaymentIcon : paymentIcon}
+                style={styles.icon}
+              />
             ),
           }}
         />
@@ -88,13 +82,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderTopWidth: 0.5,
     borderColor: '#ababab',
-  },
-  normalTab: {
-    // paddingVertical: normalize(10),
-  },
-  activeTab: {
-    height: '100%',
-    paddingHorizontal: normalize(20),
+    height: normalize(70),
   },
   icon: {
     width: normalize(25),

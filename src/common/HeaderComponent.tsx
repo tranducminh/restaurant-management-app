@@ -5,7 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import normalize from 'react-native-normalize';
 
 const menuIcon = require('@assets/Icons/menu.png');
-const backIcon = require('@assets/Icons/back.png');
+const backIcon = require('@assets/Icons/arrow.png');
 const ICON_SIZE = 20;
 const HeaderComponent = ({ type = 'MENU', title = '' }: { type?: string, title?: string }) => {
   const navigation: any = useNavigation();

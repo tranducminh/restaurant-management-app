@@ -12,14 +12,14 @@ import RestaurantManagementScreen from './RestaurantManagementScreen';
 
 const Tab = createMaterialBottomTabNavigator();
 
-const tableIcon = require('@assets/tableIcon.png');
-const selectionTableIcon = require('@assets/selectionTableIcon.png');
-const foodIcon = require('@assets/foodIcon.png');
-const selectionFoodIcon = require('@assets/selectionFoodIcon.png');
-const restaurantIcon = require('@assets/restaurantIcon.png');
-const selectionRestaurantIcon = require('@assets/selectionRestaurantIcon.png');
-const employeeIcon = require('@assets/employeeIcon.png');
-const selectionEmployeeIcon = require('@assets/selectionEmployeeIcon.png');
+const tableIcon = require('@assets/navigatorIcons/table.png');
+const selectionTableIcon = require('@assets/navigatorIcons/selectedTable.png');
+const foodIcon = require('@assets/navigatorIcons/menu.png');
+const selectionFoodIcon = require('@assets/navigatorIcons/selectedMenu.png');
+const restaurantIcon = require('@assets/navigatorIcons/store.png');
+const selectionRestaurantIcon = require('@assets/navigatorIcons/selectedStore.png');
+const employeeIcon = require('@assets/navigatorIcons/employee.png');
+const selectionEmployeeIcon = require('@assets/navigatorIcons/selectedEmployee.png');
 
 const HomeScreen = () => {
   return (
@@ -95,9 +95,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     borderTopWidth: 0.5,
     borderColor: '#ababab',
+    height: normalize(70),
   },
   icon: {
-    width: normalize(30),
-    height: normalize(30),
+    width: normalize(25),
+    height: normalize(25),
   },
 });

@@ -10,13 +10,11 @@ import {
 import normalize from 'react-native-normalize';
 
 import FoodStatusList from '@components/Employee/FoodStatusScreen/FoodStatusList';
-import HeaderComponent from '@common/HeaderComponent';
 
 const FoodStatusScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
-      <HeaderComponent />
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <View style={styles.part}>
           <Text style={styles.title}>Ready food</Text>
@@ -30,7 +28,10 @@ const FoodStatusScreen = () => {
 export default FoodStatusScreen;
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    height: '100%',
+    backgroundColor: '#ffffff',
+  },
   content: {
     paddingHorizontal: normalize(16),
   },

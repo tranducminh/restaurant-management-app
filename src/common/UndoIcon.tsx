@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import normalize from 'react-native-normalize';
 
-const deleteIcon = require('@assets/undo.png');
+const deleteIcon = require('@assets/Icons/undo.png');
 
 const UndoIcon = ({ onUndo }: { onUndo: Function }) => {
   const onHandleUndo = () => {

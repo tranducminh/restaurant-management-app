@@ -1,92 +1,70 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, SafeAreaView, StatusBar, View, Text } from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
-import { ReducersType } from '@reducers/index';
+import React from 'react';
+import { StyleSheet, Platform, View, Image } from 'react-native';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import normalize from 'react-native-normalize';
 
-import CustomTopTabNavigator from '@common/CustomTopTabNavigator';
-import TableScreen from './TableScreen';
 import HeaderComponent from '@common/HeaderComponent';
+import TableOrderScreen from './TableOrderScreen';
+import FoodStatusScreen from '../FoodStatusScreen/FoodStatusScreen';
 
-import { getFloorList } from '@api/index';
+const selectionHomeIcon = require('@assets/navigatorIcons/selectedHome.png');
+const home = require('@assets/navigatorIcons/home.png');
+const selectionFoodStatusIcon = require('@assets/navigatorIcons/selectedFoodStatus.png');
+const foodStatusIcon = require('@assets/navigatorIcons/foodStatus.png');
+const Tab = createMaterialBottomTabNavigator();
 
-const Tab = createMaterialTopTabNavigator();
-const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
-
-const HomeScreen = () => {
-  const [floorList, setFloorList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const { restaurantID } = useTypedSelector((state) => state.user);
-
-  useEffect(() => {
-    if (restaurantID !== '') {
-      getFloorList(setFloorList, setIsLoading, restaurantID);
-    }
-  }, [restaurantID]);
-
-  const renderFloorList = () => {
-    if (floorList.length === 0) {
-      return <NullScreen />;
-    } else if (floorList.length === 1) {
-      return (
-        <TableScreen
-          restaurantID={restaurantID}
-          floor={floorList[0].data.floor}
-        />
-      );
-    }
-    return (
-      <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
-        {floorList.map((item, index) => {
-          const renderTableListScreen = () => (
-            <TableScreen restaurantID={restaurantID} floor={item.data.floor} />
-          );
-          return (
-            <Tab.Screen
-              key={index}
-              name={`Floor ${item.data.floor}`}
-              component={renderTableListScreen}
-            />
-          );
-        })}
-      </Tab.Navigator>
-    );
-  };
-
+export default function HomeScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#ffffff" barStyle="dark-content" />
+    <View style={styles.container}>
       <HeaderComponent />
-      {isLoading === true ? null : renderFloorList()}
-    </SafeAreaView>
-  );
-};
-
-const NullScreen = () => {
-  return (
-    <View style={styles.nullScreen}>
-      <Text style={styles.text}>Your restaurant haven't any floor yet</Text>
+      <Tab.Navigator barStyle={styles.tabBar} labeled={false}>
+        <Tab.Screen
+          name="Home"
+          component={TableOrderScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={focused ? selectionHomeIcon : home}
+                style={styles.icon}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="FoodStatus"
+          component={FoodStatusScreen}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <Image
+                source={focused ? selectionFoodStatusIcon : foodStatusIcon}
+                style={styles.icon}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
     </View>
   );
-};
-
-export default HomeScreen;
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop:
+      Platform.OS === 'ios'
+        ? getStatusBarHeight()
+        : getStatusBarHeight(true) + normalize(8),
     backgroundColor: '#ffffff',
   },
-  nullScreen: {
-    height: '100%',
+  tabBar: {
     backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
+    borderTopWidth: 0.5,
+    borderColor: '#ababab',
+    height: normalize(70),
   },
-  text: {
-    fontFamily: 'Exo-Medium',
-    fontSize: normalize(18),
-    paddingVertical: normalize(20),
+  icon: {
+    width: normalize(25),
+    height: normalize(25),
   },
 });

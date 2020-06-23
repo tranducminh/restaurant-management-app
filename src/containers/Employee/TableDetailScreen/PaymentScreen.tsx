@@ -15,7 +15,7 @@ import color from '@constants/Color';
 import Food from '@components/Employee/PaymentScreen/Food';
 import Payment from '@components/Employee/PaymentScreen/Payment';
 import PrimaryButton from '@common/PrimaryButton';
-const backIcon = require('@assets/back.png');
+const backIcon = require('@assets/Icons/back.png');
 
 import {
   getOrderListByTableId,

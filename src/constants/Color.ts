@@ -1,5 +1,5 @@
 const Color = {
-  MAIN_COLOR: '#2c9ced',
+  MAIN_COLOR: '#536DFE',
 };
 
 export default Color;

@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 import normalize from 'react-native-normalize';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-const backIcon = require('@assets/Icons/back.png');
+const backIcon = require('@assets/Icons/arrow.png');
 const ICON_SIZE = 20;
 const Header = ({ tableName }: { tableName: string }) => {
   const navigation = useNavigation();
