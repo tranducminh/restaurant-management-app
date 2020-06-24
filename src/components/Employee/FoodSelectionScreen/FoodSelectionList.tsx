@@ -10,6 +10,7 @@ import FoodSelection from './FoodSelection';
 import { Spinner } from 'native-base';
 
 import { getFoodListByType } from '@api/index';
+import EmptyIcon from '@common/EmptyIcon';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
@@ -25,6 +26,7 @@ const FoodSelectionList = ({ foodType, tableId, tableName }: { foodType: string;
   const renderFoodList = () => {
     if (foodList.length === 0) {
       return <View style={styles.nullContainer}>
+        <EmptyIcon />
         <Text style={styles.text}>There are no food of this type</Text>
       </View>;
     }

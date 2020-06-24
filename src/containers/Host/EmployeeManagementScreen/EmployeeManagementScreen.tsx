@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
 import AddIcon from '@common/AddIcon';
+import EmptyIcon from '@common/EmptyIcon';
 import { useNavigation } from '@react-navigation/native';
 import normalize from 'react-native-normalize';
 import EmployeeItem from '@components/Host/EmployeeManagementScreen/EmployeeItem';
@@ -49,6 +50,7 @@ const NullScreen = () => {
 
   return (
     <View style={styles.nullScreen}>
+      <EmptyIcon />
       <Text style={styles.text}>You haven't create any employee yet</Text>
       <AddIcon onPress={() => navigation.navigate('AddEmployeeScreen')} />
     </View>

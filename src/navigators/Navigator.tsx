@@ -1,12 +1,11 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useSelector, TypedUseSelectorHook } from 'react-redux';
-import { ReducersType } from '@reducers/index';
 import auth from '@react-native-firebase/auth';
+import { userInfoType } from '@type/index';
 
 import HostNavigator from './HostNavigator';
 import ChefNavigator from './ChefNavigator';
@@ -22,25 +21,25 @@ import actions from '@actions/index';
 import { getUserInfo, getStatusAccount } from '../api';
 
 const App = createStackNavigator();
-const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const Navigator = () => {
   const dispatch = useDispatch();
-  const { uid } = useTypedSelector((state) => state.user);
 
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState({});
   const [position, setPosition] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('ENABLED');
 
-  async function onAuthStateChanged(user) {
+  async function onAuthStateChanged(user: any) {
     setUser(user);
     try {
-      if (user.uid !== null) {
-        const _user = await getUserInfo(user.uid);
+      if (user?.uid !== null) {
+        const _user = (await getUserInfo(
+          auth().currentUser?.uid,
+        )) as userInfoType;
         await dispatch(
           actions.setUserInfo({
-            uid: user.uid,
+            uid: auth().currentUser?.uid,
             position: _user.position,
             restaurantID: _user.restaurantID,
           }),
@@ -61,10 +60,13 @@ const Navigator = () => {
     return subscriber; // unsubscribe on unmount
   }, [onAuthStateChanged]);
   useEffect(() => {
-    getStatusAccount(uid, setStatus);
-  }, [uid]);
+    let _uid = auth().currentUser?.uid;
+    if (_uid) {
+      getStatusAccount(_uid, setStatus);
+    }
+  }, [auth().currentUser?.uid]);
 
-  if (status === 'DISABLED') {
+  if (status === 'DISABLED' && position !== 'HOST') {
     return <BlockedScreen />;
   }
   if (initializing) {
@@ -162,9 +164,3 @@ const Navigator = () => {
 };
 
 export default Navigator;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});

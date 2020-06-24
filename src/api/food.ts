@@ -10,16 +10,25 @@ export const addFood = async (
   url: string,
 ) => {
   const downloadUrl = await uploadImage(url);
-  firestore()
-    .collection('foods')
-    .add({
-      restaurantID,
-      foodName,
-      description,
-      foodType,
-      price: parseInt(price, 10),
-      url: downloadUrl,
-    });
+  if (downloadUrl === false) {
+    return false;
+  } else {
+    firestore()
+      .collection('foods')
+      .add({
+        restaurantID,
+        foodName,
+        description,
+        foodType,
+        price: parseInt(price, 10),
+        url: downloadUrl,
+      })
+      .catch((error) => {
+        console.log(error);
+        return false;
+      });
+  }
+  return true;
 };
 // export const getFoodTypes = async (restaurantID: string) => {
 //   firestore()
@@ -52,4 +61,8 @@ export const getFoodListByType = async (
       setFoodList(result);
       setIsLoading(false);
     });
+};
+
+export const removeFood = async (foodId: string) => {
+  await firestore().collection('foods').doc(foodId).delete();
 };

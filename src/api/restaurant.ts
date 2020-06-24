@@ -15,7 +15,7 @@ export const createRestaurant = async (
       name: name,
       address: address,
     })
-    .then((restaurant) => {
+    .then((restaurant: any) => {
       const restaurantID = restaurant._documentPath._parts[1];
       createUser(hostID, '', '', email.toLowerCase(), restaurantID, 'HOST');
     });

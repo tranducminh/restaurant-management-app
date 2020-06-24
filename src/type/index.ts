@@ -73,6 +73,15 @@ export type userType = {
   };
 };
 
+export type userInfoType = {
+  email: string;
+  name: string;
+  position: string;
+  restaurantID: string;
+  status: string;
+  url: string;
+};
+
 export enum typeOfUser {
   'ENABLED',
   'DISABLED',

@@ -11,6 +11,7 @@ const onBeforeLift = () => {
 };
 
 const MainRoot = () => {
+  console.ignoredYellowBox;
   return (
     <Provider store={store}>
       <PersistGate onBeforeLift={onBeforeLift} persistor={persistor}>

@@ -3,28 +3,33 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import normalize from 'react-native-normalize';
 import DeleteIcon from '@common/DeleteIcon';
-
 import Image from '@common/Image';
 
+import { removeFood } from '@api/index';
+
 const FoodItem = ({
+  id,
   url,
   foodName,
   description,
   price,
 }: {
+  id: string;
   url: string;
   foodName: string;
   description: string;
   price: number;
 }) => {
-  const deleteFood = () => { return; };
+  const deleteFood = () => {
+    removeFood(id);
+  };
   return (
     <View style={styles.container}>
       <View style={styles.left_container}>
         <View style={styles.left}>
           <Image url={url} style={styles.image} />
           <View style={styles.content}>
-            <Text style={styles.name}>{foodName}</Text>
+            <Text numberOfLines={1} style={styles.name}>{foodName}</Text>
             <Text numberOfLines={1} style={styles.description}>{description}</Text>
           </View>
         </View>
@@ -53,7 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80%',
+    maxWidth: '70%',
   },
   left: {
     flexDirection: 'row',
@@ -61,6 +66,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: normalize(10),
+    width: normalize(210),
   },
   name: {
     fontFamily: 'Exo-Bold',

@@ -11,6 +11,7 @@ import {
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 import color from '@constants/Color';
+import EmptyIcon from '@common/EmptyIcon';
 
 import Food from '@components/Employee/PaymentScreen/Food';
 import Payment from '@components/Employee/PaymentScreen/Payment';
@@ -45,6 +46,7 @@ const PaymentScreen = ({ tableId }: { tableId: string }) => {
     if (orderList.length === 0) {
       return (
         <View style={styles.nullContainer}>
+          <EmptyIcon />
           <Text style={styles.text}>You haven't order any food yet</Text>
           <TouchableOpacity
             style={styles.button}
@@ -59,10 +61,15 @@ const PaymentScreen = ({ tableId }: { tableId: string }) => {
         </View>
       );
     }
-    return orderList.map(
-      (item: { data: orderData; id: string }, index: number) => {
-        return <Food key={index} {...item.data} />;
-      },
+    return (
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
+        {' '}
+        {orderList.map(
+          (item: { data: orderData; id: string }, index: number) => {
+            return <Food key={index} {...item.data} />;
+          },
+        )}
+      </ScrollView>
     );
   };
   const onPurchase = () => {
@@ -83,12 +90,12 @@ const PaymentScreen = ({ tableId }: { tableId: string }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Your Payment</Text>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
-        {renderOrderList()}
-      </ScrollView>
-      <View style={styles.payment}>
-        <Payment payment={payment} onPurchase={onPurchase} />
-      </View>
+      {renderOrderList()}
+      {orderList.length !== 0 && (
+        <View style={styles.payment}>
+          <Payment payment={payment} onPurchase={onPurchase} />
+        </View>
+      )}
     </View>
   );
 };
@@ -106,13 +113,17 @@ const styles = StyleSheet.create({
   },
   nullContainer: {
     height: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: normalize(180),
+    borderTopLeftRadius: normalize(40),
+    borderTopRightRadius: normalize(40),
+    backgroundColor: '#ffffff',
   },
   content: {
     paddingHorizontal: normalize(16),
     paddingTop: normalize(40),
-    borderRadius: normalize(40),
+    borderTopLeftRadius: normalize(40),
+    borderTopRightRadius: normalize(40),
     backgroundColor: '#ffffff',
   },
   payment: {

@@ -26,13 +26,29 @@ const AddFoodScreen = () => {
   const navigation = useNavigation();
 
   const onPress = async () => {
-    addFood(restaurantID, foodName, price, description, foodType, url);
-    Toast.show({
-      text: 'Food was added successfully',
-      type: 'success',
-      position: 'top',
-      duration: 3000,
-    });
+    const result = await addFood(
+      restaurantID,
+      foodName,
+      price,
+      description,
+      foodType,
+      url,
+    );
+    if (result) {
+      Toast.show({
+        text: 'Food was added successfully',
+        type: 'success',
+        position: 'top',
+        duration: 3000,
+      });
+    } else {
+      Toast.show({
+        text: 'Can not add food',
+        type: 'danger',
+        position: 'top',
+        duration: 3000,
+      });
+    }
     navigation.goBack();
   };
   const values = [

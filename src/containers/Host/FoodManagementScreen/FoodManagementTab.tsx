@@ -7,6 +7,7 @@ import normalize from 'react-native-normalize';
 import { Spinner } from 'native-base';
 import { foodType as dataType } from '@type/index';
 import FoodItem from '@components/Host/FoodManagementScreen/FoodItem';
+import EmptyIcon from '@common/EmptyIcon';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
@@ -23,12 +24,13 @@ export default function FoodManagementTab({ foodType }: { foodType: string }) {
     if (foodList.length === 0) {
       return (
         <View style={styles.nullContainer}>
+          <EmptyIcon />
           <Text style={styles.text}>There are no food of this type</Text>
         </View>
       );
     }
     return foodList.map((item: dataType, index) => (
-      <FoodItem key={index} {...item.data} />
+      <FoodItem key={index} {...item.data} id={item.id} />
     ));
   };
   return (

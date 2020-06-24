@@ -13,7 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import { ReducersType } from '@reducers/index';
 import { orderType } from '@type/index';
-
+import EmptyIcon from '@common/EmptyIcon';
 import color from '@constants/Color';
 import Food from '@components/Employee/OrderScreen/Food';
 const backIcon = require('@assets/Icons/back.png');
@@ -62,6 +62,7 @@ const OrderScreen = ({
     if (orderList.length === 0) {
       return (
         <View style={styles.nullContainer}>
+          <EmptyIcon />
           <Text style={styles.text}>You haven't choose any food yet</Text>
           <TouchableOpacity
             style={styles.button}
@@ -84,9 +85,11 @@ const OrderScreen = ({
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Your choice</Text>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={styles.orderText}>Order now</Text>
-        </TouchableOpacity>
+        {orderList.length !== 0 && (
+          <TouchableOpacity onPress={onPress}>
+            <Text style={styles.orderText}>Order now</Text>
+          </TouchableOpacity>
+        )}
       </View>
       {renderOrderList()}
       <View style={styles.price}>
@@ -108,8 +111,8 @@ const styles = StyleSheet.create({
   },
   nullContainer: {
     height: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
+    paddingTop: normalize(180),
   },
   header: {
     flexDirection: 'row',

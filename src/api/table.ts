@@ -25,7 +25,7 @@ export const createTable = async (
     .doc(floorID)
     .get()
     .then((data) => {
-      return data.data().numberOfTables;
+      return data.data()?.numberOfTables;
     });
   await firestore()
     .collection('floors')
@@ -141,7 +141,7 @@ export const removeTable = async (
       .doc(floorID)
       .get()
       .then((data) => {
-        return data.data().numberOfTables;
+        return data.data()?.numberOfTables;
       });
     await firestore()
       .collection('floors')

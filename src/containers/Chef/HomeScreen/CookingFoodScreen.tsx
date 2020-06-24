@@ -14,7 +14,7 @@ import color from '@constants/Color';
 import { cookingOrderType } from '@type/index';
 
 import CookingFoodItem from '@components/Chef/CookingFoodScreen/CookingFoodItem';
-
+import EmptyIcon from '@common/EmptyIcon';
 import { getCookingOrderListByChefID } from '@api/index';
 
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
@@ -32,6 +32,7 @@ const CookingFoodScreen = () => {
     if (orderList.length === 0) {
       return (
         <View style={styles.nullContainer}>
+          <EmptyIcon />
           <Text style={styles.text}>There are no orders available</Text>
           <TouchableOpacity onPress={() => navigation.jumpTo('Orders')}>
             <Text style={styles.buttonText}>Choose order now</Text>

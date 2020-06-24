@@ -1,5 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
+
 export const createUser = async (
   uid: string,
   name = '',
@@ -66,7 +67,7 @@ export const signUpWithEmailAndPassword = async (
   return uid;
 };
 
-export const getUserInfo = async (uid: string) => {
+export const getUserInfo = async (uid?: string) => {
   const position = await firestore().collection('users').doc(uid).get();
   return position.data();
 };
@@ -117,7 +118,7 @@ export const getStatusAccount = async (uid: string, setStatus: Function) => {
       .collection('users')
       .doc(uid)
       .onSnapshot((document) => {
-        setStatus(document.data().status);
+        setStatus(document.data()?.status);
       });
   } else {
     setStatus('');

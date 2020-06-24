@@ -56,12 +56,12 @@ const styles = StyleSheet.create({
       Platform.OS === 'ios'
         ? getStatusBarHeight()
         : getStatusBarHeight(true) + normalize(8),
+    backgroundColor: '#ffffff',
   },
   tabBar: {
     backgroundColor: '#ffffff',
     borderTopWidth: 0.5,
     borderColor: '#ababab',
-    paddingTop: normalize(5),
     height: normalize(70),
   },
   icon: {

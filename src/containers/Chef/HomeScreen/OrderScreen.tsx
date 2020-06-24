@@ -5,8 +5,9 @@ import { ReducersType } from '@reducers/index';
 import { orderType } from '@type/index';
 import OrderItem from '@components/Chef/OrderScreen/OrderItem';
 import normalize from 'react-native-normalize';
-
+import EmptyIcon from '@common/EmptyIcon';
 import { getUnCookedOrderList } from '@api/index';
+
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const OrderScreen = () => {
@@ -19,6 +20,7 @@ const OrderScreen = () => {
     if (orderList.length === 0) {
       return (
         <View style={styles.nullContainer}>
+          <EmptyIcon />
           <Text style={styles.text}>There are no orders available</Text>
           <Text style={styles.text}>Take a rest !!!</Text>
         </View>
