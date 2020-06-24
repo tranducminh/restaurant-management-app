@@ -4,11 +4,13 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { useSelector, TypedUseSelectorHook } from 'react-redux';
 import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
+import { floorType } from '@type/index';
 
 import { ReducersType } from '@reducers/index';
 import CustomTopTabNavigator from '@common/CustomTopTabNavigator';
 import TableListScreen from './TableListScreen';
 import AddIcon from '@common/AddIcon';
+import EmptyIcon from '@common/EmptyIcon';
 
 import { getFloorList } from '@api/index';
 
@@ -16,9 +18,7 @@ const Tab = createMaterialTopTabNavigator();
 const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const TableManagementScreen = () => {
-  const [floorList, setFloorList] = useState([
-    { id: '', data: { numberOfTables: 0, floor: '' } },
-  ]);
+  const [floorList, setFloorList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { restaurantID } = useTypedSelector((state) => state.user);
 
@@ -32,18 +32,19 @@ const TableManagementScreen = () => {
     if (floorList.length === 0) {
       return <NullScreen />;
     } else if (floorList.length === 1) {
+      let floor = floorList[0] as floorType;
       return (
         <TableListScreen
-          floorID={floorList[0].id}
+          floorID={floor.id}
           restaurantID={restaurantID}
-          numberOfTables={floorList[0].data.numberOfTables}
-          floor={floorList[0].data.floor}
+          numberOfTables={floor.data.numberOfTables}
+          floor={floor.data.floor}
         />
       );
     }
     return (
       <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
-        {floorList.map((item, index) => {
+        {floorList.map((item: floorType, index) => {
           const renderTableListScreen = () => (
             <TableListScreen
               floorID={item.id}
@@ -76,6 +77,7 @@ const NullScreen = () => {
 
   return (
     <View style={styles.nullScreen}>
+      <EmptyIcon />
       <Text style={styles.text}>You haven't created any floor yet</Text>
       <AddIcon
         onPress={() => {

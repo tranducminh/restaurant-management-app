@@ -39,7 +39,7 @@ const EmployeeManagementScreen = () => {
   };
   return (
     <View style={styles.container}>
-      {enabledEmployeeList.length !== 0 || pendingEmployeeList.length !== 0 ? renderEmployeeList() : <NullScreen />}
+      {enabledEmployeeList.length !== 0 || pendingEmployeeList.length !== 0 || disabledEmployeeList.length !== 0 ? renderEmployeeList() : <NullScreen />}
 
     </View >
   );

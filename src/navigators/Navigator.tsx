@@ -34,12 +34,10 @@ const Navigator = () => {
     setUser(user);
     try {
       if (user?.uid !== null) {
-        const _user = (await getUserInfo(
-          auth().currentUser?.uid,
-        )) as userInfoType;
+        const _user = (await getUserInfo(user.uid)) as userInfoType;
         await dispatch(
           actions.setUserInfo({
-            uid: auth().currentUser?.uid,
+            uid: user.uid,
             position: _user.position,
             restaurantID: _user.restaurantID,
           }),

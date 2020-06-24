@@ -7,6 +7,7 @@ import normalize from 'react-native-normalize';
 import { floorType } from '@type/index';
 import CustomTopTabNavigator from '@common/CustomTopTabNavigator';
 import TableScreen from './TableScreen';
+import EmptyIcon from '@common/EmptyIcon';
 
 import { getFloorList } from '@api/index';
 
@@ -62,6 +63,7 @@ const HomeScreen = () => {
 const NullScreen = () => {
   return (
     <View style={styles.nullScreen}>
+      <EmptyIcon />
       <Text style={styles.text}>Your restaurant haven't any floor yet</Text>
     </View>
   );

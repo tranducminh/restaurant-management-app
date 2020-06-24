@@ -45,7 +45,7 @@ export default function AddEmployeeScreen() {
     navigation.goBack();
   };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: '#ffffff' }}>
       <HeaderComponent type="BACK" title="Add Employee" />
       <View style={styles.container}>
         <TextInput title="Email" value={email} onChangeText={setEmail} />

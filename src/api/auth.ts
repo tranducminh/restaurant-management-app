@@ -21,6 +21,7 @@ export const createUser = async (
       position: position,
       name,
       url,
+      status: 'ENABLED',
       email,
     })
     .then(() => {});
