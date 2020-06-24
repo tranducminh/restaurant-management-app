@@ -4,13 +4,13 @@ import auth from '@react-native-firebase/auth';
 export const createUser = async (
   uid: string,
   name = '',
-  url: string,
+  avatar: string,
   email: string,
   restaurantID: string,
   position: string,
 ) => {
-  if (url === '') {
-    url =
+  if (avatar === '') {
+    avatar =
       'https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/user.png?alt=media&token=a1a4d6a3-4086-46a6-8a74-dc1f85e5539d';
   }
   await firestore()
@@ -20,7 +20,9 @@ export const createUser = async (
       restaurantID: restaurantID,
       position: position,
       name,
-      url,
+      avatar,
+      coverImage:
+        'https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/1592983949079?alt=media&token=d97f9ef8-0421-4a9a-9694-74a3781ee277',
       status: 'ENABLED',
       email,
     })
@@ -69,8 +71,8 @@ export const signUpWithEmailAndPassword = async (
 };
 
 export const getUserInfo = async (uid?: string) => {
-  const position = await firestore().collection('users').doc(uid).get();
-  return position.data();
+  const user = await firestore().collection('users').doc(uid).get();
+  return user.data();
 };
 
 export const signInWithEmailAndPassword = async (

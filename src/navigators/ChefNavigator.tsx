@@ -5,7 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import CustomDrawerNavigator from '@common/CustomDrawerNavigator';
 import HomeScreen from '@containers/Chef/HomeScreen/HomeScreen';
-import ProfileScreen from '@containers/Chef/ProfileScreen/ProfileScreen';
+import ProfileScreen from '@containers/ProfileScreen/ProfileScreen';
 
 const Drawer = createDrawerNavigator();
 const HomeStack = createStackNavigator();

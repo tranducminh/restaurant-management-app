@@ -69,7 +69,8 @@ export type userType = {
     position: string;
     restaurantID: string;
     status: string;
-    url: string;
+    avatar: string;
+    coverImage: string;
   };
 };
 
@@ -79,7 +80,8 @@ export type userInfoType = {
   position: string;
   restaurantID: string;
   status: string;
-  url: string;
+  avatar: string;
+  coverImage: string;
 };
 
 export enum typeOfUser {

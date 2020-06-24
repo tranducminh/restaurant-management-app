@@ -18,6 +18,7 @@ YellowBox.ignoreWarnings([
   ,
   `Possible Unhandled Promise Rejection (id: 0):
   Error: [storage/quota-exceeded] Quota on your Firebase Storage bucket has been exceeded.`,
+  'source.uri should not be an empty string',
 ]);
 console.ignoredYellowBox;
 AppRegistry.registerComponent(appName, () => Root);

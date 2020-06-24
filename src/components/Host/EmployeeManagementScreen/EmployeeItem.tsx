@@ -16,14 +16,14 @@ export default function EmployeeItem({
   isAuth,
   status,
   employeeID,
-  url,
+  avatar,
   name,
   email,
 }: {
   isAuth: boolean;
   status: string;
   employeeID: string;
-  url: string;
+  avatar: string;
   name: string;
   email: string;
 }) {
@@ -39,7 +39,7 @@ export default function EmployeeItem({
   };
   return (
     <View style={styles.container}>
-      <CustomImage url={url} style={styles.image} />
+      <CustomImage url={avatar} style={styles.image} />
       <View style={styles.content}>
         <View style={styles.nameContainer}>
           <Text style={styles.name}>{name}</Text>

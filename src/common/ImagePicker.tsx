@@ -8,9 +8,9 @@ import color from '@constants/Color';
 
 import PrimaryButton from '@common/PrimaryButton';
 
-const ImagePickerCmp = ({ setUrl }: { setUrl: Function }) => {
-  const [avatarSource, setAvatarSource] = useState();
-  const [isLoading, setIsLoading] = useState('NULL');
+const ImagePickerCmp = ({ url = '', setUrl }: { url?: string; setUrl: Function }) => {
+  const [avatarSource, setAvatarSource] = useState(url);
+  const [isLoading, setIsLoading] = useState('FALSE');
   const options = {
     title: 'Select Avatar',
     customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -21,6 +21,7 @@ const ImagePickerCmp = ({ setUrl }: { setUrl: Function }) => {
   };
 
   const uploadImage = () => {
+    console.log(url);
     setIsLoading('TRUE');
     ImagePicker.showImagePicker(options, async (response: any) => {
       if (response.uri) {
@@ -52,8 +53,8 @@ const styles = StyleSheet.create({
     marginBottom: normalize(20),
   },
   uploadAvatar: {
-    width: '100%',
-    height: '100%',
+    width: normalize(100),
+    height: normalize(100),
   },
   imageContainer: {
     width: normalize(100),
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    backgroundColor: '#cccccc',
+    backgroundColor: '#eeeeee',
   },
   button: {
     backgroundColor: color.MAIN_COLOR,

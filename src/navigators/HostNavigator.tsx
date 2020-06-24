@@ -7,7 +7,7 @@ import CustomDrawerNavigator from '@common/CustomDrawerNavigator';
 import HomeScreen from '@containers/Host/HomeScreen/HomeScreen';
 import AddTableScreen from '@containers/Host/TableManagementScreen/AddTableScreen';
 import AddFloorScreen from '@containers/Host/TableManagementScreen/AddFloorScreen';
-import ProfileScreen from '@containers/Host/ProfileScreen/ProfileScreen';
+import ProfileScreen from '@containers/ProfileScreen/ProfileScreen';
 import AddFoodScreen from '@containers/Host/FoodManagementScreen/AddFoodScreen';
 import AddEmployeeScreen from '@containers/Host/EmployeeManagementScreen/AddEmployeeScreen';
 

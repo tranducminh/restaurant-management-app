@@ -11,19 +11,47 @@ import normalize from 'react-native-normalize';
 import CustomImage from '@common/Image';
 import Color from '@constants/Color';
 import HeaderComponent from '@common/HeaderComponent';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getUserInfo } from '@api/index';
+import auth from '@react-native-firebase/auth';
+import { userInfoType } from '@type/index';
 
 const checkIcon = require('@assets/Icons/check.png');
 const profileIcon = require('@assets/user.png');
 const settingIcon = require('@assets/reset.png');
 const logoutIcon = require('@assets/logout.png');
-const ProfileScreen = () => {
+const ProfileScreen = ({ navigation }: { navigation: any }) => {
+  const [user, setUser] = useState<userInfoType>({
+    email: '',
+    name: '',
+    position: '',
+    restaurantID: '',
+    status: '',
+    avatar: '',
+    coverImage: '',
+  });
+
+  const onEditProfile = () => {
+    navigation.navigate('EditProfileScreen', { ...user });
+  };
+
+  const onSignOut = () => {
+    auth().signOut();
+  };
+
+  useEffect(() => {
+    async function getUser() {
+      let _user = (await getUserInfo(auth().currentUser?.uid)) as userInfoType;
+      setUser(_user);
+    }
+    getUser();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <HeaderComponent type="BACK" title="My Profile" />
-      {renderUserInfo()}
+      <RenderUserInfo {...user} />
       <View style={styles.actions}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onEditProfile}>
           <Image source={profileIcon} style={styles.icon} />
           <Text style={styles.buttonText}>Edit profile</Text>
         </TouchableOpacity>
@@ -31,7 +59,7 @@ const ProfileScreen = () => {
           <Image source={settingIcon} style={styles.icon} />
           <Text style={styles.buttonText}>Reset password</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onSignOut}>
           <Image source={logoutIcon} style={styles.icon} />
           <Text style={styles.buttonText}>Sign out</Text>
         </TouchableOpacity>
@@ -41,25 +69,31 @@ const ProfileScreen = () => {
   );
 };
 
-const renderUserInfo = () => {
+const RenderUserInfo = ({
+  name,
+  position,
+  avatar,
+  coverImage,
+}: {
+  name: string;
+  position: string;
+  avatar: string;
+  coverImage: string;
+}) => {
   return (
     <>
       <ImageBackground
         source={{
-          uri:
-            'https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/1592983949079?alt=media&token=d97f9ef8-0421-4a9a-9694-74a3781ee277',
+          uri: coverImage,
         }}
         style={styles.coverImage}
       />
       <View style={styles.imageContainer}>
-        <CustomImage
-          style={styles.image}
-          url="https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/girl.jpg?alt=media&token=54552efc-5dc0-4b91-868c-bbf6fc3d2695"
-        />
+        <CustomImage style={styles.image} url={avatar} />
       </View>
       <View style={styles.content}>
-        <Text style={styles.name}>Trần Đức Minh</Text>
-        <Text style={styles.position}>Employee</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.position}>{position}</Text>
         <View style={styles.info}>
           <View style={styles.item}>
             <Text style={styles.itemTitle}>Starting date</Text>

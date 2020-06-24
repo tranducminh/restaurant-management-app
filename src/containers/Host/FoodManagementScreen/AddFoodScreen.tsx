@@ -75,7 +75,7 @@ const AddFoodScreen = () => {
   ];
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderComponent type="BACK" />
+      <HeaderComponent type="BACK" title="Add food" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.content}>
           <TextInput
