@@ -14,7 +14,6 @@ import StartScreen from '../containers/StartScreen';
 import LoginScreen from '../containers/LoginScreen';
 import SignupScreen from '../containers/SignupScreen';
 import LoadingScreen from '../containers/LoadingScreen';
-import IntroScreen from '../containers/IntroScreen';
 import BlockedScreen from '../containers/BlockedScreen';
 
 import actions from '@actions/index';
@@ -85,11 +84,6 @@ const Navigator = () => {
     return (
       <NavigationContainer>
         <App.Navigator>
-          <App.Screen
-            name="IntroScreen"
-            component={IntroScreen}
-            options={{ headerShown: false, gestureEnabled: false }}
-          />
           <App.Screen
             name="StartScreen"
             component={StartScreen}

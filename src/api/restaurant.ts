@@ -4,19 +4,28 @@ import { createUser } from './auth';
 
 export const createRestaurant = async (
   hostID: string,
-  name: string,
+  restaurantName: string,
   address: string,
   email: string,
+  hostName: string | null,
+  hostAvatar: string | null,
 ) => {
   await firestore()
     .collection('restaurants')
     .add({
       hostID: hostID,
-      name: name,
+      name: restaurantName,
       address: address,
     })
     .then((restaurant: any) => {
       const restaurantID = restaurant._documentPath._parts[1];
-      createUser(hostID, '', '', email.toLowerCase(), restaurantID, 'HOST');
+      createUser(
+        hostID,
+        hostName,
+        hostAvatar,
+        email.toLowerCase(),
+        restaurantID,
+        'HOST',
+      );
     });
 };

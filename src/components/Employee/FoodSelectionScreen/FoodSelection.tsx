@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import normalize from 'react-native-normalize';
 import Image from '@common/Image';
+import { Toast } from 'native-base';
 
 import AddIcon from '@common/AddIcon';
 
@@ -26,6 +27,12 @@ const FoodSelection = ({
 }) => {
   const onPress = () => {
     chooseFood(tableId, foodId, tableName, url, foodName, price);
+    Toast.show({
+      text: `${foodName} was selected`,
+      type: 'success',
+      position: 'top',
+      duration: 3000,
+    });
   };
   return (
     <View style={styles.container}>

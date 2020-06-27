@@ -3,7 +3,7 @@ import auth from '@react-native-firebase/auth';
 
 export const createUser = async (
   uid: string,
-  name = '',
+  name = '' as string | null,
   avatar: string,
   email: string,
   restaurantID: string,

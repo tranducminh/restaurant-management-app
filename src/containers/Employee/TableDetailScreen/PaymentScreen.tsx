@@ -63,7 +63,6 @@ const PaymentScreen = ({ tableId }: { tableId: string }) => {
     }
     return (
       <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
-        {' '}
         {orderList.map(
           (item: { data: orderData; id: string }, index: number) => {
             return <Food key={index} {...item.data} />;

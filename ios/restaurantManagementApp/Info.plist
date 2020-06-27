@@ -2,16 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Ionicons.ttf</string>
-		<string>Exo-Bold.ttf</string>
-		<string>Exo-Regular.ttf</string>
-		<string>Exo-Medium.ttf</string>
-		<string>Exo-Italic.ttf</string>
-		<string>Exo-Thin.ttf</string>
-		<string>Exo-Black.ttf</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,6 +20,17 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.975180937010-1u9or3upqvdb61gjiukjq9saiej152eb</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -49,6 +50,16 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Ionicons.ttf</string>
+		<string>Exo-Bold.ttf</string>
+		<string>Exo-Regular.ttf</string>
+		<string>Exo-Medium.ttf</string>
+		<string>Exo-Italic.ttf</string>
+		<string>Exo-Thin.ttf</string>
+		<string>Exo-Black.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
