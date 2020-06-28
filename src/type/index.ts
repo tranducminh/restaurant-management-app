@@ -71,6 +71,7 @@ export type userType = {
     status: string;
     avatar: string;
     coverImage: string;
+    startingDate: string;
   };
 };
 
@@ -82,6 +83,7 @@ export type userInfoType = {
   status: string;
   avatar: string;
   coverImage: string;
+  startingDate: string;
 };
 
 export enum typeOfUser {

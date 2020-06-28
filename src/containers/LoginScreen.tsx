@@ -9,20 +9,35 @@ import {
 } from 'react-native';
 import normalize from 'react-native-normalize';
 import color from '@constants/Color';
+import { GoogleSignin } from '@react-native-community/google-signin';
+import auth from '@react-native-firebase/auth';
 
 import PrimaryButton from '@common/PrimaryButton';
 import TextInput from '@common/TextInput';
 import HeaderComponent from '@common/HeaderComponent';
-const facebookIcon = require('@assets/facebook.png');
 const googleIcon = require('@assets/google.png');
 import { signInWithEmailAndPassword } from '@api/index';
 
+GoogleSignin.configure({
+  webClientId:
+    '975180937010-e3addcehrplvulrt7squntcl2i2aso49.apps.googleusercontent.com',
+});
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const onSingIn = async () => {
     await signInWithEmailAndPassword(email, password);
   };
+  async function onGoogleButtonPress() {
+    // Get the users ID token
+    const { idToken } = await GoogleSignin.signIn();
+
+    // Create a Google credential with the token
+    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(googleCredential);
+  }
   return (
     <SafeAreaView style={styles.container}>
       <HeaderComponent type="BACK" />
@@ -39,11 +54,11 @@ const LoginScreen = () => {
           <PrimaryButton text="Sign in" onPress={onSingIn} />
           <Text style={styles.text}>OR</Text>
           <View style={styles.other}>
-            <TouchableOpacity>
-              <Image source={facebookIcon} style={styles.icon} />
-            </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => onGoogleButtonPress()}
+              style={styles.button}>
               <Image source={googleIcon} style={styles.icon} />
+              <Text style={styles.buttonText}>Sign in with Google</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.signinButton}>
@@ -88,7 +103,7 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
   },
   signinButton: {
-    paddingVertical: normalize(20),
+    paddingVertical: normalize(10),
   },
   signupText: {
     textAlign: 'center',
@@ -99,14 +114,29 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  button: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: normalize(1),
+    width: '100%',
+    paddingVertical: normalize(10),
+    marginBottom: normalize(10),
+    borderRadius: normalize(10),
+  },
+  buttonText: {
+    fontFamily: 'Exo-Bold',
+    fontSize: normalize(16),
+  },
   icon: {
-    width: normalize(30),
-    height: normalize(30),
+    width: normalize(25),
+    height: normalize(25),
     marginHorizontal: normalize(15),
   },
   text: {
     textAlign: 'center',
     paddingVertical: normalize(20),
-    fontFamily: 'Exo-Medium',
+    fontFamily: 'Exo-Italic',
+    fontSize: normalize(16),
   },
 });

@@ -81,3 +81,15 @@ export const enableEmployee = async (employeeID: string) => {
     status: 'ENABLED',
   });
 };
+
+export const updateProfile = async (
+  employeeID: string,
+  coverImage: string,
+  avatar: string,
+  name: string,
+) => {
+  firestore()
+    .collection('users')
+    .doc(employeeID)
+    .update({ coverImage, avatar, name });
+};

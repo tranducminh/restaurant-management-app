@@ -9,6 +9,8 @@ export const createUser = async (
   restaurantID: string,
   position: string,
 ) => {
+  const time = new Date();
+
   if (avatar === '') {
     avatar =
       'https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/user.png?alt=media&token=a1a4d6a3-4086-46a6-8a74-dc1f85e5539d';
@@ -25,6 +27,9 @@ export const createUser = async (
         'https://firebasestorage.googleapis.com/v0/b/restaurant-management-5b904.appspot.com/o/1592983949079?alt=media&token=d97f9ef8-0421-4a9a-9694-74a3781ee277',
       status: 'ENABLED',
       email,
+      startingDate: `${time.getDate()}/${
+        time.getMonth() + 1
+      }/${time.getFullYear()}`,
     })
     .then(() => {});
 };
@@ -73,6 +78,15 @@ export const signUpWithEmailAndPassword = async (
 export const getUserInfo = async (uid?: string) => {
   const user = await firestore().collection('users').doc(uid).get();
   return user.data();
+};
+
+export const getProfile = async (uid?: string, setUser?: Function) => {
+  await firestore()
+    .collection('users')
+    .doc(uid)
+    .onSnapshot((documentSnapshot) => {
+      setUser(documentSnapshot.data());
+    });
 };
 
 export const signInWithEmailAndPassword = async (

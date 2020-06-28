@@ -5,14 +5,29 @@ import ImagePicker from '@common/ImagePicker';
 import PrimaryButton from '@common/PrimaryButton';
 import HeaderComponent from '@common/HeaderComponent';
 import normalize from 'react-native-normalize';
+import { updateProfile } from '@api/index';
+import { Toast } from 'native-base';
 
-export default function EditProfileScreen({ route }: { route: any }) {
+export default function EditProfileScreen({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: any;
+}) {
   const [name, setName] = useState(route.params.name);
   const [avatar, setAvatar] = useState(route.params.avatar);
   const [coverImage, setCoverImage] = useState(route.params.coverImage);
-  const { email } = route.params;
+  const { email, employeeID } = route.params;
   const onUpdate = () => {
-    return;
+    updateProfile(employeeID, coverImage, avatar, name);
+    navigation.goBack();
+    Toast.show({
+      text: 'Profile was updated successfully',
+      type: 'success',
+      position: 'top',
+      duration: 3000,
+    });
   };
   return (
     <SafeAreaView style={styles.container}>

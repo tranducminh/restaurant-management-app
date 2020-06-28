@@ -8,6 +8,7 @@ import HomeScreen from '@containers/Host/HomeScreen/HomeScreen';
 import AddTableScreen from '@containers/Host/TableManagementScreen/AddTableScreen';
 import AddFloorScreen from '@containers/Host/TableManagementScreen/AddFloorScreen';
 import ProfileScreen from '@containers/ProfileScreen/ProfileScreen';
+import EditProfileScreen from '@containers/ProfileScreen/EditProfileScreen';
 import AddFoodScreen from '@containers/Host/FoodManagementScreen/AddFoodScreen';
 import AddEmployeeScreen from '@containers/Host/EmployeeManagementScreen/AddEmployeeScreen';
 
@@ -53,6 +54,11 @@ const ProfileScreenStack = () => {
       <ProfileStack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <ProfileStack.Screen
+        name="EditProfileScreen"
+        component={EditProfileScreen}
         options={{ headerShown: false }}
       />
     </ProfileStack.Navigator>

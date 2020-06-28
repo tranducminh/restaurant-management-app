@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import normalize from 'react-native-normalize';
+import { Toast } from 'native-base';
 
 import EditIcon from '@common/EditIcon';
 import DeleteIcon from '@common/DeleteIcon';
@@ -23,8 +24,23 @@ const TableItem = ({
   const onEdit = () => {
     return;
   };
-  const onDelete = () => {
-    removeTable(tableId, status, floorId);
+  const onDelete = async () => {
+    let result = await removeTable(tableId, status, floorId);
+    if (result) {
+      Toast.show({
+        text: 'Remove table successfully',
+        type: 'success',
+        position: 'top',
+        duration: 3000,
+      });
+    } else {
+      Toast.show({
+        text: 'Can not remove this table',
+        type: 'danger',
+        position: 'top',
+        duration: 3000,
+      });
+    }
   };
   return (
     <View style={styles.container}>

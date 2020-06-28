@@ -11,7 +11,8 @@ import normalize from 'react-native-normalize';
 import TableItem from '@components/Host/TableManagementScreen/TableItem';
 import AddFloorAndTableFab from '@common/AddFloorAndTableFab';
 import { tableType } from '@type/index';
-import { getTableList } from '@api/index';
+import { getTableList, removeFloor } from '@api/index';
+import { Toast } from 'native-base';
 
 const TableListScreen = ({
   floorID,
@@ -27,9 +28,27 @@ const TableListScreen = ({
   const [tableList, setTableList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const deleteFloor = async () => {
+    let result = await removeFloor(floorID);
+    if (result === true) {
+      Toast.show({
+        text: 'Remove floor successfully',
+        type: 'success',
+        position: 'top',
+        duration: 3000,
+      });
+    } else {
+      Toast.show({
+        text: 'Can not remove this floor',
+        type: 'danger',
+        position: 'top',
+        duration: 3000,
+      });
+    }
+  };
   useEffect(() => {
-    getTableList(setTableList, setIsLoading, floor, restaurantID);
-  }, [floor, restaurantID]);
+    getTableList(setTableList, setIsLoading, floorID, restaurantID);
+  }, [floorID, restaurantID]);
   return (
     <View style={styles.container}>
       <View style={styles.description}>
@@ -37,7 +56,7 @@ const TableListScreen = ({
           style={
             styles.descriptionText
           }>{`Total: ${numberOfTables} tables`}</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={deleteFloor}>
           <Text style={styles.buttonText}>Delete this floor</Text>
         </TouchableOpacity>
       </View>

@@ -38,13 +38,13 @@ export const createTable = async (
 export const getTableList = async (
   setTableList: Function,
   setIsLoading: Function,
-  floor: string,
+  floorID: string,
   restaurantID: string,
 ) => {
   setIsLoading(true);
   firestore()
     .collection('tables')
-    .where('floor', '==', floor)
+    .where('floorID', '==', floorID)
     .where('restaurantID', '==', restaurantID)
     .onSnapshot((documentSnapshot) => {
       let result: { id: string; data: any }[] = [];
@@ -62,13 +62,13 @@ export const getTableList = async (
 export const getReadyTableList = async (
   setTableList: Function,
   setIsLoading: Function,
-  floor: string,
+  floorID: string,
   restaurantID: string,
 ) => {
   setIsLoading(true);
   firestore()
     .collection('tables')
-    .where('floor', '==', floor)
+    .where('floorID', '==', floorID)
     .where('restaurantID', '==', restaurantID)
     .where('status', '==', 'READY')
     .onSnapshot((documentSnapshot) => {
@@ -87,13 +87,13 @@ export const getReadyTableList = async (
 export const getInUseTableList = async (
   setTableList: Function,
   setIsLoading: Function,
-  floor: string,
+  floorID: string,
   restaurantID: string,
 ) => {
   setIsLoading(true);
   firestore()
     .collection('tables')
-    .where('floor', '==', floor)
+    .where('floorID', '==', floorID)
     .where('restaurantID', '==', restaurantID)
     .where('status', '==', 'INUSE')
     .onSnapshot((documentSnapshot) => {
@@ -149,6 +149,9 @@ export const removeTable = async (
       .update({
         numberOfTables: totalTable - 1,
       });
+    return true;
+  } else {
+    return false;
   }
 };
 

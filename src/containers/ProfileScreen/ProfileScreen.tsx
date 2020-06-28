@@ -12,9 +12,10 @@ import CustomImage from '@common/Image';
 import Color from '@constants/Color';
 import HeaderComponent from '@common/HeaderComponent';
 import React, { useEffect, useState } from 'react';
-import { getUserInfo } from '@api/index';
+import { getProfile } from '@api/index';
 import auth from '@react-native-firebase/auth';
 import { userInfoType } from '@type/index';
+import { Toast } from 'native-base';
 
 const checkIcon = require('@assets/Icons/check.png');
 const profileIcon = require('@assets/user.png');
@@ -29,10 +30,24 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
     status: '',
     avatar: '',
     coverImage: '',
+    startingDate: '',
   });
 
   const onEditProfile = () => {
-    navigation.navigate('EditProfileScreen', { ...user });
+    navigation.navigate('EditProfileScreen', {
+      ...user,
+      employeeID: auth().currentUser?.uid,
+    });
+  };
+
+  const onResetPassword = () => {
+    auth().sendPasswordResetEmail(user.email);
+    Toast.show({
+      text: 'Please check your email to reset password',
+      type: 'success',
+      position: 'top',
+      duration: 3000,
+    });
   };
 
   const onSignOut = () => {
@@ -40,11 +55,7 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
   };
 
   useEffect(() => {
-    async function getUser() {
-      let _user = (await getUserInfo(auth().currentUser?.uid)) as userInfoType;
-      setUser(_user);
-    }
-    getUser();
+    getProfile(auth().currentUser?.uid, setUser);
   }, []);
   return (
     <SafeAreaView style={styles.container}>
@@ -55,7 +66,7 @@ const ProfileScreen = ({ navigation }: { navigation: any }) => {
           <Image source={profileIcon} style={styles.icon} />
           <Text style={styles.buttonText}>Edit profile</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onResetPassword}>
           <Image source={settingIcon} style={styles.icon} />
           <Text style={styles.buttonText}>Reset password</Text>
         </TouchableOpacity>
@@ -74,11 +85,13 @@ const RenderUserInfo = ({
   position,
   avatar,
   coverImage,
+  startingDate,
 }: {
   name: string;
   position: string;
   avatar: string;
   coverImage: string;
+  startingDate: string;
 }) => {
   return (
     <>
@@ -97,7 +110,7 @@ const RenderUserInfo = ({
         <View style={styles.info}>
           <View style={styles.item}>
             <Text style={styles.itemTitle}>Starting date</Text>
-            <Text style={styles.itemValue}>9/6/1999</Text>
+            <Text style={styles.itemValue}>{startingDate}</Text>
           </View>
           <View style={styles.item}>
             <Text style={styles.itemTitle}>Status</Text>

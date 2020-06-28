@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import CustomDrawerNavigator from '@common/CustomDrawerNavigator';
 import HomeScreen from '@containers/Chef/HomeScreen/HomeScreen';
 import ProfileScreen from '@containers/ProfileScreen/ProfileScreen';
+import EditProfileScreen from '@containers/ProfileScreen/EditProfileScreen';
 
 const Drawer = createDrawerNavigator();
 const HomeStack = createStackNavigator();
@@ -29,6 +30,11 @@ const ProfileScreenStack = () => {
       <ProfileStack.Screen
         name="ProfileScreen"
         component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
+      <ProfileStack.Screen
+        name="EditProfileScreen"
+        component={EditProfileScreen}
         options={{ headerShown: false }}
       />
     </ProfileStack.Navigator>

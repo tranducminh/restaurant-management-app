@@ -19,7 +19,6 @@ import TextInput from '@common/TextInput';
 import HeaderComponent from '@common/HeaderComponent';
 import { createRestaurant, signUpWithEmailAndPassword } from '../api';
 
-const facebookIcon = require('@assets/facebook.png');
 const googleIcon = require('@assets/google.png');
 
 GoogleSignin.configure({

@@ -31,14 +31,22 @@ const HomeScreen = () => {
     } else if (floorList.length === 1) {
       let floor: floorType = floorList[0];
       return (
-        <TableScreen restaurantID={restaurantID} floor={floor.data.floor} />
+        <TableScreen
+          restaurantID={restaurantID}
+          floor={floor.data.floor}
+          floorID={floor.id}
+        />
       );
     }
     return (
       <Tab.Navigator tabBar={(props) => <CustomTopTabNavigator {...props} />}>
         {floorList.map((item: floorType, index) => {
           const renderTableListScreen = () => (
-            <TableScreen restaurantID={restaurantID} floor={item.data.floor} />
+            <TableScreen
+              restaurantID={restaurantID}
+              floor={item.data.floor}
+              floorID={item.id}
+            />
           );
           return (
             <Tab.Screen

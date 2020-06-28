@@ -10,18 +10,21 @@ import { getReadyTableList, getInUseTableList } from '@api/index';
 const TableScreen = ({
   restaurantID,
   floor,
+  floorID,
 }: {
   restaurantID: string;
   floor: string;
+  floorID: string
 }) => {
   const [readyTableList, setReadyTableList] = useState([]);
   const [inUseTableList, setInUseTableList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getReadyTableList(setReadyTableList, setIsLoading, floor, restaurantID);
-    getInUseTableList(setInUseTableList, setIsLoading, floor, restaurantID);
-  }, [floor, restaurantID]);
+    console.log(floorID);
+    getReadyTableList(setReadyTableList, setIsLoading, floorID, restaurantID);
+    getInUseTableList(setInUseTableList, setIsLoading, floorID, restaurantID);
+  }, [floorID, restaurantID]);
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>

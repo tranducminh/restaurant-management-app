@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
 import {
@@ -7,12 +7,17 @@ import {
 } from '@react-navigation/drawer';
 import auth from '@react-native-firebase/auth';
 import { useDispatch } from 'react-redux';
-
+import Image from '@common/Image';
 import actions from '@actions/index';
+import { getProfile } from '@api/index';
 
 const AVATAR_SIZE = 60;
 
 const CustomDrawerNavigator = (props: any) => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    getProfile(auth().currentUser?.uid, setUser);
+  }, []);
   const dispatch = useDispatch();
 
   const signOut = () => {
@@ -30,9 +35,9 @@ const CustomDrawerNavigator = (props: any) => {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.header}>
-        <View style={styles.avatar} />
+        <Image url={user.avatar} style={styles.avatar} />
         <Text style={styles.name} numberOfLines={1}>
-          Alexander
+          {user.name}
         </Text>
         <Text style={styles.position}>{props.jobPosition}</Text>
       </View>

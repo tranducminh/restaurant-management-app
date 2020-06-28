@@ -30,3 +30,21 @@ export const getFloorList = async (
       setIsLoading(false);
     });
 };
+
+export const removeFloor = async (floorID: string) => {
+  let result = true;
+  await firestore()
+    .collection('tables')
+    .where('floorID', '==', floorID)
+    .where('status', '==', 'INUSE')
+    .get()
+    .then((documentSnapshot) => {
+      if (documentSnapshot.size !== 0) {
+        result = false;
+      } else {
+        firestore().collection('floors').doc(floorID).delete();
+        result = true;
+      }
+    });
+  return result;
+};
