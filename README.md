@@ -5,6 +5,9 @@
 
 > To help the manager manage orders, employees in their restaurant
 
+## Prerequisites
+- Install and run server : 
+[restaurant-management-server](https://github.com/tranducminh/restaurant-management-server)
 ## Install
 
 ```sh
