@@ -28,12 +28,10 @@ enum typeOfFood {
 }
 
 export type restaurantType = {
-  id: string;
-  data: {
-    address: string;
-    hostID: string;
-    name: string;
-  };
+  address: string;
+  hostID: string;
+  name: string;
+  discount: number;
 };
 
 export type selectionType = {

@@ -1,5 +1,4 @@
 import firestore from '@react-native-firebase/firestore';
-
 import { createUser } from './auth';
 
 export const createRestaurant = async (
@@ -16,6 +15,7 @@ export const createRestaurant = async (
       hostID: hostID,
       name: restaurantName,
       address: address,
+      discount: 0,
     })
     .then((restaurant: any) => {
       const restaurantID = restaurant._documentPath._parts[1];
@@ -28,4 +28,25 @@ export const createRestaurant = async (
         'HOST',
       );
     });
+};
+
+export const getRestaurantInfo = async (restaurantID: string) => {
+  let restaurant = await firestore()
+    .collection('restaurants')
+    .doc(restaurantID)
+    .get();
+  return restaurant.data();
+};
+
+export const updateRestaurantInfo = async (
+  restaurantID: string,
+  name: string,
+  address: string,
+  discount: number,
+) => {
+  let result = await firestore()
+    .collection('restaurants')
+    .doc(restaurantID)
+    .update({ name, address, discount });
+  console.log(result);
 };

@@ -35,9 +35,9 @@ const CustomDrawerNavigator = (props: any) => {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.header}>
-        <Image url={user.avatar} style={styles.avatar} />
+        <Image url={user?.avatar} style={styles.avatar} />
         <Text style={styles.name} numberOfLines={1}>
-          {user.name}
+          {user?.name}
         </Text>
         <Text style={styles.position}>{props.jobPosition}</Text>
       </View>
