@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import normalize from 'react-native-normalize';
+import { useSelector, TypedUseSelectorHook } from 'react-redux';
+import { ReducersType } from '@reducers/index';
+import { getRestaurantInfo } from '@api/index';
+import { restaurantType } from '@type/index';
+
+const useTypedSelector: TypedUseSelectorHook<ReducersType> = useSelector;
 
 const Payment = ({
   payment,
@@ -9,6 +15,15 @@ const Payment = ({
   payment: number;
   onPurchase: Function;
 }) => {
+  const { restaurantID } = useTypedSelector((state) => state.user);
+  const [discount, setDiscount] = useState(0);
+  useEffect(() => {
+    const getRestaurant = async () => {
+      let restaurant: restaurantType = await getRestaurantInfo(restaurantID);
+      setDiscount(restaurant.discount);
+    };
+    getRestaurant();
+  }, [restaurantID]);
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -24,12 +39,12 @@ const Payment = ({
       </View>
       <View style={styles.part}>
         <Text style={styles.text}>Discount</Text>
-        <Text style={styles.text}>30%</Text>
+        <Text style={styles.text}>{discount}%</Text>
       </View>
       <View style={styles.space} />
       <View style={styles.part}>
         <Text style={styles.text}>Total</Text>
-        <Text style={styles.text}>$ 70</Text>
+        <Text style={styles.text}>$ {payment * (1 - discount / 100)}</Text>
       </View>
     </View>
   );

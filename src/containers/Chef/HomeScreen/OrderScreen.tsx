@@ -42,6 +42,8 @@ export default OrderScreen;
 const styles = StyleSheet.create({
   content: {
     paddingHorizontal: normalize(16),
+    height: '100%',
+    backgroundColor: '#ffffff',
   },
   nullContainer: {
     height: '100%',

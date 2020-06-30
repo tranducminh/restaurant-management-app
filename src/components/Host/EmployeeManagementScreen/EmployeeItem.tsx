@@ -19,6 +19,7 @@ export default function EmployeeItem({
   avatar,
   name,
   email,
+  position,
 }: {
   isAuth: boolean;
   status: string;
@@ -26,6 +27,7 @@ export default function EmployeeItem({
   avatar: string;
   name: string;
   email: string;
+  position: string;
 }) {
   const onDelete = () => {
     if (isAuth === false) {
@@ -51,6 +53,7 @@ export default function EmployeeItem({
           )}
         </View>
         <Text style={styles.text}>{email}</Text>
+        <Text>{position}</Text>
         {isAuth === false && (
           <View style={styles.pending}>
             <Text style={styles.pendingText}>Pending</Text>

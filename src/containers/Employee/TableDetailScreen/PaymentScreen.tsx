@@ -12,6 +12,7 @@ import normalize from 'react-native-normalize';
 import { useNavigation } from '@react-navigation/native';
 import color from '@constants/Color';
 import EmptyIcon from '@common/EmptyIcon';
+import { Toast } from 'native-base';
 
 import Food from '@components/Employee/PaymentScreen/Food';
 import Payment from '@components/Employee/PaymentScreen/Payment';
